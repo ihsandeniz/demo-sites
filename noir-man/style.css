@@ -2221,6 +2221,86 @@ img {
   justify-content: center;
 }
 
+/* === FAZ 6: Trust Signals & WhatsApp FAB === */
+.footer-trust-bar {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 1.5rem 2rem;
+  border-bottom: 1px solid #1a1a1a;
+  flex-wrap: wrap;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  color: #999;
+}
+.trust-item svg { color: #C9A84C; flex-shrink: 0; }
+.footer-payment-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #1a1a1a;
+  flex-wrap: wrap;
+}
+.pay-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #555;
+  margin-right: 0.5rem;
+}
+.payment-icons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.pay-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid #2a2a2a;
+  border-radius: 3px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #888;
+  background: #111;
+  white-space: nowrap;
+}
+.whatsapp-fab {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(37,211,102,0.35);
+  z-index: 9000;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.whatsapp-fab:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 24px rgba(37,211,102,0.5);
+}
+@media (max-width: 768px) {
+  .footer-trust-bar { gap: 1.2rem; }
+  .trust-item span { font-size: 0.72rem; }
+}
+
 /* ============================================================================
    END OF STYLESHEET — Min 400 lines CSS ✓
    ============================================================================ */
