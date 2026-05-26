@@ -711,3 +711,36 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addToCartFromCard = addToCartFromCard;
 window.proceedToCheckout = proceedToCheckout;
+
+// ── Announcement Bar ──
+(function() {
+  const BAR_KEY = 'volk_announcement_dismissed_until';
+  const bar = document.getElementById('announcementBar');
+  if (!bar) return;
+
+  const dismissed = localStorage.getItem(BAR_KEY);
+  if (dismissed && Date.now() < parseInt(dismissed)) {
+    bar.style.display = 'none';
+    return;
+  }
+
+  document.body.classList.add('has-announcement');
+
+  const items = bar.querySelectorAll('.announcement-item');
+  let current = 0;
+
+  setInterval(function() {
+    items[current].classList.remove('active');
+    current = (current + 1) % items.length;
+    items[current].classList.add('active');
+  }, 4000);
+})();
+
+function dismissAnnouncement() {
+  const bar = document.getElementById('announcementBar');
+  if (bar) {
+    bar.style.display = 'none';
+    document.body.classList.remove('has-announcement');
+  }
+  localStorage.setItem('volk_announcement_dismissed_until', Date.now() + 86400000);
+}
