@@ -790,3 +790,112 @@ function dismissAnnouncement() {
     grid.parentNode.insertBefore(countEl, grid);
   }
 })();
+
+// ===== FAZ 4 — WISHLIST (Heart Icon Button System) =====
+(function() {
+  const WISHLIST_KEY = 'velour_wishlist';
+
+  // Get wishlist from localStorage
+  function getWishlist() {
+    return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+  }
+
+  // Save wishlist to localStorage
+  function saveWishlist(list) {
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+  }
+
+  // Update UI: fill hearts, update count badge
+  function updateWishlistUI() {
+    const wishlist = getWishlist();
+
+    // Update all heart buttons
+    document.querySelectorAll('.btn-wishlist').forEach(btn => {
+      const productId = parseInt(btn.dataset.id);
+      const isInWishlist = wishlist.includes(productId);
+      const svg = btn.querySelector('svg');
+
+      if (isInWishlist) {
+        btn.classList.add('active');
+        if (svg) svg.setAttribute('fill', '#D4A853');
+      } else {
+        btn.classList.remove('active');
+        if (svg) svg.setAttribute('fill', 'none');
+      }
+    });
+
+    // Update count badge
+    const badge = document.querySelector('.wishlist-count');
+    if (badge) {
+      if (wishlist.length > 0) {
+        badge.textContent = wishlist.length;
+        badge.style.display = 'inline-flex';
+      } else {
+        badge.style.display = 'none';
+      }
+    }
+  }
+
+  // Toggle wishlist for a product
+  function toggleWishlist(productId, btn) {
+    let wishlist = getWishlist();
+    const index = wishlist.indexOf(productId);
+
+    if (index === -1) {
+      // Add to wishlist
+      wishlist.push(productId);
+      btn.classList.add('active');
+      btn.classList.add('pop');
+      if (btn.querySelector('svg')) {
+        btn.querySelector('svg').setAttribute('fill', '#D4A853');
+      }
+      showNotification('Added to wishlist');
+    } else {
+      // Remove from wishlist
+      wishlist.splice(index, 1);
+      btn.classList.remove('active');
+      btn.classList.add('pop');
+      if (btn.querySelector('svg')) {
+        btn.querySelector('svg').setAttribute('fill', 'none');
+      }
+      showNotification('Removed from wishlist');
+    }
+
+    // Remove pop animation class after animation ends
+    setTimeout(() => {
+      btn.classList.remove('pop');
+    }, 300);
+
+    saveWishlist(wishlist);
+    updateWishlistUI();
+  }
+
+  // Attach click handlers to all wishlist buttons
+  function setupWishlistButtons() {
+    document.querySelectorAll('.btn-wishlist').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const productId = parseInt(btn.dataset.id);
+        toggleWishlist(productId, btn);
+      });
+    });
+  }
+
+  // Initialize on DOM ready
+  document.addEventListener('DOMContentLoaded', () => {
+    updateWishlistUI();
+    setupWishlistButtons();
+  });
+
+  // Also setup if DOM is already loaded (in case script runs after DOMContentLoaded)
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      updateWishlistUI();
+      setupWishlistButtons();
+    });
+  } else {
+    updateWishlistUI();
+    setupWishlistButtons();
+  }
+})();

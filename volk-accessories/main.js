@@ -903,4 +903,63 @@ function dismissAnnouncement() {
     countEl.textContent = document.querySelectorAll('.product-card').length + ' products';
     grid.parentNode.insertBefore(countEl, grid);
   }
+});
+
+// FAZ 4 — Wishlist
+(function() {
+  var WISHLIST_KEY = 'volk_wishlist';
+
+  function getWishlist() {
+    try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || []; }
+    catch(e) { return []; }
+  }
+
+  function saveWishlist(list) {
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+  }
+
+  function updateWishlistUI() {
+    var list = getWishlist();
+    document.querySelectorAll('.btn-wishlist').forEach(function(btn) {
+      var id = btn.dataset.id;
+      if (list.indexOf(id) !== -1) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-label', 'Remove from wishlist');
+      } else {
+        btn.classList.remove('active');
+        btn.setAttribute('aria-label', 'Add to wishlist');
+      }
+    });
+    var countEls = document.querySelectorAll('.wishlist-count');
+    countEls.forEach(function(el) {
+      if (list.length > 0) {
+        el.textContent = list.length;
+        el.style.display = 'inline-flex';
+      } else {
+        el.style.display = 'none';
+      }
+    });
+  }
+
+  function toggleWishlist(id, btn) {
+    var list = getWishlist();
+    var idx = list.indexOf(id);
+    if (idx === -1) { list.push(id); }
+    else { list.splice(idx, 1); }
+    saveWishlist(list);
+    btn.classList.add('pop');
+    btn.addEventListener('animationend', function() { btn.classList.remove('pop'); }, { once: true });
+    updateWishlistUI();
+  }
+
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.btn-wishlist');
+    if (!btn) return;
+    e.stopPropagation();
+    e.preventDefault();
+    toggleWishlist(btn.dataset.id, btn);
+  });
+
+  updateWishlistUI();
+})();
 })();
