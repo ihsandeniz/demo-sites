@@ -265,19 +265,47 @@ function renderProducts(products) {
   if (!container) return;
 
   const stockLabel = { 'in-stock': 'IN STOCK', 'low-stock': 'LOW STOCK', 'out-of-stock': 'SOLD OUT' };
+  const badgeMap = {
+    1: '<div class="badge badge-new">New</div>',
+    2: '<div class="badge badge-sale">Sale</div>',
+    3: '',
+    4: '<div class="badge badge-limited">Limited</div>',
+    5: '',
+    6: '<div class="badge badge-new">New</div>',
+  };
+  const colorSwatches = {
+    1: ['#0d0d0d', '#4a5240', '#c8a96e'],
+    2: ['#0d0d0d', '#1a3a4a', '#a68660', '#ff8c42'],
+    3: ['#0d0d0d', '#8a8a8a', '#b8a575'],
+    4: ['#0d0d0d', '#4a3728', '#9d6e5c', '#5d3a1a'],
+    5: ['#0d0d0d', '#4a5240', '#2d4a2b'],
+    6: ['#0d0d0d', '#2a2a2a', '#6b7280'],
+  };
 
   container.innerHTML = products
     .map(
-      product => `
-    <div class="product-card">
-      <div class="product-image">
-        ${product.stock && product.stock !== 'in-stock' ? `<div class="stock-badge ${product.stock}">${stockLabel[product.stock]}</div>` : ''}
-        <img src="${product.image}" alt="${product.name}" loading="lazy">
-        <div class="product-overlay">
-          <button class="btn btn-primary product-add-btn" onclick="addToCartFromCard(${product.id})" ${product.stock === 'out-of-stock' ? 'disabled style="opacity:0.5;cursor:not-allowed;"' : ''}>ADD TO CART</button>
+      product => {
+        const swatches = colorSwatches[product.id] || ['#0d0d0d'];
+        const swatchesHtml = swatches.map((color, idx) =>
+          idx < 3 ? `<button class="color-swatch ${idx === 0 ? 'active' : ''}" style="background:${color}" title="${['Black', 'Secondary', 'Tertiary', 'Quaternary'][idx]}"></button>` : ''
+        ).join('');
+        const swatchOverflow = swatches.length > 3 ? `<span class="swatch-overflow">+${swatches.length - 3}</span>` : '';
+
+        return `
+    <div class="product-card" data-id="${product.id}">
+      <div class="product-image-wrapper">
+        <img src="${product.image}" class="product-image product-image-primary" loading="lazy" alt="${product.name}">
+        <img src="${product.image.replace('?w=600', '?w=601')}" class="product-image product-image-secondary" loading="lazy" alt="${product.name}">
+        <div class="product-badges">
+          ${badgeMap[product.id] || ''}
         </div>
+        <button class="btn-quick-add" data-id="${product.id}">Quick Add</button>
       </div>
       <div class="product-info">
+        <div class="product-swatches">
+          ${swatchesHtml}
+          ${swatchOverflow}
+        </div>
         <div class="product-code">${product.code}</div>
         <div class="product-name">${product.name}</div>
         <div class="product-price">$${product.price.toLocaleString()}</div>
@@ -286,7 +314,8 @@ function renderProducts(products) {
         </a>
       </div>
     </div>
-  `,
+  `;
+      },
     )
     .join('');
 }
@@ -711,6 +740,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
 window.addToCartFromCard = addToCartFromCard;
 window.proceedToCheckout = proceedToCheckout;
+
+// FAZ 2 — Quick Add & Swatch interactions
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.btn-quick-add').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const orig = this.textContent;
+      this.textContent = 'Added ✓';
+      this.style.background = 'rgba(0,200,100,0.95)';
+      setTimeout(function() {
+        btn.textContent = orig;
+        btn.style.background = '';
+      }, 1500);
+    });
+  });
+
+  document.querySelectorAll('.product-swatches').forEach(function(group) {
+    group.querySelectorAll('.color-swatch').forEach(function(swatch) {
+      swatch.addEventListener('click', function(e) {
+        e.stopPropagation();
+        group.querySelectorAll('.color-swatch').forEach(function(s) { s.classList.remove('active'); });
+        this.classList.add('active');
+      });
+    });
+  });
+});
 
 // ── Announcement Bar ──
 (function() {

@@ -1647,3 +1647,96 @@ footer {
     font-size: 1.1rem;
   }
 }
+
+/* FAZ 2 — Product Card Upgrade */
+.product-image-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+.product-image {
+  width: 100%;
+  display: block;
+}
+.product-image-secondary {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.product-card:hover .product-image-secondary {
+  opacity: 1;
+}
+.product-card:hover .product-image-primary {
+  transform: scale(1.04);
+  transition: transform 0.4s ease;
+}
+.product-image-primary {
+  transition: transform 0.4s ease;
+}
+.product-badges {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  z-index: 2;
+}
+.badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 3px 8px;
+  border-radius: 2px;
+  text-transform: uppercase;
+}
+.badge-new { background: #00FF85; color: #0d0d0d; }
+.badge-sale { background: #ff4444; color: #fff; }
+.badge-limited { background: #ff6b35; color: #fff; }
+.btn-quick-add {
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  right: 0;
+  background: rgba(0, 255, 133, 0.92);
+  color: #0d0d0d;
+  border: none;
+  padding: 0.65rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: bottom 0.3s ease;
+  z-index: 3;
+  font-family: var(--font-heading);
+}
+.product-card:hover .btn-quick-add {
+  bottom: 0;
+}
+.product-swatches {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+}
+.color-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s, border-color 0.2s;
+  background: #0d0d0d;
+}
+.color-swatch:hover { transform: scale(1.3); }
+.color-swatch.active { border-color: #00FF85; }
+.swatch-overflow {
+  font-size: 0.7rem;
+  color: #888;
+}

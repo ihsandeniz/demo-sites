@@ -230,11 +230,28 @@ function renderProducts(filterCategory = null) {
 
   container.innerHTML = productsToRender
     .map(
-      (product) => `
-    <div class="product-card">
-      ${product.limited ? '<div class="limited-badge">Limited Edition</div>' : ''}
-      <img src="${product.image}" alt="${product.name}" class="product-image" loading="lazy">
+      (product, index) => {
+        const colorSwatches = product.colors.slice(0, 3).map(
+          (color) => `<button class="color-swatch" style="background:${color}" title="${color}"></button>`
+        ).join('');
+        const extraColors = product.colors.length > 3 ? ` <span class="swatch-more">+${product.colors.length - 3}</span>` : '';
+        const badgeClass = index === 0 || index === 1 ? 'badge-limited' : (index === 2 || index === 3 ? 'badge-new' : '');
+        const badge = badgeClass ? `<span class="badge ${badgeClass}">${badgeClass === 'badge-limited' ? 'LIMITED' : 'NEW'}</span>` : '';
+
+        return `
+    <div class="product-card" data-id="${product.id}" data-colors="${product.colors.join(',')}">
+      <div class="product-image-wrapper">
+        <img src="${product.image}" alt="${product.name}" class="product-image product-image-primary" loading="lazy" width="600" height="400">
+        <img src="${product.image.replace('?w=600', '?w=601') || product.image.split('?')[0] + '?w=601&q=' + (product.image.includes('q=') ? product.image.split('q=')[1] : '80')}" alt="${product.name} detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
+        <div class="product-badges">
+          ${badge}
+        </div>
+        <button class="btn-quick-add" data-id="${product.id}">Discover</button>
+      </div>
       <div class="product-info">
+        <div class="product-swatches">
+          ${colorSwatches}${extraColors}
+        </div>
         <div class="product-category">${product.category}</div>
         <h3 class="product-name">${product.name}</h3>
         <div class="product-price">$${product.price.toLocaleString()}</div>
@@ -244,7 +261,8 @@ function renderProducts(filterCategory = null) {
         </div>
       </div>
     </div>
-  `
+  `;
+      }
     )
     .join('');
 
@@ -257,6 +275,9 @@ function renderProducts(filterCategory = null) {
       toggleWishlist(productId);
     });
   });
+
+  // Add quick-add and color swatch listeners
+  initProductCardInteractions();
 }
 
 function renderProductDetail() {
@@ -512,11 +533,28 @@ function initProductsPage() {
 
     container.innerHTML = list
       .map(
-        (product) => `
-      <div class="product-card">
-        ${product.limited ? '<div class="limited-badge">Limited Edition</div>' : ''}
-        <img src="${product.image}" alt="${sanitizeHTML(product.name)}" class="product-image" loading="lazy" width="600" height="400">
+        (product, index) => {
+          const colorSwatches = product.colors.slice(0, 3).map(
+            (color) => `<button class="color-swatch" style="background:${color}" title="${color}"></button>`
+          ).join('');
+          const extraColors = product.colors.length > 3 ? ` <span class="swatch-more">+${product.colors.length - 3}</span>` : '';
+          const badgeClass = index === 0 || index === 1 ? 'badge-limited' : (index === 2 || index === 3 ? 'badge-new' : '');
+          const badge = badgeClass ? `<span class="badge ${badgeClass}">${badgeClass === 'badge-limited' ? 'LIMITED' : 'NEW'}</span>` : '';
+
+          return `
+      <div class="product-card" data-id="${product.id}" data-colors="${product.colors.join(',')}">
+        <div class="product-image-wrapper">
+          <img src="${product.image}" alt="${sanitizeHTML(product.name)}" class="product-image product-image-primary" loading="lazy" width="600" height="400">
+          <img src="${product.image.replace('?w=600', '?w=601') || product.image.split('?')[0] + '?w=601&q=' + (product.image.includes('q=') ? product.image.split('q=')[1] : '80')}" alt="${sanitizeHTML(product.name)} detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
+          <div class="product-badges">
+            ${badge}
+          </div>
+          <button class="btn-quick-add" data-id="${product.id}">Discover</button>
+        </div>
         <div class="product-info">
+          <div class="product-swatches">
+            ${colorSwatches}${extraColors}
+          </div>
           <div class="product-category">${sanitizeHTML(product.category)}</div>
           <h3 class="product-name">${sanitizeHTML(product.name)}</h3>
           <div class="product-price">$${product.price.toLocaleString()}</div>
@@ -526,7 +564,8 @@ function initProductsPage() {
           </div>
         </div>
       </div>
-    `
+    `;
+        }
       )
       .join('');
 
@@ -537,6 +576,9 @@ function initProductsPage() {
         toggleWishlist(parseInt(btn.dataset.productId));
       });
     });
+
+    // Add quick-add and color swatch listeners
+    initProductCardInteractions();
 
     const countEl = document.querySelector('.product-count');
     if (countEl) countEl.textContent = `Showing ${list.length} item${list.length !== 1 ? 's' : ''}`;
@@ -655,6 +697,31 @@ function initIntersectionObserver() {
   });
 }
 
+// ===== PRODUCT CARD INTERACTIONS =====
+
+function initProductCardInteractions() {
+  // Quick-add button interactions
+  document.querySelectorAll('.btn-quick-add').forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const original = this.textContent;
+      this.textContent = '✓ Added';
+      setTimeout(() => { this.textContent = original; }, 1500);
+    });
+  });
+
+  // Color swatch interactions
+  document.querySelectorAll('.color-swatch').forEach(function(swatch) {
+    swatch.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const card = this.closest('.product-card');
+      card.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+}
+
 // ===== TOAST NOTIFICATION =====
 
 function showToast(message) {
@@ -702,6 +769,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize common features
   initNavigation();
   initIntersectionObserver();
+  initProductCardInteractions();
 
   // Page-specific initialization
   const path = window.location.pathname;

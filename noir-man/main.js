@@ -745,3 +745,28 @@ function dismissAnnouncement() {
   }
   localStorage.setItem('noir_announcement_dismissed_until', Date.now() + 86400000);
 }
+
+// ── Product Card Interactions ──
+document.querySelectorAll('.btn-quick-add').forEach(function(btn) {
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    const productId = this.dataset.id;
+    const original = this.textContent;
+    this.textContent = 'Added ✓';
+    this.style.background = 'rgba(41,200,120,0.95)';
+    setTimeout(() => {
+      this.textContent = original;
+      this.style.background = '';
+    }, 1500);
+  });
+});
+
+document.querySelectorAll('.color-swatch').forEach(function(swatch) {
+  swatch.addEventListener('click', function(e) {
+    e.stopPropagation();
+    const card = this.closest('.product-card');
+    card.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+    this.classList.add('active');
+  });
+});

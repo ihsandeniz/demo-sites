@@ -208,6 +208,38 @@ function updateCartBadge() {
   }
 }
 
+// ===== COLOR PALETTE & BADGE DISTRIBUTION =====
+const colorPalette = {
+  'blush': '#e8d5c4',
+  'ivory': '#f5f0e8',
+  'sage': '#c8cca6',
+  'terracotta': '#cc7755',
+  'dusty-rose': '#c9a0a0',
+  'cream': '#f0e6d3'
+};
+
+function getBadgeForProduct(index, totalProducts) {
+  const firstThird = Math.ceil(totalProducts / 3);
+  const middleThird = firstThird * 2;
+
+  if (index < 2) return 'badge-new';
+  if (index < middleThird && index >= 2) return index % 2 === 0 ? 'badge-sale' : null;
+  if (index >= middleThird) return index % 3 === 0 ? 'badge-limited' : null;
+  return null;
+}
+
+function getProductColors(productId) {
+  const colorOptions = [
+    ['blush', 'ivory', 'sage'],
+    ['terracotta', 'cream', 'dusty-rose'],
+    ['ivory', 'sage', 'cream'],
+    ['dusty-rose', 'terracotta', 'ivory'],
+    ['sage', 'blush', 'cream'],
+    ['cream', 'ivory', 'dusty-rose']
+  ];
+  return colorOptions[(productId - 1) % colorOptions.length];
+}
+
 // ===== PRODUCT LISTING PAGE =====
 function setupProductsPage() {
   const filterButtons = document.querySelectorAll('.filter-tabs button');
@@ -218,16 +250,44 @@ function setupProductsPage() {
 
   function renderProducts(products) {
     const wishlist = Storage.getWishlist();
-    productsGrid.innerHTML = products.map(product => {
+    productsGrid.innerHTML = products.map((product, index) => {
       const isWishlisted = wishlist.some(id => id === product.id);
+      const badge = getBadgeForProduct(index, products.length);
+      const colors = getProductColors(product.id);
+      const maxSwatches = 3;
+      const displayColors = colors.slice(0, maxSwatches);
+      const extraCount = colors.length > maxSwatches ? colors.length - maxSwatches : 0;
+
+      let badgeHtml = '';
+      if (badge === 'badge-new') {
+        badgeHtml = '<span class="badge badge-new">NEW</span>';
+      } else if (badge === 'badge-sale') {
+        badgeHtml = '<span class="badge badge-sale">SALE</span>';
+      } else if (badge === 'badge-limited') {
+        badgeHtml = '<span class="badge badge-limited">LIMITED</span>';
+      }
+
+      const swatchesHtml = displayColors.map(color => {
+        return `<button class="color-swatch" style="background:${colorPalette[color]}" title="${color.charAt(0).toUpperCase() + color.slice(1)}"></button>`;
+      }).join('');
+
+      const swatchMoreHtml = extraCount > 0 ? `<span class="swatch-more">+${extraCount}</span>` : '';
+
       return `
-        <div class="product-card">
-          <div class="product-image">
-            <img src="${product.image}" alt="${product.name}" loading="lazy" width="600" height="800">
-            <button class="quick-view" data-product-id="${product.id}">QUICK VIEW</button>
-            <div class="wishlist-icon${isWishlisted ? ' active' : ''}" data-product-id="${product.id}">${isWishlisted ? '♥' : '♡'}</div>
+        <div class="product-card" data-id="${product.id}" data-colors="${colors.join(',')}">
+          <div class="product-image-wrapper">
+            <img src="${product.image}" alt="${product.name}" class="product-image product-image-primary" loading="lazy" width="600" height="800">
+            <img src="${product.image}?w=601" alt="${product.name} detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
+
+            ${badgeHtml ? `<div class="product-badges">${badgeHtml}</div>` : ''}
+
+            <button class="btn-quick-add" data-id="${product.id}">Quick Add</button>
           </div>
           <div class="product-info">
+            <div class="product-swatches">
+              ${swatchesHtml}
+              ${swatchMoreHtml}
+            </div>
             <p class="product-brand">${product.brand}</p>
             <h4 class="product-name">${product.name}</h4>
             <p class="product-price">$${product.price}</p>
@@ -236,13 +296,28 @@ function setupProductsPage() {
       `;
     }).join('');
 
-    productsGrid.querySelectorAll('.quick-view').forEach(btn => {
-      btn.addEventListener('click', () => goToProduct(parseInt(btn.dataset.productId)));
-    });
-    productsGrid.querySelectorAll('.wishlist-icon').forEach(icon => {
-      icon.addEventListener('click', (e) => {
+    productsGrid.querySelectorAll('.btn-quick-add').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
         e.stopPropagation();
-        toggleWishlist(parseInt(icon.dataset.productId));
+        const original = btn.textContent;
+        btn.textContent = 'Added ✓';
+        btn.style.background = 'rgba(200,204,166,0.95)';
+        btn.style.color = '#2D2926';
+        setTimeout(() => {
+          btn.textContent = original;
+          btn.style.background = '';
+          btn.style.color = '';
+        }, 1500);
+      });
+    });
+
+    productsGrid.querySelectorAll('.color-swatch').forEach(swatch => {
+      swatch.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const card = swatch.closest('.product-card');
+        card.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+        swatch.classList.add('active');
       });
     });
   }
@@ -548,12 +623,36 @@ function setupCheckoutPage() {
   }
 }
 
+// ===== FEATURED SECTION SETUP =====
+function setupFeaturedSection() {
+  // Add click handlers to featured items
+  document.querySelectorAll('.featured-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      const productId = item.dataset.id;
+      if (productId) {
+        window.location.href = `product-detail.html?id=${productId}`;
+      }
+    });
+  });
+
+  // Add color swatch handlers for featured section
+  document.querySelectorAll('.featured-item .color-swatch').forEach(swatch => {
+    swatch.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const item = swatch.closest('.featured-item');
+      item.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      swatch.classList.add('active');
+    });
+  });
+}
+
 // ===== INIT =====
 function init() {
   setActiveNav();
   setupMobileMenu();
   updateCartBadge();
   updateWishlistBadge();
+  setupFeaturedSection();
 
   const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
