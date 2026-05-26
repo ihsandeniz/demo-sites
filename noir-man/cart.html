@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shopping Cart - NOIR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">NOIR</a>
+
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="products.html" class="active">Shop</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="cart-icon">
+          ⊙
+          <span class="cart-count">0</span>
+        </div>
+
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section style="padding: var(--spacing-lg) 0;">
+    <div class="container">
+      <h1>Shopping Cart</h1>
+    </div>
+  </section>
+
+  <!-- CART CONTENT -->
+  <section class="section">
+    <div class="container">
+      <div class="cart-container">
+        <!-- Cart Items -->
+        <div>
+          <div class="cart-items"></div>
+        </div>
+
+        <!-- Cart Summary -->
+        <div class="cart-summary">
+          <h3 style="margin-bottom: var(--spacing-lg);">Order Summary</h3>
+
+          <div data-summary-content>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span>$0.00</span>
+            </div>
+          </div>
+
+          <div class="coupon-section">
+            <input type="text" class="coupon-input" placeholder="Enter coupon code">
+            <button class="btn btn-secondary btn-small" style="width: 100%;">Apply Coupon</button>
+          </div>
+
+          <button class="btn btn-primary btn-checkout" onclick="window.location.href='checkout.html'">Proceed to Checkout</button>
+
+          <p style="text-align: center; margin-top: var(--spacing-lg); color: var(--color-light-gray); font-size: 0.9rem;">
+            <a href="products.html" style="color: var(--color-gold);">Continue Shopping</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <!-- Column 1 -->
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <a href="products.html">All Products</a>
+          <a href="products.html">New Arrivals</a>
+          <a href="products.html">Collections</a>
+          <a href="products.html">Sale</a>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="footer-section">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Careers</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Size Guide</a>
+          <a href="#">Care Instructions</a>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" title="Instagram">In</a>
+            <a href="#" title="Facebook">Fb</a>
+            <a href="#" title="Twitter">Tw</a>
+            <a href="#" title="LinkedIn">Li</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 NOIR. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

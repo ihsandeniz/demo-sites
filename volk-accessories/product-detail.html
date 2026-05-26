@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail — VOLK Accessories</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <nav class="container">
+      <div class="logo">VOLK<span class="logo-dot">·</span></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="cart-icon">🛒<span class="cart-count" style="display: none;"></span></div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== BREADCRUMB ==================== -->
+  <div class="container">
+    <nav class="breadcrumb" id="detailBreadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">HOME</a>
+      <span class="breadcrumb-sep">›</span>
+      <a href="products.html">SHOP</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">PRODUCT</span>
+    </nav>
+  </div>
+
+  <!-- ==================== PRODUCT DETAIL ==================== -->
+  <section class="section">
+    <div class="container product-detail">
+      <!-- GALLERY -->
+      <div class="product-gallery">
+        <div class="gallery-main">
+          <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=800&q=80" alt="Product">
+        </div>
+        <div class="gallery-thumbs">
+          <div class="thumb active">
+            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80" alt="View 1">
+          </div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80" alt="View 2">
+          </div>
+          <div class="thumb">
+            <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=200&q=80" alt="View 3">
+          </div>
+        </div>
+      </div>
+
+      <!-- DETAILS -->
+      <div class="product-details">
+        <div class="detail-code mono">VOLK-WATCH-001</div>
+        <h1 class="detail-title">CHRONOGRAPH ELITE</h1>
+        <div class="detail-price mono">$1,299</div>
+
+        <p style="line-height: 1.8; color: var(--text-muted);">
+          Precision-engineered timepiece featuring Japanese automatic movement. Military-grade stainless steel case with sapphire crystal face. Water resistant to 10 atmospheres. Every VOLK piece is individually inspected for quality assurance.
+        </p>
+
+        <div>
+          <div style="font-weight: 600; text-transform: uppercase; font-size: 0.875rem; margin-bottom: 12px; color: var(--accent);">Specifications</div>
+          <ul class="specs-list">
+            <li>
+              <span>Movement</span>
+              <span>Japanese Automatic</span>
+            </li>
+            <li>
+              <span>Case Material</span>
+              <span>Stainless Steel 316L</span>
+            </li>
+            <li>
+              <span>Case Diameter</span>
+              <span>42mm</span>
+            </li>
+            <li>
+              <span>Crystal</span>
+              <span>Sapphire with AR Coating</span>
+            </li>
+            <li>
+              <span>Water Resistance</span>
+              <span>10 ATM (100m)</span>
+            </li>
+            <li>
+              <span>Warranty</span>
+              <span>5 Years</span>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <div style="font-weight: 600; text-transform: uppercase; font-size: 0.875rem; margin-bottom: 12px; color: var(--accent);">Quantity</div>
+          <div class="quantity-selector">
+            <button>-</button>
+            <input type="number" class="quantity-input" value="1" min="1">
+            <button>+</button>
+          </div>
+        </div>
+
+        <div class="detail-buttons">
+          <button class="btn btn-primary">ADD TO CART</button>
+          <button class="btn btn-ghost">SAVE FOR LATER</button>
+        </div>
+
+        <!-- ACCORDION -->
+        <div class="accordion">
+          <div class="accordion-item active">
+            <div class="accordion-header">
+              <span>Specifications</span>
+              <span class="accordion-toggle">∨</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <p><strong>Movement:</strong> Japanese Automatic, 21 jewels, 28,800 vibrations per hour</p>
+                <p><strong>Case:</strong> Stainless Steel 316L, brushed and polished finish</p>
+                <p><strong>Crystal:</strong> Sapphire with anti-reflective coating</p>
+                <p><strong>Water Resistance:</strong> 10 ATM (100m) - suitable for snorkeling</p>
+                <p><strong>Strap:</strong> Premium leather with steel buckle</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Materials & Care</span>
+              <span class="accordion-toggle">∨</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <p><strong>Case & Bracelet:</strong> 316L Stainless Steel, highly corrosion resistant</p>
+                <p><strong>Strap:</strong> Full-grain Italian leather, develops patina over time</p>
+                <p><strong>Care Instructions:</strong> Rinse under fresh water after salt water exposure. Clean strap with soft cloth. Polish case with dedicated microfiber cloth.</p>
+                <p><strong>Storage:</strong> Keep in cool, dry place. Store away from magnetic fields.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="accordion-item">
+            <div class="accordion-header">
+              <span>Shipping & Returns</span>
+              <span class="accordion-toggle">∨</span>
+            </div>
+            <div class="accordion-content">
+              <div class="accordion-body">
+                <p><strong>Shipping:</strong> Free shipping on orders over $500. Standard delivery 3-5 business days.</p>
+                <p><strong>Returns:</strong> 30-day return policy. Items must be in original condition with packaging.</p>
+                <p><strong>Warranty:</strong> 5-year manufacturer warranty covers defects in materials and craftsmanship.</p>
+                <p><strong>International:</strong> We ship worldwide. International orders may be subject to customs duties.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="detailStock" style="padding-top: 24px; border-top: 1px solid var(--border);">
+          <div style="font-size: 0.875rem; color: #4ade80; font-weight: 700; letter-spacing: 0.06em; margin-bottom: 4px;">IN STOCK</div>
+          <div style="font-weight: 600; text-transform: uppercase; font-size: 0.8rem;">Ships within 24 hours</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">New Arrivals</a></li>
+            <li><a href="products.html">Bestsellers</a></li>
+            <li><a href="products.html">Limited Edition</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html">Craftsmanship</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Warranty</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-links">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER</a>
+          <a href="#">YOUTUBE</a>
+        </div>
+        <div class="copyright">© 2024 VOLK ACCESSORIES. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

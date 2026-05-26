@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Collections — LUMIÈRE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <a href="index.html" class="logo">LUMIÈRE</a>
+      <ul>
+        <li><a href="products.html">Collections</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn">🔍</button>
+        <a href="cart.html" class="icon-btn">🛍️<span class="badge" style="display: none;">0</span></a>
+        <button class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Page Title -->
+  <section style="padding-top: 3rem; padding-bottom: 0;">
+    <h1 style="text-align: center; margin-bottom: 2rem;">Collections</h1>
+    <p style="text-align: center; color: #999; margin-bottom: 3rem;">Explore our curated selection of luxury accessories</p>
+  </section>
+
+  <!-- Category Filter & Sort -->
+  <section style="padding: 2rem;">
+    <div class="category-bar">
+      <button class="category-btn active" data-category="All">All</button>
+      <button class="category-btn" data-category="Bags">Bags</button>
+      <button class="category-btn" data-category="Jewelry">Jewelry</button>
+      <button class="category-btn" data-category="Fragrances">Fragrances</button>
+      <button class="category-btn" data-category="Accessories">Accessories</button>
+    </div>
+
+    <div class="filters">
+      <div class="product-count" style="color: #999; font-size: 0.9rem;">Showing all items</div>
+      <select class="sort-select">
+        <option value="">Sort by</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+        <option value="name">Name: A-Z</option>
+      </select>
+    </div>
+  </section>
+
+  <!-- Products Grid -->
+  <section>
+    <div class="products-grid"></div>
+
+    <noscript>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="limited-badge">Limited Edition</div>
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Silk Evening Clutch" class="product-image" loading="lazy" width="600" height="400">
+          <div class="product-info"><div class="product-category">Bags</div><h3 class="product-name">Silk Evening Clutch</h3><div class="product-price">$1,250</div><a href="product-detail.html?id=1" class="btn product-btn">View</a></div>
+        </div>
+        <div class="product-card">
+          <div class="limited-badge">Limited Edition</div>
+          <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Diamond Collar Necklace" class="product-image" loading="lazy" width="600" height="400">
+          <div class="product-info"><div class="product-category">Jewelry</div><h3 class="product-name">Diamond Collar Necklace</h3><div class="product-price">$3,500</div><a href="product-detail.html?id=2" class="btn product-btn">View</a></div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Oud de Luxe Parfum" class="product-image" loading="lazy" width="600" height="400">
+          <div class="product-info"><div class="product-category">Fragrances</div><h3 class="product-name">Oud de Luxe Parfum</h3><div class="product-price">$890</div><a href="product-detail.html?id=3" class="btn product-btn">View</a></div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80" alt="Oversized Sunglasses" class="product-image" loading="lazy" width="600" height="400">
+          <div class="product-info"><div class="product-category">Accessories</div><h3 class="product-name">Oversized Sunglasses</h3><div class="product-price">$650</div><a href="product-detail.html?id=4" class="btn product-btn">View</a></div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Silk Twill Scarf" class="product-image" loading="lazy" width="600" height="400">
+          <div class="product-info"><div class="product-category">Accessories</div><h3 class="product-name">Silk Twill Scarf</h3><div class="product-price">$450</div><a href="product-detail.html?id=5" class="btn product-btn">View</a></div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80" alt="Precious Moment Watch" class="product-image" loading="lazy" width="600" height="400">
+          <div class="product-info"><div class="product-category">Accessories</div><h3 class="product-name">Precious Moment Watch</h3><div class="product-price">$2,200</div><a href="product-detail.html?id=6" class="btn product-btn">View</a></div>
+        </div>
+      </div>
+    </noscript>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html">All Collections</a></li>
+          <li><a href="products.html">New Arrivals</a></li>
+          <li><a href="products.html">Limited Edition</a></li>
+          <li><a href="cart.html">Your Bag</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html">Craftsmanship</a></li>
+          <li><a href="about.html">Sustainability</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Care Guide</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">Subscribe</a></li>
+          <li><a href="#">Appointments</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 LUMIÈRE. All rights reserved. — Handcrafted luxury accessories since Paris, 1892.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

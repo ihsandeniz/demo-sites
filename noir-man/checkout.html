@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout - NOIR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">NOIR</a>
+
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="products.html">Shop</a>
+          <a href="about.html">About</a>
+          <a href="contact.html">Contact</a>
+        </nav>
+
+        <div class="cart-icon">
+          ⊙
+          <span class="cart-count">0</span>
+        </div>
+
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- PAGE HEADER -->
+  <section style="padding: var(--spacing-lg) 0;">
+    <div class="container">
+      <h1>Checkout</h1>
+    </div>
+  </section>
+
+  <!-- CHECKOUT FORM -->
+  <section class="section">
+    <div class="container">
+      <div class="checkout-container">
+        <!-- Checkout Form -->
+        <form class="checkout-form">
+          <!-- Billing Information -->
+          <div class="form-section">
+            <h3>Billing Information</h3>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Last Name</label>
+                <input type="text" class="form-input" required>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Email Address</label>
+              <input type="email" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-input" required>
+            </div>
+          </div>
+
+          <!-- Shipping Address -->
+          <div class="form-section">
+            <h3>Shipping Address</h3>
+
+            <div class="form-group">
+              <label class="form-label">Street Address</label>
+              <input type="text" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Apartment, Suite, etc. (optional)</label>
+              <input type="text" class="form-input">
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">City</label>
+                <input type="text" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">State / Province</label>
+                <input type="text" class="form-input" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">ZIP / Postal Code</label>
+                <input type="text" class="form-input" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Country</label>
+                <select class="form-select" required>
+                  <option value="">Select Country</option>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="UK">United Kingdom</option>
+                  <option value="AU">Australia</option>
+                  <option value="DE">Germany</option>
+                  <option value="FR">France</option>
+                  <option value="IT">Italy</option>
+                  <option value="JP">Japan</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payment Information -->
+          <div class="form-section" style="border: none;">
+            <h3>Payment Method</h3>
+
+            <div class="form-group">
+              <label class="form-label">Cardholder Name</label>
+              <input type="text" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Card Number</label>
+              <input type="text" class="form-input" placeholder="1234 5678 9012 3456" required>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label">Expiration Date</label>
+                <input type="text" class="form-input" placeholder="MM / YY" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label">CVV</label>
+                <input type="text" class="form-input" placeholder="123" required>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <!-- Order Summary -->
+        <div class="checkout-summary">
+          <h3 style="margin-bottom: var(--spacing-lg);">Order Summary</h3>
+
+          <div class="checkout-items"></div>
+
+          <div data-checkout-total>
+            <div class="summary-row">
+              <span>Subtotal</span>
+              <span>$0.00</span>
+            </div>
+            <div class="summary-row">
+              <span>Shipping</span>
+              <span>Free</span>
+            </div>
+            <div class="summary-row total">
+              <span>Total</span>
+              <span>$0.00</span>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-checkout" style="width: 100%; margin-top: var(--spacing-lg);">Place Order</button>
+
+          <p style="text-align: center; margin-top: var(--spacing-md); color: var(--color-light-gray); font-size: 0.85rem;">
+            Your payment is secure and encrypted.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <!-- Column 1 -->
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <a href="products.html">All Products</a>
+          <a href="products.html">New Arrivals</a>
+          <a href="products.html">Collections</a>
+          <a href="products.html">Sale</a>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="footer-section">
+          <h4>Company</h4>
+          <a href="about.html">About Us</a>
+          <a href="#">Sustainability</a>
+          <a href="#">Careers</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="footer-section">
+          <h4>Support</h4>
+          <a href="#">FAQ</a>
+          <a href="#">Shipping & Returns</a>
+          <a href="#">Size Guide</a>
+          <a href="#">Care Instructions</a>
+        </div>
+
+        <!-- Column 4 -->
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <div class="social-links">
+            <a href="#" title="Instagram">In</a>
+            <a href="#" title="Facebook">Fb</a>
+            <a href="#" title="Twitter">Tw</a>
+            <a href="#" title="LinkedIn">Li</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2024 NOIR. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

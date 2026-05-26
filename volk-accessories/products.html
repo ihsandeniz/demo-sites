@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shop — VOLK Accessories</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <nav class="container">
+      <div class="logo">VOLK<span class="logo-dot">·</span></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="cart-icon">🛒<span class="cart-count" style="display: none;"></span></div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== BREADCRUMB ==================== -->
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="index.html">HOME</a>
+      <span class="breadcrumb-sep">›</span>
+      <span class="breadcrumb-current">SHOP</span>
+    </nav>
+  </div>
+
+  <!-- ==================== PAGE TITLE ==================== -->
+  <section class="section" style="border-bottom: 1px solid var(--border); padding: 40px 0;">
+    <div class="container">
+      <h1>SHOP COLLECTION</h1>
+      <p style="margin-top: 16px; max-width: 600px;">Handpicked industrial accessories designed for authenticity and performance.</p>
+    </div>
+  </section>
+
+  <!-- ==================== PRODUCTS ==================== -->
+  <section class="section">
+    <div class="container" style="display: grid; grid-template-columns: 250px 1fr; gap: var(--spacing-2xl);">
+      <!-- FILTERS SIDEBAR -->
+      <aside class="filters-sidebar">
+        <div>
+          <h3 style="margin-bottom: 24px; font-size: 1rem; color: var(--accent);">FILTERS</h3>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-title">Category</div>
+          <label class="filter-option">
+            <input type="checkbox" data-category="watches">
+            <span>Watches</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-category="bags">
+            <span>Bags</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-category="eyewear">
+            <span>Eyewear</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-category="wallets">
+            <span>Wallets</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-category="belts">
+            <span>Belts</span>
+          </label>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-title">Price Range</div>
+          <label class="filter-option">
+            <input type="checkbox" data-price="under-500">
+            <span>Under $500</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-price="500-1000">
+            <span>$500 – $1000</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-price="over-1000">
+            <span>Over $1000</span>
+          </label>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-title">Material</div>
+          <label class="filter-option">
+            <input type="checkbox" data-material="leather">
+            <span>Leather</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-material="stainless-steel">
+            <span>Stainless Steel</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-material="canvas">
+            <span>Canvas</span>
+          </label>
+          <label class="filter-option">
+            <input type="checkbox" data-material="titanium">
+            <span>Titanium</span>
+          </label>
+        </div>
+
+        <button id="clearFilters" class="btn btn-ghost" style="width: 100%; margin-top: 8px; font-size: 0.75rem;">CLEAR ALL</button>
+      </aside>
+
+      <!-- PRODUCTS GRID -->
+      <div style="display: flex; flex-direction: column;">
+        <div class="products-header">
+          <div>
+            <span style="color: var(--text-muted); font-size: 0.875rem;">Showing <strong id="productCount">6</strong> products</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 16px;">
+            <select id="sortSelect" style="background: var(--surface); color: var(--text); border: 1px solid var(--border); padding: 6px 12px; font-size: 0.75rem; font-family: inherit; letter-spacing: 0.05em; cursor: pointer;">
+              <option value="">SORT BY</option>
+              <option value="price-low">PRICE: LOW → HIGH</option>
+              <option value="price-high">PRICE: HIGH → LOW</option>
+              <option value="name">NAME: A–Z</option>
+            </select>
+            <div class="view-toggle">
+              <button class="active" title="Grid View">⊞</button>
+              <button title="List View">☰</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="products-container grid-6"></div>
+
+        <noscript>
+          <div class="products-container grid-6">
+            <div class="product-card">
+              <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=80" alt="CHRONOGRAPH ELITE" loading="lazy" width="600" height="400">
+              <div class="product-info"><div class="product-code">VOLK-WATCH-001</div><div class="product-name">CHRONOGRAPH ELITE</div><div class="product-price">$1,299</div><a href="product-detail.html?id=1" class="btn btn-primary">VIEW</a></div>
+            </div>
+            <div class="product-card">
+              <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="UTILITY SLING" loading="lazy" width="600" height="400">
+              <div class="product-info"><div class="product-code">VOLK-BAG-001</div><div class="product-name">UTILITY SLING</div><div class="product-price">$599</div><a href="product-detail.html?id=2" class="btn btn-primary">VIEW</a></div>
+            </div>
+            <div class="product-card">
+              <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80" alt="PILOT SHADES" loading="lazy" width="600" height="400">
+              <div class="product-info"><div class="product-code">VOLK-EYEWEAR-001</div><div class="product-name">PILOT SHADES</div><div class="product-price">$399</div><a href="product-detail.html?id=3" class="btn btn-primary">VIEW</a></div>
+            </div>
+            <div class="product-card">
+              <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80" alt="BIFOLD MINIMAL" loading="lazy" width="600" height="400">
+              <div class="product-info"><div class="product-code">VOLK-WALLET-001</div><div class="product-name">BIFOLD MINIMAL</div><div class="product-price">$249</div><a href="product-detail.html?id=4" class="btn btn-primary">VIEW</a></div>
+            </div>
+            <div class="product-card">
+              <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" alt="TACTICAL LEATHER" loading="lazy" width="600" height="400">
+              <div class="product-info"><div class="product-code">VOLK-BELT-001</div><div class="product-name">TACTICAL LEATHER</div><div class="product-price">$179</div><a href="product-detail.html?id=5" class="btn btn-primary">VIEW</a></div>
+            </div>
+            <div class="product-card">
+              <img src="https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=600&q=80" alt="COMMUTE PRO" loading="lazy" width="600" height="400">
+              <div class="product-info"><div class="product-code">VOLK-BACKPACK-001</div><div class="product-name">COMMUTE PRO</div><div class="product-price">$799</div><a href="product-detail.html?id=6" class="btn btn-primary">VIEW</a></div>
+            </div>
+          </div>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">New Arrivals</a></li>
+            <li><a href="products.html">Bestsellers</a></li>
+            <li><a href="products.html">Limited Edition</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html">Craftsmanship</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Warranty</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-links">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER</a>
+          <a href="#">YOUTUBE</a>
+        </div>
+        <div class="copyright">© 2024 VOLK ACCESSORIES. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

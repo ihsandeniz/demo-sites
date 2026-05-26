@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Detail — LUMIÈRE</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <header>
+    <nav>
+      <a href="index.html" class="logo">LUMIÈRE</a>
+      <ul>
+        <li><a href="products.html">Collections</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="icon-btn">🔍</button>
+        <a href="cart.html" class="icon-btn">🛍️<span class="badge" style="display: none;">0</span></a>
+        <button class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Breadcrumb -->
+  <section style="padding: 2rem; border-bottom: 1px solid #e8e0d5;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <a href="products.html" style="color: #999; text-decoration: none; font-size: 0.9rem;">← Back to Collections</a>
+    </div>
+  </section>
+
+  <!-- Product Detail -->
+  <section style="padding: 4rem 2rem;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <div class="product-detail"></div>
+    </div>
+  </section>
+
+  <!-- Related Products -->
+  <section style="background: #fefcf8; padding: 4rem 2rem;">
+    <div style="max-width: 1400px; margin: 0 auto;">
+      <h2 class="section-title">You May Also Like</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80" alt="Oversized Sunglasses" class="product-image">
+          <div class="product-info">
+            <div class="product-category">Accessories</div>
+            <h3 class="product-name">Oversized Sunglasses</h3>
+            <div class="product-price">$650</div>
+            <div class="product-card-footer">
+              <a href="product-detail.html?id=4" class="btn product-btn">View</a>
+              <button class="wishlist-btn" data-product-id="4">♥</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <div class="limited-badge">Limited Edition</div>
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Silk Twill Scarf" class="product-image">
+          <div class="product-info">
+            <div class="product-category">Accessories</div>
+            <h3 class="product-name">Silk Twill Scarf</h3>
+            <div class="product-price">$450</div>
+            <div class="product-card-footer">
+              <a href="product-detail.html?id=5" class="btn product-btn">View</a>
+              <button class="wishlist-btn" data-product-id="5">♥</button>
+            </div>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80" alt="Precious Moment Watch" class="product-image">
+          <div class="product-info">
+            <div class="product-category">Accessories</div>
+            <h3 class="product-name">Precious Moment Watch</h3>
+            <div class="product-price">$2,200</div>
+            <div class="product-card-footer">
+              <a href="product-detail.html?id=6" class="btn product-btn">View</a>
+              <button class="wishlist-btn" data-product-id="6">♥</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="products.html">All Collections</a></li>
+          <li><a href="products.html">New Arrivals</a></li>
+          <li><a href="products.html">Limited Edition</a></li>
+          <li><a href="cart.html">Your Bag</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="about.html">Our Story</a></li>
+          <li><a href="about.html">Craftsmanship</a></li>
+          <li><a href="about.html">Sustainability</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Care Guide</a></li>
+          <li><a href="#">Warranty</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Connect</h4>
+        <ul>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">Pinterest</a></li>
+          <li><a href="#">Subscribe</a></li>
+          <li><a href="#">Appointments</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 LUMIÈRE. All rights reserved. — Handcrafted luxury accessories since Paris, 1892.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

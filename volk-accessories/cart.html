@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart — VOLK Accessories</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ==================== HEADER ==================== -->
+  <header>
+    <nav class="container">
+      <div class="logo">VOLK<span class="logo-dot">·</span></div>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="products.html" class="active">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav-right">
+        <div class="cart-icon">🛒<span class="cart-count" style="display: none;"></span></div>
+        <div class="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ==================== CART PAGE ==================== -->
+  <section class="cart-container">
+    <div class="container">
+      <h1 style="margin-bottom: 48px;">SHOPPING CART</h1>
+
+      <div style="display: grid; grid-template-columns: 1fr 350px; gap: var(--spacing-2xl);">
+        <!-- CART ITEMS -->
+        <div>
+          <table class="cart-table">
+            <thead>
+              <tr>
+                <th>ITEM</th>
+                <th style="width: 100px;">QTY</th>
+                <th style="width: 150px;">PRICE</th>
+                <th style="width: 150px;">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Populated by JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- SUMMARY PANEL -->
+        <div>
+          <div class="summary-panel">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- COUPON SECTION -->
+      <div style="margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border);">
+        <h3 style="margin-bottom: 16px;">HAVE A COUPON?</h3>
+        <div style="display: flex; gap: 12px; max-width: 400px;">
+          <input type="text" placeholder="Coupon code" class="coupon-input" style="flex: 1;">
+          <button class="btn btn-ghost">APPLY</button>
+        </div>
+      </div>
+
+      <!-- CONTINUE SHOPPING -->
+      <div style="margin-top: 48px;">
+        <a href="products.html">
+          <button class="btn btn-ghost">← CONTINUE SHOPPING</button>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Shop</h4>
+          <ul>
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">New Arrivals</a></li>
+            <li><a href="products.html">Bestsellers</a></li>
+            <li><a href="products.html">Limited Edition</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>About</h4>
+          <ul>
+            <li><a href="about.html">Our Story</a></li>
+            <li><a href="about.html">Craftsmanship</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping Info</a></li>
+            <li><a href="#">Returns</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+            <li><a href="#">Warranty</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="social-links">
+          <a href="#">INSTAGRAM</a>
+          <a href="#">TWITTER</a>
+          <a href="#">YOUTUBE</a>
+        </div>
+        <div class="copyright">© 2024 VOLK ACCESSORIES. ALL RIGHTS RESERVED.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
