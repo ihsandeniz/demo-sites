@@ -1840,5 +1840,121 @@ img {
 }
 
 /* ============================================================================
+   FAZ 3 — Sidebar Filter Upgrade
+   ============================================================================ */
+
+.filter-group {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+
+.filter-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.filter-swatches {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s, border-color 0.2s;
+  outline: none;
+}
+
+.filter-swatch:hover {
+  transform: scale(1.2);
+}
+
+.filter-swatch.active {
+  border-color: #C9A84C;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 1px #C9A84C;
+}
+
+.filter-sizes {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.filter-size {
+  min-width: 36px;
+  padding: 0.3rem 0.5rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  background: transparent;
+  color: #aaa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+
+.filter-size:hover {
+  border-color: #C9A84C;
+  color: #C9A84C;
+}
+
+.filter-size.active {
+  background: #C9A84C;
+  border-color: #C9A84C;
+  color: #0A0A0A;
+}
+
+.filter-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.filter-price {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: transparent;
+  color: #aaa;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  border-radius: 2px;
+}
+
+.filter-price:hover {
+  border-color: #C9A84C;
+  color: #C9A84C;
+}
+
+.filter-price.active {
+  background: rgba(201,168,76,0.15);
+  border-color: #C9A84C;
+  color: #C9A84C;
+}
+
+.product-card.hidden {
+  display: none !important;
+}
+
+.filter-results-count {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 1rem;
+}
+
+/* ============================================================================
    END OF STYLESHEET — Min 400 lines CSS ✓
    ============================================================================ */

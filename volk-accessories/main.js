@@ -281,6 +281,22 @@ function renderProducts(products) {
     5: ['#0d0d0d', '#4a5240', '#2d4a2b'],
     6: ['#0d0d0d', '#2a2a2a', '#6b7280'],
   };
+  const colorNameMap = {
+    1: 'black,olive,desert-tan',
+    2: 'black,navy,tan,orange',
+    3: 'black,grey,khaki',
+    4: 'black,brown,cognac,burgundy',
+    5: 'black,olive,forest',
+    6: 'black,gunmetal,titanium',
+  };
+  const sizeMap = {
+    1: 'one-size',
+    2: 's,m,l,xl',
+    3: 'one-size',
+    4: 'one-size',
+    5: 's,m,l,xl',
+    6: 'm,l,xl',
+  };
 
   container.innerHTML = products
     .map(
@@ -290,9 +306,11 @@ function renderProducts(products) {
           idx < 3 ? `<button class="color-swatch ${idx === 0 ? 'active' : ''}" style="background:${color}" title="${['Black', 'Secondary', 'Tertiary', 'Quaternary'][idx]}"></button>` : ''
         ).join('');
         const swatchOverflow = swatches.length > 3 ? `<span class="swatch-overflow">+${swatches.length - 3}</span>` : '';
+        const sizes = sizeMap[product.id] || 'one-size';
+        const colors = colorNameMap[product.id] || 'black';
 
         return `
-    <div class="product-card" data-id="${product.id}">
+    <div class="product-card" data-id="${product.id}" data-sizes="${sizes}" data-colors="${colors}">
       <div class="product-image-wrapper">
         <img src="${product.image}" class="product-image product-image-primary" loading="lazy" alt="${product.name}">
         <img src="${product.image.replace('?w=600', '?w=601')}" class="product-image product-image-secondary" loading="lazy" alt="${product.name}">
@@ -799,3 +817,90 @@ function dismissAnnouncement() {
   }
   localStorage.setItem('volk_announcement_dismissed_until', Date.now() + 86400000);
 }
+
+// FAZ 3 — Sidebar Filters
+(function() {
+  var activeFilters = { color: [], size: [], price: null };
+
+  function applyFilters() {
+    var cards = document.querySelectorAll('.product-card');
+    var visible = 0;
+    cards.forEach(function(card) {
+      var show = true;
+      if (activeFilters.color.length > 0) {
+        var cardColors = (card.dataset.colors || '').split(',').map(function(c){ return c.trim(); });
+        var hasColor = activeFilters.color.some(function(c) { return cardColors.indexOf(c) !== -1; });
+        if (!hasColor) show = false;
+      }
+      if (activeFilters.size.length > 0) {
+        var cardSizes = (card.dataset.sizes || '').split(',').map(function(s){ return s.trim(); });
+        var hasSize = activeFilters.size.some(function(s) { return cardSizes.indexOf(s) !== -1; });
+        if (!hasSize) show = false;
+      }
+      if (activeFilters.price) {
+        var priceEl = card.querySelector('.product-price');
+        if (priceEl) {
+          var priceText = priceEl.textContent.replace(/[^0-9.]/g, '');
+          var price = parseFloat(priceText);
+          if (price < activeFilters.price.min || price > activeFilters.price.max) show = false;
+        }
+      }
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+    var countEl = document.querySelector('.filter-results-count');
+    if (countEl) countEl.textContent = visible + ' products';
+  }
+
+  document.querySelectorAll('.filter-swatch').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var val = this.dataset.value;
+      var idx = activeFilters.color.indexOf(val);
+      if (idx === -1) { activeFilters.color.push(val); this.classList.add('active'); }
+      else { activeFilters.color.splice(idx, 1); this.classList.remove('active'); }
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.filter-size').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var val = this.dataset.value;
+      var idx = activeFilters.size.indexOf(val);
+      if (idx === -1) { activeFilters.size.push(val); this.classList.add('active'); }
+      else { activeFilters.size.splice(idx, 1); this.classList.remove('active'); }
+      applyFilters();
+    });
+  });
+
+  document.querySelectorAll('.filter-price').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var isActive = this.classList.contains('active');
+      document.querySelectorAll('.filter-price').forEach(function(b) { b.classList.remove('active'); });
+      if (isActive) { activeFilters.price = null; }
+      else {
+        this.classList.add('active');
+        activeFilters.price = { min: parseFloat(this.dataset.min), max: parseFloat(this.dataset.max) };
+      }
+      applyFilters();
+    });
+  });
+
+  var clearBtn = document.getElementById('clearFilters');
+  if (clearBtn) {
+    clearBtn.addEventListener('click', function() {
+      activeFilters = { color: [], size: [], price: null };
+      document.querySelectorAll('.filter-swatch,.filter-size,.filter-price').forEach(function(b) { b.classList.remove('active'); });
+      document.querySelectorAll('.product-card').forEach(function(c) { c.classList.remove('hidden'); });
+      var countEl = document.querySelector('.filter-results-count');
+      if (countEl) countEl.textContent = document.querySelectorAll('.product-card').length + ' products';
+    });
+  }
+
+  var grid = document.querySelector('.products-grid, .product-grid');
+  if (grid) {
+    var countEl = document.createElement('div');
+    countEl.className = 'filter-results-count';
+    countEl.textContent = document.querySelectorAll('.product-card').length + ' products';
+    grid.parentNode.insertBefore(countEl, grid);
+  }
+})();

@@ -65,67 +65,43 @@
           <h3 style="margin-bottom: 24px; font-size: 1rem; color: var(--accent);">FILTERS</h3>
         </div>
 
+        <!-- FAZ 3 — COLOR FILTER -->
         <div class="filter-group">
-          <div class="filter-title">Category</div>
-          <label class="filter-option">
-            <input type="checkbox" data-category="watches">
-            <span>Watches</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-category="bags">
-            <span>Bags</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-category="eyewear">
-            <span>Eyewear</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-category="wallets">
-            <span>Wallets</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-category="belts">
-            <span>Belts</span>
-          </label>
+          <h4 class="filter-title">Color</h4>
+          <div class="filter-swatches">
+            <button class="filter-swatch" data-filter="color" data-value="black" style="background:#0d0d0d;border:1px solid #333" title="Black"></button>
+            <button class="filter-swatch" data-filter="color" data-value="olive" style="background:#4a5240" title="Olive"></button>
+            <button class="filter-swatch" data-filter="color" data-value="desert-tan" style="background:#c8a96e" title="Desert Tan"></button>
+            <button class="filter-swatch" data-filter="color" data-value="orange" style="background:#ff6b35" title="Safety Orange"></button>
+            <button class="filter-swatch" data-filter="color" data-value="foliage" style="background:#4a6741" title="Foliage"></button>
+          </div>
         </div>
 
+        <!-- FAZ 3 — SIZE FILTER -->
         <div class="filter-group">
-          <div class="filter-title">Price Range</div>
-          <label class="filter-option">
-            <input type="checkbox" data-price="under-500">
-            <span>Under $500</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-price="500-1000">
-            <span>$500 – $1000</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-price="over-1000">
-            <span>Over $1000</span>
-          </label>
+          <h4 class="filter-title">Size</h4>
+          <div class="filter-sizes">
+            <button class="filter-size" data-filter="size" data-value="s">S</button>
+            <button class="filter-size" data-filter="size" data-value="m">M</button>
+            <button class="filter-size" data-filter="size" data-value="l">L</button>
+            <button class="filter-size" data-filter="size" data-value="xl">XL</button>
+            <button class="filter-size" data-filter="size" data-value="one-size">One Size</button>
+          </div>
         </div>
 
+        <!-- FAZ 3 — PRICE FILTER -->
         <div class="filter-group">
-          <div class="filter-title">Material</div>
-          <label class="filter-option">
-            <input type="checkbox" data-material="leather">
-            <span>Leather</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-material="stainless-steel">
-            <span>Stainless Steel</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-material="canvas">
-            <span>Canvas</span>
-          </label>
-          <label class="filter-option">
-            <input type="checkbox" data-material="titanium">
-            <span>Titanium</span>
-          </label>
+          <h4 class="filter-title">Price</h4>
+          <div class="filter-prices">
+            <button class="filter-price" data-filter="price" data-min="0" data-max="50">Under $50</button>
+            <button class="filter-price" data-filter="price" data-min="50" data-max="150">$50–$150</button>
+            <button class="filter-price" data-filter="price" data-min="150" data-max="300">$150–$300</button>
+            <button class="filter-price" data-filter="price" data-min="300" data-max="99999">$300+</button>
+          </div>
         </div>
 
-        <button id="clearFilters" class="btn btn-ghost" style="width: 100%; margin-top: 8px; font-size: 0.75rem;">CLEAR ALL</button>
+        <!-- CLEAR FILTERS -->
+        <button class="filter-clear" id="clearFilters">Clear All Filters</button>
       </aside>
 
       <!-- PRODUCTS GRID -->
@@ -152,7 +128,7 @@
 
         <noscript>
           <div class="products-container grid-6">
-            <div class="product-card" data-id="1" data-colors="black,olive,desert-tan">
+            <div class="product-card" data-id="1" data-colors="black,olive,desert-tan" data-sizes="one-size">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=600&q=80" class="product-image product-image-primary" loading="lazy" alt="CHRONOGRAPH ELITE">
                 <img src="https://images.unsplash.com/photo-1523170335258-f5ed11844a49?w=601" class="product-image product-image-secondary" loading="lazy" alt="CHRONOGRAPH ELITE">
@@ -170,7 +146,7 @@
                 <div class="product-code">VOLK-WATCH-001</div><div class="product-name">CHRONOGRAPH ELITE</div><div class="product-price">$1,299</div><a href="product-detail.html?id=1" class="btn btn-primary">VIEW</a>
               </div>
             </div>
-            <div class="product-card" data-id="2" data-colors="black,navy,tan,orange">
+            <div class="product-card" data-id="2" data-colors="black,navy,tan,orange" data-sizes="s,m,l,xl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" class="product-image product-image-primary" loading="lazy" alt="UTILITY SLING">
                 <img src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=601" class="product-image product-image-secondary" loading="lazy" alt="UTILITY SLING">
@@ -189,7 +165,7 @@
                 <div class="product-code">VOLK-BAG-001</div><div class="product-name">UTILITY SLING</div><div class="product-price">$599</div><a href="product-detail.html?id=2" class="btn btn-primary">VIEW</a>
               </div>
             </div>
-            <div class="product-card" data-id="3" data-colors="black,grey,khaki">
+            <div class="product-card" data-id="3" data-colors="black,grey,khaki" data-sizes="one-size">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80" class="product-image product-image-primary" loading="lazy" alt="PILOT SHADES">
                 <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=601" class="product-image product-image-secondary" loading="lazy" alt="PILOT SHADES">
@@ -205,7 +181,7 @@
                 <div class="product-code">VOLK-EYEWEAR-001</div><div class="product-name">PILOT SHADES</div><div class="product-price">$399</div><a href="product-detail.html?id=3" class="btn btn-primary">VIEW</a>
               </div>
             </div>
-            <div class="product-card" data-id="4" data-colors="black,brown,cognac,burgundy">
+            <div class="product-card" data-id="4" data-colors="black,brown,cognac,burgundy" data-sizes="one-size">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?w=600&q=80" class="product-image product-image-primary" loading="lazy" alt="BIFOLD MINIMAL">
                 <img src="https://images.unsplash.com/photo-1627123424574-724758594e93?w=601" class="product-image product-image-secondary" loading="lazy" alt="BIFOLD MINIMAL">
@@ -224,7 +200,7 @@
                 <div class="product-code">VOLK-WALLET-001</div><div class="product-name">BIFOLD MINIMAL</div><div class="product-price">$249</div><a href="product-detail.html?id=4" class="btn btn-primary">VIEW</a>
               </div>
             </div>
-            <div class="product-card" data-id="5" data-colors="black,olive,forest">
+            <div class="product-card" data-id="5" data-colors="black,olive,forest" data-sizes="s,m,l,xl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=600&q=80" class="product-image product-image-primary" loading="lazy" alt="TACTICAL LEATHER">
                 <img src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=601" class="product-image product-image-secondary" loading="lazy" alt="TACTICAL LEATHER">
@@ -240,7 +216,7 @@
                 <div class="product-code">VOLK-BELT-001</div><div class="product-name">TACTICAL LEATHER</div><div class="product-price">$179</div><a href="product-detail.html?id=5" class="btn btn-primary">VIEW</a>
               </div>
             </div>
-            <div class="product-card" data-id="6" data-colors="black,gunmetal,titanium">
+            <div class="product-card" data-id="6" data-colors="black,gunmetal,titanium" data-sizes="m,l,xl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=600&q=80" class="product-image product-image-primary" loading="lazy" alt="COMMUTE PRO">
                 <img src="https://images.unsplash.com/photo-1581605405669-fcdf81165afa?w=601" class="product-image product-image-secondary" loading="lazy" alt="COMMUTE PRO">

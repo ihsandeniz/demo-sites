@@ -71,56 +71,41 @@
         <aside class="filter-sidebar">
           <div class="filter-sidebar-header">
             <span>Filters</span>
-            <button class="filter-clear" id="clearAllFilters">Clear All</button>
+            <button class="filter-clear" id="clearFilters">Clear All</button>
           </div>
 
-          <!-- Category -->
-          <div class="filter-sidebar-group">
-            <div class="filter-sidebar-title">Category</div>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="Tailoring" data-filter="category">
-              <span>Tailoring</span>
-            </label>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="Outerwear" data-filter="category">
-              <span>Outerwear</span>
-            </label>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="Knitwear" data-filter="category">
-              <span>Knitwear</span>
-            </label>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="Accessories" data-filter="category">
-              <span>Accessories</span>
-            </label>
+          <!-- COLOR FILTER -->
+          <div class="filter-group">
+            <h4 class="filter-title">Color</h4>
+            <div class="filter-swatches">
+              <button class="filter-swatch" data-filter="color" data-value="black" style="background:#1a1a1a" title="Black"></button>
+              <button class="filter-swatch" data-filter="color" data-value="charcoal" style="background:#36363a" title="Charcoal"></button>
+              <button class="filter-swatch" data-filter="color" data-value="navy" style="background:#1a237e" title="Navy"></button>
+              <button class="filter-swatch" data-filter="color" data-value="tan" style="background:#c8a96e" title="Tan"></button>
+              <button class="filter-swatch" data-filter="color" data-value="burgundy" style="background:#6d1f2f" title="Burgundy"></button>
+            </div>
           </div>
 
-          <!-- Price -->
-          <div class="filter-sidebar-group">
-            <div class="filter-sidebar-title">Price</div>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="under-500" data-filter="price">
-              <span>Under $500</span>
-            </label>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="500-1500" data-filter="price">
-              <span>$500 – $1,500</span>
-            </label>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="over-1500" data-filter="price">
-              <span>Over $1,500</span>
-            </label>
+          <!-- SIZE FILTER -->
+          <div class="filter-group">
+            <h4 class="filter-title">Size</h4>
+            <div class="filter-sizes">
+              <button class="filter-size" data-filter="size" data-value="s">S</button>
+              <button class="filter-size" data-filter="size" data-value="m">M</button>
+              <button class="filter-size" data-filter="size" data-value="l">L</button>
+              <button class="filter-size" data-filter="size" data-value="xl">XL</button>
+              <button class="filter-size" data-filter="size" data-value="xxl">XXL</button>
+            </div>
           </div>
 
-          <!-- Size -->
-          <div class="filter-sidebar-group">
-            <div class="filter-sidebar-title">Size</div>
-            <div class="filter-size-grid">
-              <button class="filter-size-btn" data-filter="size" data-value="XS">XS</button>
-              <button class="filter-size-btn" data-filter="size" data-value="S">S</button>
-              <button class="filter-size-btn" data-filter="size" data-value="M">M</button>
-              <button class="filter-size-btn" data-filter="size" data-value="L">L</button>
-              <button class="filter-size-btn" data-filter="size" data-value="XL">XL</button>
+          <!-- PRICE FILTER -->
+          <div class="filter-group">
+            <h4 class="filter-title">Price</h4>
+            <div class="filter-prices">
+              <button class="filter-price" data-filter="price" data-min="0" data-max="100">Under $100</button>
+              <button class="filter-price" data-filter="price" data-min="100" data-max="300">$100–$300</button>
+              <button class="filter-price" data-filter="price" data-min="300" data-max="500">$300–$500</button>
+              <button class="filter-price" data-filter="price" data-min="500" data-max="99999">$500+</button>
             </div>
           </div>
         </aside>
@@ -144,7 +129,7 @@
           <!-- Products grid -->
           <div class="grid grid-3" id="productsGrid">
             <!-- Product 1 -->
-            <div class="product-card" data-id="1" data-category="Tailoring" data-price="1200" data-colors="black,burgundy,charcoal">
+            <div class="product-card" data-id="1" data-category="Tailoring" data-price="1200" data-colors="black,burgundy,charcoal" data-sizes="s,m,l,xl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=600&q=80" alt="The Cardinal Blazer" class="product-image product-image-primary" loading="lazy" width="600" height="400">
                 <img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=601&q=80" alt="The Cardinal Blazer detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -165,7 +150,7 @@
             </div>
 
             <!-- Product 2 -->
-            <div class="product-card" data-id="2" data-category="Outerwear" data-price="2800" data-colors="black,navy,tan">
+            <div class="product-card" data-id="2" data-category="Outerwear" data-price="2800" data-colors="black,navy,tan" data-sizes="m,l,xl,xxl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Shadow Coat" class="product-image product-image-primary" loading="lazy" width="600" height="400">
                 <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=601&q=80" alt="Shadow Coat detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -186,7 +171,7 @@
             </div>
 
             <!-- Product 3 -->
-            <div class="product-card" data-id="3" data-category="Knitwear" data-price="320" data-colors="charcoal,navy">
+            <div class="product-card" data-id="3" data-category="Knitwear" data-price="320" data-colors="charcoal,navy" data-sizes="s,m,l,xl,xxl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80" alt="Essential Oxford Shirt" class="product-image product-image-primary" loading="lazy" width="600" height="400">
                 <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=601&q=80" alt="Essential Oxford Shirt detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -203,7 +188,7 @@
             </div>
 
             <!-- Product 4 -->
-            <div class="product-card" data-id="4" data-category="Tailoring" data-price="1590" data-colors="black,charcoal,burgundy,tan">
+            <div class="product-card" data-id="4" data-category="Tailoring" data-price="1590" data-colors="black,charcoal,burgundy,tan" data-sizes="s,m,l">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80" alt="The Architect Trouser" class="product-image product-image-primary" loading="lazy" width="600" height="400">
                 <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=601&q=80" alt="The Architect Trouser detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -225,7 +210,7 @@
             </div>
 
             <!-- Product 5 -->
-            <div class="product-card" data-id="5" data-category="Accessories" data-price="145" data-colors="black,navy,tan">
+            <div class="product-card" data-id="5" data-category="Accessories" data-price="145" data-colors="black,navy,tan" data-sizes="m,l,xl">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80" alt="The Silk Pocket Square" class="product-image product-image-primary" loading="lazy" width="600" height="400">
                 <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=601&q=80" alt="The Silk Pocket Square detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -243,7 +228,7 @@
             </div>
 
             <!-- Product 6 -->
-            <div class="product-card" data-id="6" data-category="Accessories" data-price="385" data-colors="black,charcoal">
+            <div class="product-card" data-id="6" data-category="Accessories" data-price="385" data-colors="black,charcoal" data-sizes="s,m,l">
               <div class="product-image-wrapper">
                 <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" alt="Leather Minimal Belt" class="product-image product-image-primary" loading="lazy" width="600" height="400">
                 <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=601&q=80" alt="Leather Minimal Belt detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">

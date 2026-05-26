@@ -1614,3 +1614,154 @@ footer {
   font-size: 0.65rem;
   color: #999;
 }
+
+/* ── FAZ 3 — Sidebar Filter Upgrade ── */
+.sidebar-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 1.5rem 0;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  min-width: 200px;
+}
+
+.filter-title {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 0.25rem;
+  font-family: var(--font-body);
+}
+
+.filter-swatches {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.filter-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+  background-clip: padding-box;
+}
+
+.filter-swatch:hover {
+  transform: scale(1.2);
+}
+
+.filter-swatch.active {
+  border-color: #B8960C;
+  transform: scale(1.15);
+  box-shadow: 0 0 0 1px #B8960C;
+}
+
+.filter-sizes {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.filter-size {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid #e0d8cc;
+  background: transparent;
+  color: #999;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 1px;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+}
+
+.filter-size:hover {
+  border-color: #B8960C;
+  color: #B8960C;
+}
+
+.filter-size.active {
+  background: #B8960C;
+  border-color: #B8960C;
+  color: #fff;
+}
+
+.filter-prices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 160px;
+}
+
+.filter-price {
+  padding: 0.4rem 0.75rem;
+  border: 1px solid #e8e0d5;
+  background: transparent;
+  color: #999;
+  font-size: 0.8rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+  border-radius: 1px;
+  font-family: var(--font-body);
+}
+
+.filter-price:hover {
+  border-color: #B8960C;
+  color: #B8960C;
+}
+
+.filter-price.active {
+  background: rgba(184,150,12,0.08);
+  border-color: #B8960C;
+  color: #B8960C;
+}
+
+.filter-clear {
+  padding: 0.4rem 0.75rem;
+  background: transparent;
+  border: 1px solid #e0d8cc;
+  color: #ccc;
+  font-size: 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  letter-spacing: 0.08em;
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.filter-clear:hover {
+  border-color: #bbb;
+  color: #888;
+}
+
+.product-card.hidden {
+  display: none !important;
+}
+
+.filter-results-count {
+  font-size: 0.8rem;
+  color: #aaa;
+  margin-bottom: 0;
+  font-family: var(--font-body);
+  text-align: center;
+  margin-top: 0.5rem;
+}

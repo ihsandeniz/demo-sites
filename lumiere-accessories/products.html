@@ -66,13 +66,55 @@
     </div>
   </section>
 
+  <!-- FAZ 3 Sidebar Filters -->
+  <section style="padding: 0 2rem 2rem; max-width: 1600px; margin: 0 auto;">
+    <div class="sidebar-filters">
+      <!-- COLOR FILTER -->
+      <div class="filter-group">
+        <h4 class="filter-title">Material / Finish</h4>
+        <div class="filter-swatches">
+          <button class="filter-swatch" data-filter="color" data-value="gold" style="background:#d4af37" title="Gold"></button>
+          <button class="filter-swatch" data-filter="color" data-value="silver" style="background:#c0c0c0" title="Silver"></button>
+          <button class="filter-swatch" data-filter="color" data-value="rose-gold" style="background:#b76e79" title="Rose Gold"></button>
+          <button class="filter-swatch" data-filter="color" data-value="emerald" style="background:#0c6b3a" title="Emerald"></button>
+          <button class="filter-swatch" data-filter="color" data-value="sapphire" style="background:#0f3f7a" title="Sapphire"></button>
+        </div>
+      </div>
+
+      <!-- SIZE FILTER -->
+      <div class="filter-group">
+        <h4 class="filter-title">Size</h4>
+        <div class="filter-sizes">
+          <button class="filter-size" data-filter="size" data-value="one-size">One Size</button>
+          <button class="filter-size" data-filter="size" data-value="s">S</button>
+          <button class="filter-size" data-filter="size" data-value="m">M</button>
+          <button class="filter-size" data-filter="size" data-value="l">L</button>
+        </div>
+      </div>
+
+      <!-- PRICE FILTER -->
+      <div class="filter-group">
+        <h4 class="filter-title">Price</h4>
+        <div class="filter-prices">
+          <button class="filter-price" data-filter="price" data-min="0" data-max="200">Under €200</button>
+          <button class="filter-price" data-filter="price" data-min="200" data-max="500">€200–€500</button>
+          <button class="filter-price" data-filter="price" data-min="500" data-max="1000">€500–€1000</button>
+          <button class="filter-price" data-filter="price" data-min="1000" data-max="99999">€1000+</button>
+        </div>
+      </div>
+
+      <!-- CLEAR FILTERS -->
+      <button class="filter-clear" id="clearFilters">Clear All Filters</button>
+    </div>
+  </section>
+
   <!-- Products Grid -->
   <section>
     <div class="products-grid"></div>
 
     <noscript>
       <div class="products-grid">
-        <div class="product-card" data-id="1" data-colors="gold,silver,rose-gold">
+        <div class="product-card" data-id="1" data-colors="gold,silver,rose-gold" data-sizes="one-size,s">
           <div class="product-image-wrapper">
             <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Silk Evening Clutch" class="product-image product-image-primary" loading="lazy" width="600" height="400">
             <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=601&q=80" alt="Silk Evening Clutch detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -90,7 +132,7 @@
             <div class="product-category">Bags</div><h3 class="product-name">Silk Evening Clutch</h3><div class="product-price">$1,250</div><a href="product-detail.html?id=1" class="btn product-btn">View</a>
           </div>
         </div>
-        <div class="product-card" data-id="2" data-colors="platinum,gold">
+        <div class="product-card" data-id="2" data-colors="platinum,gold" data-sizes="m,l">
           <div class="product-image-wrapper">
             <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Diamond Collar Necklace" class="product-image product-image-primary" loading="lazy" width="600" height="400">
             <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=601&q=80" alt="Diamond Collar Necklace detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -107,7 +149,7 @@
             <div class="product-category">Jewelry</div><h3 class="product-name">Diamond Collar Necklace</h3><div class="product-price">$3,500</div><a href="product-detail.html?id=2" class="btn product-btn">View</a>
           </div>
         </div>
-        <div class="product-card" data-id="3" data-colors="gold">
+        <div class="product-card" data-id="3" data-colors="gold" data-sizes="one-size">
           <div class="product-image-wrapper">
             <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Oud de Luxe Parfum" class="product-image product-image-primary" loading="lazy" width="600" height="400">
             <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=601&q=80" alt="Oud de Luxe Parfum detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -123,7 +165,7 @@
             <div class="product-category">Fragrances</div><h3 class="product-name">Oud de Luxe Parfum</h3><div class="product-price">$890</div><a href="product-detail.html?id=3" class="btn product-btn">View</a>
           </div>
         </div>
-        <div class="product-card" data-id="4" data-colors="black,gold,silver">
+        <div class="product-card" data-id="4" data-colors="black,gold,silver" data-sizes="s,m,l">
           <div class="product-image-wrapper">
             <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80" alt="Oversized Sunglasses" class="product-image product-image-primary" loading="lazy" width="600" height="400">
             <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=601&q=80" alt="Oversized Sunglasses detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -138,7 +180,7 @@
             <div class="product-category">Accessories</div><h3 class="product-name">Oversized Sunglasses</h3><div class="product-price">$650</div><a href="product-detail.html?id=4" class="btn product-btn">View</a>
           </div>
         </div>
-        <div class="product-card" data-id="5" data-colors="gold,navy,emerald">
+        <div class="product-card" data-id="5" data-colors="gold,navy,emerald" data-sizes="m,l">
           <div class="product-image-wrapper">
             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Silk Twill Scarf" class="product-image product-image-primary" loading="lazy" width="600" height="400">
             <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=601&q=80" alt="Silk Twill Scarf detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">
@@ -153,7 +195,7 @@
             <div class="product-category">Accessories</div><h3 class="product-name">Silk Twill Scarf</h3><div class="product-price">$450</div><a href="product-detail.html?id=5" class="btn product-btn">View</a>
           </div>
         </div>
-        <div class="product-card" data-id="6" data-colors="platinum,gold">
+        <div class="product-card" data-id="6" data-colors="platinum,gold" data-sizes="one-size">
           <div class="product-image-wrapper">
             <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80" alt="Precious Moment Watch" class="product-image product-image-primary" loading="lazy" width="600" height="400">
             <img src="https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=601&q=80" alt="Precious Moment Watch detail" class="product-image product-image-secondary" loading="lazy" width="600" height="400">

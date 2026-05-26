@@ -69,12 +69,60 @@
     </select>
   </div>
 
-  <!-- PRODUCTS GRID -->
-  <div class="products-grid"></div>
+  <!-- PRODUCTS CONTAINER WITH SIDEBAR -->
+  <div class="products-main-wrapper">
+    <!-- SIDEBAR FILTERS -->
+    <aside class="products-sidebar">
+      <div class="sidebar-inner">
+        <!-- COLOR FILTER -->
+        <div class="filter-group">
+          <h4 class="filter-title">Color</h4>
+          <div class="filter-swatches">
+            <button class="filter-swatch" data-filter="color" data-value="blush" style="background:#e8d5c4" title="Blush"></button>
+            <button class="filter-swatch" data-filter="color" data-value="ivory" style="background:#f5f0e8;border:1px solid #ddd" title="Ivory"></button>
+            <button class="filter-swatch" data-filter="color" data-value="sage" style="background:#c8cca6" title="Sage"></button>
+            <button class="filter-swatch" data-filter="color" data-value="terracotta" style="background:#cc7755" title="Terracotta"></button>
+            <button class="filter-swatch" data-filter="color" data-value="dusty-rose" style="background:#c9a0a0" title="Dusty Rose"></button>
+          </div>
+        </div>
+
+        <!-- SIZE FILTER -->
+        <div class="filter-group">
+          <h4 class="filter-title">Size</h4>
+          <div class="filter-sizes">
+            <button class="filter-size" data-filter="size" data-value="xs">XS</button>
+            <button class="filter-size" data-filter="size" data-value="s">S</button>
+            <button class="filter-size" data-filter="size" data-value="m">M</button>
+            <button class="filter-size" data-filter="size" data-value="l">L</button>
+            <button class="filter-size" data-filter="size" data-value="xl">XL</button>
+          </div>
+        </div>
+
+        <!-- PRICE FILTER -->
+        <div class="filter-group">
+          <h4 class="filter-title">Price</h4>
+          <div class="filter-prices">
+            <button class="filter-price" data-filter="price" data-min="0" data-max="100">Under $100</button>
+            <button class="filter-price" data-filter="price" data-min="100" data-max="200">$100–$200</button>
+            <button class="filter-price" data-filter="price" data-min="200" data-max="400">$200–$400</button>
+            <button class="filter-price" data-filter="price" data-min="400" data-max="99999">$400+</button>
+          </div>
+        </div>
+
+        <!-- CLEAR FILTERS -->
+        <button class="filter-clear" id="clearFilters">Clear All Filters</button>
+      </div>
+    </aside>
+
+    <!-- PRODUCTS GRID -->
+    <div class="products-grid-wrapper">
+      <div class="products-grid"></div>
+    </div>
+  </div>
 
   <noscript>
     <div class="products-grid">
-      <div class="product-card" data-id="1" data-colors="blush,ivory,sage">
+      <div class="product-card" data-id="1" data-colors="blush,ivory,sage" data-sizes="xs,s,m,l,xl">
         <div class="product-image-wrapper">
           <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="The Charmeuse Slip Dress" class="product-image product-image-primary" loading="lazy" width="600" height="800">
           <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=601&q=80" alt="The Charmeuse Slip Dress detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
@@ -92,7 +140,7 @@
           <p class="product-price">$1890</p>
         </div>
       </div>
-      <div class="product-card" data-id="2" data-colors="terracotta,cream,dusty-rose">
+      <div class="product-card" data-id="2" data-colors="terracotta,cream,dusty-rose" data-sizes="s,m,l,xl">
         <div class="product-image-wrapper">
           <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Cashmere Long-Sleeve Tee" class="product-image product-image-primary" loading="lazy" width="600" height="800">
           <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=601&q=80" alt="Cashmere Long-Sleeve Tee detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
@@ -110,7 +158,7 @@
           <p class="product-price">$1195</p>
         </div>
       </div>
-      <div class="product-card" data-id="3" data-colors="ivory,sage,cream">
+      <div class="product-card" data-id="3" data-colors="ivory,sage,cream" data-sizes="m,l,xl">
         <div class="product-image-wrapper">
           <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Tailored Trousers" class="product-image product-image-primary" loading="lazy" width="600" height="800">
           <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=601&q=80" alt="Tailored Trousers detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
@@ -127,7 +175,7 @@
           <p class="product-price">$1590</p>
         </div>
       </div>
-      <div class="product-card" data-id="4" data-colors="dusty-rose,terracotta,ivory">
+      <div class="product-card" data-id="4" data-colors="dusty-rose,terracotta,ivory" data-sizes="xs,s,m,l">
         <div class="product-image-wrapper">
           <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&q=80" alt="The Belted Coat" class="product-image product-image-primary" loading="lazy" width="600" height="800">
           <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=601&q=80" alt="The Belted Coat detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
@@ -145,7 +193,7 @@
           <p class="product-price">$3290</p>
         </div>
       </div>
-      <div class="product-card" data-id="5" data-colors="sage,blush,cream">
+      <div class="product-card" data-id="5" data-colors="sage,blush,cream" data-sizes="s,m,l,xl">
         <div class="product-image-wrapper">
           <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="The Merino Crewneck" class="product-image product-image-primary" loading="lazy" width="600" height="800">
           <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=601&q=80" alt="The Merino Crewneck detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
@@ -162,7 +210,7 @@
           <p class="product-price">$895</p>
         </div>
       </div>
-      <div class="product-card" data-id="6" data-colors="cream,ivory,dusty-rose">
+      <div class="product-card" data-id="6" data-colors="cream,ivory,dusty-rose" data-sizes="xs,s,m,l,xl">
         <div class="product-image-wrapper">
           <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80" alt="Fluid Trousers" class="product-image product-image-primary" loading="lazy" width="600" height="800">
           <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=601&q=80" alt="Fluid Trousers detail" class="product-image product-image-secondary" loading="lazy" width="600" height="800">
