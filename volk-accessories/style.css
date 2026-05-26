@@ -1458,7 +1458,8 @@ footer {
   margin-bottom: 0;
 }
 
-.accordion-title {
+.accordion-title,
+.accordion-header {
   padding: var(--spacing-lg);
   cursor: pointer;
   background-color: var(--color-surface);
@@ -1472,14 +1473,19 @@ footer {
   letter-spacing: 0.05em;
   transition: all var(--transition-snap);
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.accordion-title:hover {
+.accordion-title:hover,
+.accordion-header:hover {
   background-color: var(--color-base);
   color: var(--color-accent-primary);
 }
 
-.accordion-title.active {
+.accordion-title.active,
+.accordion-header.active {
   background-color: var(--color-accent-primary);
   color: var(--color-base);
 }

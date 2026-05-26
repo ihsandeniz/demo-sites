@@ -148,5 +148,15 @@
 </footer>
 
 <script src="main.js"></script>
+<script>
+  document.querySelector('form.contact-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = this.querySelector('button[type="submit"]');
+    btn.textContent = 'Message Sent ✓';
+    btn.disabled = true;
+    this.reset();
+    setTimeout(() => { btn.textContent = 'Send Message'; btn.disabled = false; }, 3000);
+  });
+</script>
 </body>
 </html>
