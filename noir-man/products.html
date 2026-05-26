@@ -47,8 +47,8 @@
   <section class="section">
     <div class="container">
       <div class="section-title">
-        <h1>Shop Collection</h1>
-        <p style="font-size: 1.1rem; color: var(--color-light-gray); max-width: 600px; margin: 0 auto;">Discover our curated selection of refined menswear crafted with precision and elegance.</p>
+        <h1>The Atelier</h1>
+        <p style="font-size: 1.1rem; color: var(--color-light-gray); max-width: 600px; margin: 0 auto;">Full-canvassed tailoring, heritage outerwear, and precision knitwear. Each piece is hand-stitched in Italy and built to endure.</p>
       </div>
     </div>
   </section>
@@ -69,16 +69,16 @@
           <div class="filter-sidebar-group">
             <div class="filter-sidebar-title">Category</div>
             <label class="filter-checkbox-item">
+              <input type="checkbox" value="Tailoring" data-filter="category">
+              <span>Tailoring</span>
+            </label>
+            <label class="filter-checkbox-item">
               <input type="checkbox" value="Outerwear" data-filter="category">
               <span>Outerwear</span>
             </label>
             <label class="filter-checkbox-item">
-              <input type="checkbox" value="Shirts" data-filter="category">
-              <span>Shirts</span>
-            </label>
-            <label class="filter-checkbox-item">
-              <input type="checkbox" value="Trousers" data-filter="category">
-              <span>Trousers</span>
+              <input type="checkbox" value="Knitwear" data-filter="category">
+              <span>Knitwear</span>
             </label>
             <label class="filter-checkbox-item">
               <input type="checkbox" value="Accessories" data-filter="category">
@@ -90,16 +90,16 @@
           <div class="filter-sidebar-group">
             <div class="filter-sidebar-title">Price</div>
             <label class="filter-checkbox-item">
-              <input type="checkbox" value="under-300" data-filter="price">
-              <span>Under $300</span>
+              <input type="checkbox" value="under-500" data-filter="price">
+              <span>Under $500</span>
             </label>
             <label class="filter-checkbox-item">
-              <input type="checkbox" value="300-600" data-filter="price">
-              <span>$300 – $600</span>
+              <input type="checkbox" value="500-1500" data-filter="price">
+              <span>$500 – $1,500</span>
             </label>
             <label class="filter-checkbox-item">
-              <input type="checkbox" value="over-600" data-filter="price">
-              <span>Over $600</span>
+              <input type="checkbox" value="over-1500" data-filter="price">
+              <span>Over $1,500</span>
             </label>
           </div>
 
@@ -135,80 +135,80 @@
           <!-- Products grid -->
           <div class="grid grid-3" id="productsGrid">
             <!-- Product 1 -->
-            <div class="product-card" data-category="Outerwear" data-price="520">
-              <img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=600&q=80" alt="Classic Black Blazer" class="product-image" loading="lazy" width="600" height="400">
+            <div class="product-card" data-category="Tailoring" data-price="1200">
+              <img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=600&q=80" alt="The Cardinal Blazer" class="product-image" loading="lazy" width="600" height="400">
               <div class="product-overlay">
-                <h4>Classic Black Blazer</h4>
+                <h4>The Cardinal Blazer</h4>
                 <button class="btn btn-primary btn-small">Quick Add</button>
               </div>
               <div class="product-info">
-                <h4 class="product-name">Classic Black Blazer</h4>
-                <p class="product-price">$520</p>
+                <h4 class="product-name">The Cardinal Blazer</h4>
+                <p class="product-price">$1,200</p>
               </div>
             </div>
 
             <!-- Product 2 -->
-            <div class="product-card" data-category="Outerwear" data-price="680">
-              <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Minimal Wool Coat" class="product-image" loading="lazy" width="600" height="400">
+            <div class="product-card" data-category="Outerwear" data-price="2800">
+              <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Shadow Coat" class="product-image" loading="lazy" width="600" height="400">
               <div class="product-overlay">
-                <h4>Minimal Wool Coat</h4>
+                <h4>Shadow Coat</h4>
                 <button class="btn btn-primary btn-small">Quick Add</button>
               </div>
               <div class="product-info">
-                <h4 class="product-name">Minimal Wool Coat</h4>
-                <p class="product-price">$680</p>
+                <h4 class="product-name">Shadow Coat</h4>
+                <p class="product-price">$2,800</p>
               </div>
             </div>
 
             <!-- Product 3 -->
-            <div class="product-card" data-category="Shirts" data-price="280">
-              <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80" alt="Premium Dress Shirt" class="product-image" loading="lazy" width="600" height="400">
+            <div class="product-card" data-category="Knitwear" data-price="320">
+              <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80" alt="Essential Oxford Shirt" class="product-image" loading="lazy" width="600" height="400">
               <div class="product-overlay">
-                <h4>Premium Dress Shirt</h4>
+                <h4>Essential Oxford Shirt</h4>
                 <button class="btn btn-primary btn-small">Quick Add</button>
               </div>
               <div class="product-info">
-                <h4 class="product-name">Premium Dress Shirt</h4>
-                <p class="product-price">$280</p>
+                <h4 class="product-name">Essential Oxford Shirt</h4>
+                <p class="product-price">$320</p>
               </div>
             </div>
 
             <!-- Product 4 -->
-            <div class="product-card" data-category="Trousers" data-price="360">
-              <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80" alt="Tailored Black Trousers" class="product-image" loading="lazy" width="600" height="400">
+            <div class="product-card" data-category="Tailoring" data-price="1590">
+              <img src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80" alt="The Architect Trouser" class="product-image" loading="lazy" width="600" height="400">
               <div class="product-overlay">
-                <h4>Tailored Black Trousers</h4>
+                <h4>The Architect Trouser</h4>
                 <button class="btn btn-primary btn-small">Quick Add</button>
               </div>
               <div class="product-info">
-                <h4 class="product-name">Tailored Black Trousers</h4>
-                <p class="product-price">$360</p>
+                <h4 class="product-name">The Architect Trouser</h4>
+                <p class="product-price">$1,590</p>
               </div>
             </div>
 
             <!-- Product 5 -->
-            <div class="product-card" data-category="Accessories" data-price="95">
-              <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80" alt="Silk Pocket Square" class="product-image" loading="lazy" width="600" height="400">
+            <div class="product-card" data-category="Accessories" data-price="145">
+              <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80" alt="The Silk Pocket Square" class="product-image" loading="lazy" width="600" height="400">
               <div class="product-overlay">
-                <h4>Silk Pocket Square</h4>
+                <h4>The Silk Pocket Square</h4>
                 <button class="btn btn-primary btn-small">Quick Add</button>
               </div>
               <div class="product-info">
-                <h4 class="product-name">Silk Pocket Square</h4>
-                <p class="product-price">$95</p>
+                <h4 class="product-name">The Silk Pocket Square</h4>
+                <p class="product-price">$145</p>
               </div>
             </div>
 
             <!-- Product 6 -->
-            <div class="product-card" data-category="Accessories" data-price="240">
-              <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" alt="Premium Leather Belt" class="product-image" loading="lazy" width="600" height="400">
+            <div class="product-card" data-category="Accessories" data-price="385">
+              <img src="https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600&q=80" alt="Leather Minimal Belt" class="product-image" loading="lazy" width="600" height="400">
               <div class="product-overlay">
-                <h4>Premium Leather Belt</h4>
+                <h4>Leather Minimal Belt</h4>
                 <button class="btn btn-primary btn-small">Quick Add</button>
               </div>
               <div class="product-info">
-                <h4 class="product-name">Premium Leather Belt</h4>
-                <p class="product-price">$240</p>
+                <h4 class="product-name">Leather Minimal Belt</h4>
+                <p class="product-price">$385</p>
               </div>
             </div>
           </div>

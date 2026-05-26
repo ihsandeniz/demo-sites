@@ -3,63 +3,63 @@
 const PRODUCTS = [
   {
     id: 1,
-    name: 'Silk Evening Clutch',
-    category: 'Bags',
-    price: 1250,
+    name: 'Heritage Bangle',
+    category: 'Fine Jewelry',
+    price: 3800,
     image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80',
-    description: 'Handcrafted silk clutch with mother-of-pearl details. Perfect for evening occasions.',
-    colors: ['#f5e6c8', '#2c2c2c', '#8b6914'],
+    description: 'Hand-finished 18K yellow gold, secured with an iconic screw mechanism — a poetic nod to precision engineering and permanence. Each piece certified and handcrafted in Paris.',
+    colors: ['#d4af37', '#c9a227'],
     limited: true
   },
   {
     id: 2,
-    name: 'Diamond Collar Necklace',
-    category: 'Jewelry',
-    price: 3500,
-    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80',
-    description: 'Timeless diamond collar necklace in 18k gold. An heirloom piece.',
-    colors: ['#d4af37', '#ffffff'],
+    name: 'Luminescence Pearl Pendant',
+    category: 'Fine Jewelry',
+    price: 6200,
+    image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80',
+    description: 'A single South Sea pearl, 14–16mm, suspended on a hand-forged 18K white gold chain. GIA-certified. Eighty hours of atelier work distilled into one gesture.',
+    colors: ['#f8f4ee', '#d4af37'],
     limited: true
   },
   {
     id: 3,
-    name: 'Oud de Luxe Parfum',
-    category: 'Fragrances',
-    price: 890,
+    name: 'Solitaire Heritage Ring',
+    category: 'Haute Joaillerie',
+    price: 18500,
     image: 'https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80',
-    description: 'A sensual blend of oud, rose, and sandalwood. 50ml eau de parfum.',
-    colors: ['#b8960c'],
-    limited: false
+    description: 'A round brilliant diamond, D–F colour, VS1 clarity, set in hand-fabricated platinum. By commission only. Each ring accompanied by a GIA certificate and full appraisal documentation.',
+    colors: ['#e8e8e8', '#d4af37'],
+    limited: true
   },
   {
     id: 4,
-    name: 'Oversized Sunglasses',
-    category: 'Accessories',
-    price: 650,
-    image: 'https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=600&q=80',
-    description: 'UV protection with vintage-inspired oversized frames.',
-    colors: ['#2c2c2c', '#8b6914'],
+    name: 'Four Leaf Talisman Bracelet',
+    category: 'Fine Jewelry',
+    price: 2400,
+    image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80',
+    description: 'Eighteen-karat gold set with four brilliant-cut diamonds, pavé-set in a motif that has accompanied the Maison since 1924. A talisman for those who believe in the geometry of luck.',
+    colors: ['#d4af37', '#ffffff'],
     limited: false
   },
   {
     id: 5,
-    name: 'Silk Twill Scarf',
-    category: 'Accessories',
-    price: 450,
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
-    description: 'Hand-printed silk scarf with exclusive pattern. 90cm square.',
-    colors: ['#f5e6c8', '#d4af37', '#2c2c2c'],
-    limited: true
+    name: 'Celestial Link Bracelet',
+    category: 'Fine Jewelry',
+    price: 4100,
+    image: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80',
+    description: 'Alternating oval and round links in 18K rose gold, each hand-polished to a satin finish. Forty-two hours of bench time. Adjustable length: 16–19cm.',
+    colors: ['#c9a227', '#e8c8a0'],
+    limited: false
   },
   {
     id: 6,
-    name: 'Precious Moment Watch',
-    category: 'Accessories',
-    price: 2200,
+    name: 'Luminaire Jewelry Watch',
+    category: 'Jewelry Watches',
+    price: 12500,
     image: 'https://images.unsplash.com/photo-1587836374828-4dbafa94cf0e?w=600&q=80',
-    description: 'Swiss-made watch with mother-of-pearl dial and leather strap.',
-    colors: ['#d4af37', '#ffffff'],
-    limited: false
+    description: 'A Swiss manufacture movement encased in 18K white gold, the dial set entirely in pavé diamonds. Where horological precision meets haute joaillerie — time as an act of devotion.',
+    colors: ['#e8e8e8', '#d4af37'],
+    limited: true
   }
 ];
 
