@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="VELOUR — Soft, elegant women's fashion. Discover timeless dresses, tops, and outerwear designed for the effortlessly modern woman.">
   <title>VELOUR — Soft Elegant Women's Fashion</title>
-  <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="style.css">
@@ -23,7 +22,7 @@
       <a href="contact.html">Contact</a>
     </nav>
     <div class="nav-icons">
-      <a href="cart.html" title="Shopping Cart">🛍️ <span class="cart-badge" style="display:none; position:absolute; background:#b07c7c; color:#f5f0e8; border-radius:50%; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem; margin-left:-8px; margin-top:-8px;"></span></a>
+      <a href="cart.html" title="Shopping Cart">🛍️ <span class="cart-badge" style="display:none; position:absolute; background:#b8956a; color:#faf7f4; border-radius:50%; width:20px; height:20px; display:inline-flex; align-items:center; justify-content:center; font-size:0.75rem; margin-left:-8px; margin-top:-8px;"></span></a>
       <a href="#" title="Account">👤</a>
       <a href="#" title="Search">🔍</a>
     </div>
@@ -41,58 +40,190 @@
   </div>
 </header>
 
-<!-- HERO SECTION -->
+<!-- HERO SECTION — Full Viewport Editorial Layout -->
 <section class="hero">
-  <div class="hero-image">
-    <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1400&q=80" alt="Hero" width="1400" height="933">
-  </div>
-  <div class="hero-content">
-    <p class="hero-tag">New Season</p>
-    <h1 class="hero-title">Effortless Elegance</h1>
-    <p class="hero-description">
-      Discover our new collection of soft, timeless pieces crafted for the modern woman.
-      Where comfort meets luxury.
-    </p>
-    <a href="products.html" class="btn">Shop Collection</a>
-  </div>
-</section>
-
-<!-- CATEGORY GRID -->
-<section class="category-grid">
-  <div class="category-card">
-    <h3>Dresses</h3>
-    <p>Elegant silhouettes</p>
-  </div>
-  <div class="category-card">
-    <h3>Tops</h3>
-    <p>Luxe essentials</p>
-  </div>
-  <div class="category-card">
-    <h3>Outerwear</h3>
-    <p>Investment pieces</p>
+  <div class="hero-grid">
+    <div class="hero-image-main">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=1600&q=85" alt="Editorial hero — woman in elegant cream dress" width="1600" height="1000">
+      <div class="hero-overlay"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-inner">
+        <p class="hero-tag">Spring Collection 2025</p>
+        <h1 class="hero-title">Effortless Elegance</h1>
+        <p class="hero-description">
+          Discover our new collection of soft, timeless pieces crafted for the modern woman. Where comfort meets luxury, and simplicity becomes sophistication.
+        </p>
+        <div class="hero-actions">
+          <a href="products.html" class="btn btn-primary">Explore Now</a>
+          <a href="#" class="btn btn-secondary">View Lookbook</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- AS SEEN IN -->
-<section class="media-section">
-  <p>As Seen In</p>
-  <div class="media-logos">
-    <span>Vogue</span>
-    <span>Elle</span>
-    <span>Harper's Bazaar</span>
+<!-- CATEGORY SHOWCASE — Editorial Grid with Asymmetric Layout -->
+<section class="category-showcase">
+  <div class="showcase-container">
+    <div class="category-feature">
+      <div class="category-image">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&q=85" alt="Elegant dresses collection" width="700" height="800">
+      </div>
+      <div class="category-text">
+        <h2>Dresses</h2>
+        <p>Elegant silhouettes that move with grace. From minimalist midi to editorial statement pieces, our dresses celebrate the art of effortless dressing.</p>
+        <a href="products.html?category=Dresses" class="link-arrow">Shop Dresses →</a>
+      </div>
+    </div>
+
+    <div class="category-stacked">
+      <div class="category-feature category-small">
+        <div class="category-image">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&q=85" alt="Luxe tops essentials" width="400" height="500">
+        </div>
+        <div class="category-text">
+          <h3>Tops</h3>
+          <p>Luxe essentials in premium fabrics. Cashmere, silk, and finest knits designed for layering and timeless wear.</p>
+          <a href="products.html?category=Tops" class="link-arrow">Shop Tops →</a>
+        </div>
+      </div>
+
+      <div class="category-feature category-small">
+        <div class="category-image">
+          <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=400&q=85" alt="Investment outerwear pieces" width="400" height="500">
+        </div>
+        <div class="category-text">
+          <h3>Outerwear</h3>
+          <p>Investment pieces that define your wardrobe. Refined tailoring and the finest materials for seasons to come.</p>
+          <a href="products.html?category=Outerwear" class="link-arrow">Shop Outerwear →</a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- INSTAGRAM GRID -->
+<!-- EDITORIAL STATEMENT -->
+<section class="editorial-statement">
+  <div class="statement-container">
+    <blockquote>
+      <p>"Fashion is not something that exists in dresses only. Fashion is in the sky, in the street. Fashion has to do with ideas, the way we live, what is happening."</p>
+      <cite>— Our Philosophy</cite>
+    </blockquote>
+  </div>
+</section>
+
+<!-- FEATURED PRODUCTS — Editorial Grid -->
+<section class="featured-section">
+  <div class="section-header">
+    <h2>Curated Selection</h2>
+    <p>Handpicked pieces for the discerning eye</p>
+  </div>
+
+  <div class="featured-grid">
+    <a href="product-detail.html?id=1" class="featured-item">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=85" alt="Silk Blend Midi Dress" width="500" height="650">
+        <div class="featured-overlay">
+          <span class="overlay-text">View Details</span>
+        </div>
+      </div>
+      <div class="featured-info">
+        <h3>Silk Blend Midi Dress</h3>
+        <p class="featured-price">$248</p>
+      </div>
+    </a>
+
+    <a href="product-detail.html?id=2" class="featured-item">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=85" alt="Cashmere Fitted Top" width="500" height="650">
+        <div class="featured-overlay">
+          <span class="overlay-text">View Details</span>
+        </div>
+      </div>
+      <div class="featured-info">
+        <h3>Cashmere Fitted Top</h3>
+        <p class="featured-price">$178</p>
+      </div>
+    </a>
+
+    <a href="product-detail.html?id=4" class="featured-item">
+      <div class="featured-image">
+        <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=500&q=85" alt="Wool Blend Coat" width="500" height="650">
+        <div class="featured-overlay">
+          <span class="overlay-text">View Details</span>
+        </div>
+      </div>
+      <div class="featured-info">
+        <h3>Wool Blend Coat</h3>
+        <p class="featured-price">$358</p>
+      </div>
+    </a>
+  </div>
+
+  <div class="cta-container">
+    <a href="products.html" class="btn btn-primary">View Full Collection</a>
+  </div>
+</section>
+
+<!-- INSTAGRAM FEED — Image Grid -->
 <section class="instagram-section">
-  <h2 class="section-title">@velour.studio</h2>
+  <div class="section-header">
+    <h2>@velour.studio</h2>
+    <p>Follow our editorial journey</p>
+  </div>
+
   <div class="instagram-grid">
-    <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Instagram 1" loading="lazy" width="600" height="400">
-    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Instagram 2" loading="lazy" width="600" height="400">
-    <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&q=80" alt="Instagram 3" loading="lazy" width="600" height="400">
-    <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=600&q=80" alt="Instagram 4" loading="lazy" width="600" height="400">
-    <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="Instagram 5" loading="lazy" width="600" height="400">
-    <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=600&q=80" alt="Instagram 6" loading="lazy" width="600" height="400">
+    <a href="#" class="instagram-item">
+      <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=500&q=85" alt="Instagram 1" loading="lazy" width="500" height="500">
+      <div class="insta-overlay">
+        <span>View Post</span>
+      </div>
+    </a>
+    <a href="#" class="instagram-item">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=500&q=85" alt="Instagram 2" loading="lazy" width="500" height="500">
+      <div class="insta-overlay">
+        <span>View Post</span>
+      </div>
+    </a>
+    <a href="#" class="instagram-item">
+      <img src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&q=85" alt="Instagram 3" loading="lazy" width="500" height="500">
+      <div class="insta-overlay">
+        <span>View Post</span>
+      </div>
+    </a>
+    <a href="#" class="instagram-item">
+      <img src="https://images.unsplash.com/photo-1585487000160-6ebcfceb0d03?w=500&q=85" alt="Instagram 4" loading="lazy" width="500" height="500">
+      <div class="insta-overlay">
+        <span>View Post</span>
+      </div>
+    </a>
+    <a href="#" class="instagram-item">
+      <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=500&q=85" alt="Instagram 5" loading="lazy" width="500" height="500">
+      <div class="insta-overlay">
+        <span>View Post</span>
+      </div>
+    </a>
+    <a href="#" class="instagram-item">
+      <img src="https://images.unsplash.com/photo-1581044777550-4cfa60707c03?w=500&q=85" alt="Instagram 6" loading="lazy" width="500" height="500">
+      <div class="insta-overlay">
+        <span>View Post</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- NEWSLETTER — Subtle Call to Action -->
+<section class="newsletter-section">
+  <div class="newsletter-container">
+    <div class="newsletter-content">
+      <h2>Be the First to Know</h2>
+      <p>Receive updates on new collections, styling tips, and exclusive offers.</p>
+      <form class="newsletter-form" onsubmit="return false;">
+        <input type="email" placeholder="your@email.com" required>
+        <button type="submit" class="btn btn-primary">Subscribe</button>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -102,9 +233,9 @@
     <div class="footer-col">
       <h4>Shop</h4>
       <a href="products.html">All Products</a>
-      <a href="products.html?category=dresses">Dresses</a>
-      <a href="products.html?category=tops">Tops</a>
-      <a href="products.html?category=outerwear">Outerwear</a>
+      <a href="products.html?category=Dresses">Dresses</a>
+      <a href="products.html?category=Tops">Tops</a>
+      <a href="products.html?category=Outerwear">Outerwear</a>
     </div>
     <div class="footer-col">
       <h4>About</h4>
@@ -119,21 +250,14 @@
       <a href="#">Shipping & Returns</a>
     </div>
     <div class="footer-col">
-      <h4>Newsletter</h4>
-      <p style="font-size: 0.9rem; margin-bottom: 1rem;">Stay updated with new arrivals and offers.</p>
-      <div class="newsletter-form">
-        <input type="email" placeholder="Your email" required>
-        <button>Subscribe</button>
-      </div>
+      <h4>Follow</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Pinterest</a>
+      <a href="#">TikTok</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2024 VELOUR. All rights reserved.</p>
-    <div class="social-icons">
-      <a href="#">Instagram</a>
-      <a href="#">Pinterest</a>
-      <a href="#">Facebook</a>
-    </div>
+    <p>&copy; 2025 VELOUR. All rights reserved. Crafted with intention.</p>
   </div>
 </footer>
 

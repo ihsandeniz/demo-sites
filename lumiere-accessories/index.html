@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="LUMIÈRE — Luxury women's accessories from Paris. Handcrafted bags, fine jewelry, and exclusive fragrances since 1892.">
   <title>LUMIÈRE — Luxury Women's Accessories</title>
-  <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital@0;1&family=Montserrat:wght@300;400;500;600&display=swap">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -32,189 +32,211 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero" style="min-height:100dvh;">
-    <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?w=1400&q=80" alt="LUMIÈRE" class="hero-image" width="1400" height="933">
+  <!-- Full Dark Cinematic Hero -->
+  <section class="hero" role="region" aria-label="Hero section">
+    <div class="hero-bg">
+      <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&q=90" alt="LUMIÈRE Diamond Collection" class="hero-image">
+    </div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-subtitle">— new collection —</div>
-      <h1 class="hero-title">Crafted for the Extraordinary Woman</h1>
-      <a href="products.html" class="btn">Discover Collection</a>
+      <h1 class="hero-title">Crafted for the Extraordinary</h1>
+      <p class="hero-subtitle">Timeless luxury accessories since 1892</p>
+      <a href="products.html" class="btn btn-primary">Discover Collections</a>
     </div>
   </section>
 
-  <!-- Marquee -->
-  <section class="marquee">
-    <div class="marquee-content">
-      <div class="marquee-item">✦ LUMIÈRE ✦</div>
-      <div class="marquee-item">PARIS</div>
-      <div class="marquee-item">LONDON</div>
-      <div class="marquee-item">ISTANBUL</div>
-      <div class="marquee-item">✦ LUMIÈRE ✦</div>
-      <div class="marquee-item">PARIS</div>
-      <div class="marquee-item">LONDON</div>
-      <div class="marquee-item">ISTANBUL</div>
+  <!-- Press Strip: Editorial Enhancement -->
+  <section class="press-strip">
+    <p class="press-label">Featured In</p>
+    <div class="press-grid">
+      <div class="press-item">
+        <span class="press-name">Vogue</span>
+      </div>
+      <div class="press-item">
+        <span class="press-name">Harper's Bazaar</span>
+      </div>
+      <div class="press-item">
+        <span class="press-name">Elle</span>
+      </div>
+      <div class="press-item">
+        <span class="press-name">Forbes</span>
+      </div>
+      <div class="press-item">
+        <span class="press-name">The Times</span>
+      </div>
     </div>
   </section>
 
-  <!-- Collections Section -->
-  <section>
+  <!-- Featured Product Showcase: Cinematic Large -->
+  <section class="featured-showcase">
+    <div class="showcase-content">
+      <div class="showcase-image-container">
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=900&q=90" alt="Silk Evening Clutch" class="showcase-image">
+        <div class="showcase-badge">Limited Edition</div>
+      </div>
+      <div class="showcase-details">
+        <div class="showcase-category">BAGS</div>
+        <h2 class="showcase-title">Silk Evening Clutch</h2>
+        <p class="showcase-description">Handcrafted silk clutch with mother-of-pearl details. A masterpiece for the discerning woman who appreciates true craftsmanship and timeless elegance.</p>
+        <div class="showcase-price">$1,250</div>
+        <a href="product-detail.html?id=1" class="btn btn-primary">View Piece</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Collections Grid: Large Images, Minimal Text -->
+  <section class="collections-section">
     <h2 class="section-title">Curated Collections</h2>
     <div class="collections-grid">
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Bags" class="collection-card-image" loading="lazy" width="600" height="400">
-        <div class="collection-card-overlay">
-          <h3 class="collection-card-title">BAGS</h3>
-          <p>Handcrafted with precision</p>
+        <div class="collection-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=700&q=90" alt="Bags Collection" class="collection-image">
+        </div>
+        <div class="collection-overlay">
+          <h3 class="collection-title">Bags</h3>
+          <p class="collection-subtitle">Handcrafted Masterpieces</p>
         </div>
       </div>
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Jewelry" class="collection-card-image" loading="lazy" width="600" height="400">
-        <div class="collection-card-overlay">
-          <h3 class="collection-card-title">JEWELRY</h3>
-          <p>Timeless elegance</p>
+        <div class="collection-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=700&q=90" alt="Jewelry Collection" class="collection-image">
+        </div>
+        <div class="collection-overlay">
+          <h3 class="collection-title">Jewelry</h3>
+          <p class="collection-subtitle">Precious Heirlooms</p>
         </div>
       </div>
       <div class="collection-card">
-        <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Fragrances" class="collection-card-image" loading="lazy" width="600" height="400">
-        <div class="collection-card-overlay">
-          <h3 class="collection-card-title">FRAGRANCES</h3>
-          <p>Sensuous scents</p>
+        <div class="collection-image-wrapper">
+          <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=700&q=90" alt="Fragrances Collection" class="collection-image">
+        </div>
+        <div class="collection-overlay">
+          <h3 class="collection-title">Fragrances</h3>
+          <p class="collection-subtitle">Sensuous Essences</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Quote Section -->
-  <section class="quote-section">
-    <blockquote>"Luxury is not about having the most, but about having the best."</blockquote>
-    <p class="author">— LUMIÈRE PHILOSOPHY</p>
+  <!-- Philosophy: Editorial Quote -->
+  <section class="philosophy-section">
+    <blockquote class="philosophy-quote">"Luxury is not about having the most, but about having the best."</blockquote>
+    <div class="philosophy-divider"></div>
+    <p class="philosophy-author">— LUMIÈRE PHILOSOPHY</p>
   </section>
 
-  <!-- Press Logos -->
-  <section class="press-section">
-    <p class="press-label">As Seen In</p>
-    <div class="press-logos">
-      <span class="press-name">Vogue</span>
-      <span class="press-separator">·</span>
-      <span class="press-name">Harper's Bazaar</span>
-      <span class="press-separator">·</span>
-      <span class="press-name">Elle</span>
-      <span class="press-separator">·</span>
-      <span class="press-name">Forbes</span>
-      <span class="press-separator">·</span>
-      <span class="press-name">The Times</span>
-    </div>
-  </section>
-
-  <!-- Promise Section -->
-  <section>
-    <h2 class="section-title">Our Promise</h2>
-    <div class="promises">
-      <div class="promise-item">
+  <!-- Promise Section: Trust Signals -->
+  <section class="promises-section">
+    <h2 class="section-title">Why LUMIÈRE</h2>
+    <div class="promises-grid">
+      <div class="promise-card">
         <div class="promise-icon">✓</div>
-        <h4>Authenticity</h4>
-        <p>Every piece is genuinely sourced and certified. No compromises on quality.</p>
+        <h3 class="promise-title">Authenticity</h3>
+        <p class="promise-text">Every piece is genuinely sourced and certified. No compromises on quality.</p>
       </div>
-      <div class="promise-item">
+      <div class="promise-card">
         <div class="promise-icon">✦</div>
-        <h4>Craftsmanship</h4>
-        <p>Handmade by master artisans with decades of experience.</p>
+        <h3 class="promise-title">Craftsmanship</h3>
+        <p class="promise-text">Handmade by master artisans with decades of experience.</p>
       </div>
-      <div class="promise-item">
+      <div class="promise-card">
         <div class="promise-icon">♦</div>
-        <h4>Exclusivity</h4>
-        <p>Limited quantities ensure your piece remains truly unique.</p>
+        <h3 class="promise-title">Exclusivity</h3>
+        <p class="promise-text">Limited quantities ensure your piece remains truly unique.</p>
       </div>
-      <div class="promise-item">
+      <div class="promise-card">
         <div class="promise-icon">♻</div>
-        <h4>Sustainability</h4>
-        <p>Ethical sourcing and eco-conscious production practices.</p>
+        <h3 class="promise-title">Sustainability</h3>
+        <p class="promise-text">Ethical sourcing and eco-conscious production practices.</p>
       </div>
     </div>
   </section>
 
-  <!-- Featured Products -->
-  <section>
+  <!-- Featured Selection: Product Showcase -->
+  <section class="featured-products-section">
     <h2 class="section-title">Featured Selection</h2>
-    <div class="products-grid">
-      <div class="product-card">
-        <div class="limited-badge">Limited Edition</div>
-        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=80" alt="Silk Evening Clutch" class="product-image" loading="lazy" width="600" height="400">
-        <div class="product-info">
-          <div class="product-category">Bags</div>
-          <h3 class="product-name">Silk Evening Clutch</h3>
-          <div class="product-price">$1,250</div>
-          <div class="product-card-footer">
-            <a href="product-detail.html?id=1" class="btn product-btn">View</a>
-            <button class="wishlist-btn" data-product-id="1">♥</button>
-          </div>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <div class="featured-badge">Limited Edition</div>
+        <img src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&q=90" alt="Silk Evening Clutch" class="featured-image">
+        <div class="featured-info">
+          <div class="featured-category">Bags</div>
+          <h3 class="featured-name">Silk Evening Clutch</h3>
+          <div class="featured-price">$1,250</div>
+          <a href="product-detail.html?id=1" class="btn btn-outline">View</a>
         </div>
       </div>
-      <div class="product-card">
-        <div class="limited-badge">Limited Edition</div>
-        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Diamond Collar Necklace" class="product-image" loading="lazy" width="600" height="400">
-        <div class="product-info">
-          <div class="product-category">Jewelry</div>
-          <h3 class="product-name">Diamond Collar Necklace</h3>
-          <div class="product-price">$3,500</div>
-          <div class="product-card-footer">
-            <a href="product-detail.html?id=2" class="btn product-btn">View</a>
-            <button class="wishlist-btn" data-product-id="2">♥</button>
-          </div>
+      <div class="featured-card">
+        <div class="featured-badge">Limited Edition</div>
+        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=90" alt="Diamond Collar Necklace" class="featured-image">
+        <div class="featured-info">
+          <div class="featured-category">Jewelry</div>
+          <h3 class="featured-name">Diamond Collar Necklace</h3>
+          <div class="featured-price">$3,500</div>
+          <a href="product-detail.html?id=2" class="btn btn-outline">View</a>
         </div>
       </div>
-      <div class="product-card">
-        <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=80" alt="Oud de Luxe Parfum" class="product-image" loading="lazy" width="600" height="400">
-        <div class="product-info">
-          <div class="product-category">Fragrances</div>
-          <h3 class="product-name">Oud de Luxe Parfum</h3>
-          <div class="product-price">$890</div>
-          <div class="product-card-footer">
-            <a href="product-detail.html?id=3" class="btn product-btn">View</a>
-            <button class="wishlist-btn" data-product-id="3">♥</button>
-          </div>
+      <div class="featured-card">
+        <img src="https://images.unsplash.com/photo-1541643600914-78b084683702?w=600&q=90" alt="Oud de Luxe Parfum" class="featured-image">
+        <div class="featured-info">
+          <div class="featured-category">Fragrances</div>
+          <h3 class="featured-name">Oud de Luxe Parfum</h3>
+          <div class="featured-price">$890</div>
+          <a href="product-detail.html?id=3" class="btn btn-outline">View</a>
         </div>
       </div>
     </div>
-    <div style="text-align: center; margin-top: 3rem;">
-      <a href="products.html" class="btn">View All Collections</a>
+    <div class="section-cta">
+      <a href="products.html" class="btn btn-primary">Explore All Collections</a>
     </div>
   </section>
 
-  <!-- Reviews -->
+  <!-- Reviews: Editorial Presentation -->
   <section class="reviews-section">
     <h2 class="section-title">Client Stories</h2>
     <div class="reviews-grid">
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <blockquote class="review-quote">"The Silk Evening Clutch arrived beautifully packaged. The quality is simply incomparable — it truly feels like holding a piece of art."</blockquote>
-        <div class="review-author">
-          <span class="review-name">Sophie L.</span>
-          <span class="review-location">Paris, France</span>
+      <article class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
         </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <blockquote class="review-quote">"I purchased the Diamond Collar Necklace for my anniversary. My partner was speechless. Lumière's craftsmanship exceeds every expectation."</blockquote>
-        <div class="review-author">
-          <span class="review-name">Elena M.</span>
-          <span class="review-location">Milan, Italy</span>
+        <blockquote class="review-text">
+          "The Silk Evening Clutch arrived beautifully packaged. The quality is simply incomparable — it truly feels like holding a piece of art."
+        </blockquote>
+        <div class="review-footer">
+          <p class="review-name">Sophie L.</p>
+          <p class="review-location">Paris, France</p>
         </div>
-      </div>
-      <div class="review-card">
-        <div class="review-stars">★★★★★</div>
-        <blockquote class="review-quote">"Oud de Luxe has become my signature scent. Complex, lasting, and unmistakably luxurious. I receive compliments everywhere I go."</blockquote>
-        <div class="review-author">
-          <span class="review-name">Nadia K.</span>
-          <span class="review-location">Istanbul, Turkey</span>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
         </div>
-      </div>
+        <blockquote class="review-text">
+          "I purchased the Diamond Collar Necklace for my anniversary. My partner was speechless. Lumière's craftsmanship exceeds every expectation."
+        </blockquote>
+        <div class="review-footer">
+          <p class="review-name">Elena M.</p>
+          <p class="review-location">Milan, Italy</p>
+        </div>
+      </article>
+      <article class="review-card">
+        <div class="review-header">
+          <div class="review-stars">★★★★★</div>
+        </div>
+        <blockquote class="review-text">
+          "Oud de Luxe has become my signature scent. Complex, lasting, and unmistakably luxurious. I receive compliments everywhere I go."
+        </blockquote>
+        <div class="review-footer">
+          <p class="review-name">Nadia K.</p>
+          <p class="review-location">Istanbul, Turkey</p>
+        </div>
+      </article>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="footer-content">
+    <div class="footer-grid">
       <div class="footer-col">
         <h4>Shop</h4>
         <ul>
@@ -252,6 +274,7 @@
         </ul>
       </div>
     </div>
+    <div class="footer-divider"></div>
     <div class="footer-bottom">
       <p>&copy; 2024 LUMIÈRE. All rights reserved. — Handcrafted luxury accessories since Paris, 1892.</p>
     </div>

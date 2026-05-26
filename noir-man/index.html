@@ -3,189 +3,289 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="NOIR — Ultra-minimal luxury menswear. Premium coats, shirts, and accessories crafted for the discerning modern gentleman.">
-  <title>NOIR - Ultra Minimal Luxury Menswear</title>
+  <meta name="description" content="NOIR — Premium dark luxury menswear. Curated collection of editorial-quality coats, shirts, and accessories for the modern connoisseur.">
+  <title>NOIR - Dark Luxury Menswear</title>
   <link rel="preconnect" href="https://images.unsplash.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- HEADER -->
+  <!-- HEADER / NAVBAR -->
   <header>
     <div class="container">
       <div class="header-content">
         <a href="index.html" class="logo">NOIR</a>
 
-        <nav>
-          <a href="index.html" class="active">Home</a>
-          <a href="products.html">Shop</a>
-          <a href="about.html">About</a>
-          <a href="contact.html">Contact</a>
+        <nav class="nav-menu">
+          <a href="index.html" class="nav-link active">Home</a>
+          <a href="products.html" class="nav-link">Shop</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="contact.html" class="nav-link">Contact</a>
         </nav>
 
-        <div class="cart-icon">
-          ⊙
-          <span class="cart-count">0</span>
-        </div>
+        <div class="header-actions">
+          <div class="cart-icon" role="button" tabindex="0" aria-label="View cart">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <circle cx="9" cy="21" r="1"/>
+              <circle cx="20" cy="21" r="1"/>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+            </svg>
+            <span class="cart-count">0</span>
+          </div>
 
-        <div class="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+          <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
         </div>
       </div>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
+  <!-- HERO SECTION — Editorial Magazine Aesthetic -->
   <section class="hero">
+    <div class="hero-background">
+      <img
+        src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=1600&q=85"
+        alt="Luxury menswear collection"
+        class="hero-image"
+      >
+      <div class="hero-overlay"></div>
+    </div>
+
     <div class="hero-content">
-      <h1>REFINED DARKNESS</h1>
-      <p class="hero-subtitle">New Collection</p>
-      <div class="hero-cta">
-        <a href="products.html" class="btn btn-primary">Shop Now</a>
-        <a href="about.html" class="btn btn-secondary">Our Story</a>
+      <div class="hero-header">
+        <h1 class="hero-title">Refined Darkness</h1>
+        <p class="hero-subtitle">Curated luxury for the discerning gentleman</p>
       </div>
+      <div class="hero-divider"></div>
+      <p class="hero-description">
+        Each piece in our collection is carefully selected to embody timeless elegance,
+        uncompromising craftsmanship, and editorial precision.
+      </p>
+      <div class="hero-cta">
+        <a href="products.html" class="btn btn-primary">Explore Collection</a>
+        <a href="about.html" class="btn btn-outline">Our Philosophy</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span class="scroll-text">Scroll</span>
     </div>
   </section>
 
-  <!-- MARQUEE BANNER -->
-  <div class="marquee">
-    <div class="marquee-content">
-      <span>FREE SHIPPING</span>
-      <span>•</span>
-      <span>NEW ARRIVALS</span>
-      <span>•</span>
-      <span>EXCLUSIVE DROPS</span>
-      <span>•</span>
-      <span>PREMIUM QUALITY</span>
-      <span>•</span>
-      <span>FREE SHIPPING</span>
-      <span>•</span>
-      <span>NEW ARRIVALS</span>
-      <span>•</span>
-      <span>EXCLUSIVE DROPS</span>
-      <span>•</span>
-      <span>PREMIUM QUALITY</span>
+  <!-- PREMIUM MARQUEE BANNER -->
+  <div class="marquee-banner">
+    <div class="marquee-track">
+      <span class="marquee-item">Premium Quality</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Editorial Pieces</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Curated Selection</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Timeless Design</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Premium Quality</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Editorial Pieces</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Curated Selection</span>
+      <span class="marquee-separator">•</span>
+      <span class="marquee-item">Timeless Design</span>
     </div>
   </div>
 
-  <!-- FEATURED PRODUCTS -->
-  <section class="section">
+  <!-- FEATURED COLLECTION — Editorial Grid with Asymmetry -->
+  <section class="section section-featured">
     <div class="container">
-      <div class="section-title">
+      <div class="section-header">
         <h2>Featured Collection</h2>
+        <p class="section-subtitle">Hand-selected pieces that define contemporary luxury</p>
       </div>
 
-      <div class="grid featured-grid">
-        <!-- Product 1 -->
-        <div class="featured-card">
-          <img src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=600&q=80" alt="Classic Black Blazer" class="product-image" loading="lazy" width="600" height="400">
-          <div class="product-overlay">
-            <h4>Classic Black Blazer</h4>
-            <button class="btn btn-primary btn-small">Quick Add</button>
-          </div>
-          <div class="product-info">
-            <h4 class="product-name">Classic Black Blazer</h4>
-            <p class="product-price">$520</p>
-          </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="featured-card">
-          <img src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=80" alt="Minimal Wool Coat" class="product-image" loading="lazy" width="600" height="400">
-          <div class="product-overlay">
-            <h4>Minimal Wool Coat</h4>
-            <button class="btn btn-primary btn-small">Quick Add</button>
-          </div>
-          <div class="product-info">
-            <h4 class="product-name">Minimal Wool Coat</h4>
-            <p class="product-price">$680</p>
+      <div class="featured-collection">
+        <!-- Large Feature -->
+        <div class="featured-large">
+          <div class="product-card product-card-large">
+            <img
+              src="https://images.unsplash.com/photo-1555689502-c4b22d76c56f?w=800&q=85"
+              alt="Classic Black Blazer"
+              class="product-image"
+              loading="lazy"
+            >
+            <div class="product-overlay">
+              <h3 class="product-title">Classic Black Blazer</h3>
+              <p class="product-price">$520</p>
+              <a href="product-detail.html" class="btn btn-primary btn-small">View Details</a>
+            </div>
           </div>
         </div>
 
-        <!-- Product 3 -->
-        <div class="featured-card">
-          <img src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=80" alt="Premium Dress Shirt" class="product-image" loading="lazy" width="600" height="400">
-          <div class="product-overlay">
-            <h4>Premium Dress Shirt</h4>
-            <button class="btn btn-primary btn-small">Quick Add</button>
+        <!-- Small Grid -->
+        <div class="featured-small-grid">
+          <div class="product-card product-card-small">
+            <img
+              src="https://images.unsplash.com/photo-1434389677669-e08b4cac3105?w=600&q=85"
+              alt="Minimal Wool Coat"
+              class="product-image"
+              loading="lazy"
+            >
+            <div class="product-overlay">
+              <h3 class="product-title">Minimal Wool Coat</h3>
+              <p class="product-price">$680</p>
+              <a href="product-detail.html" class="btn btn-primary btn-small">View Details</a>
+            </div>
           </div>
-          <div class="product-info">
-            <h4 class="product-name">Premium Dress Shirt</h4>
-            <p class="product-price">$280</p>
+
+          <div class="product-card product-card-small">
+            <img
+              src="https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&q=85"
+              alt="Premium Dress Shirt"
+              class="product-image"
+              loading="lazy"
+            >
+            <div class="product-overlay">
+              <h3 class="product-title">Premium Dress Shirt</h3>
+              <p class="product-price">$280</p>
+              <a href="product-detail.html" class="btn btn-primary btn-small">View Details</a>
+            </div>
+          </div>
+
+          <div class="product-card product-card-small">
+            <img
+              src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=600&q=85"
+              alt="Cashmere Knit"
+              class="product-image"
+              loading="lazy"
+            >
+            <div class="product-overlay">
+              <h3 class="product-title">Cashmere Knit</h3>
+              <p class="product-price">$420</p>
+              <a href="product-detail.html" class="btn btn-primary btn-small">View Details</a>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- NEWSLETTER -->
-  <section class="section newsletter">
+  <!-- EDITORIAL SECTION — Trust Signals -->
+  <section class="section section-editorial">
     <div class="container">
-      <h2>Stay Updated</h2>
-      <p class="newsletter-description">
-        Subscribe to receive updates on new collections, exclusive offers, and early access to drops.
-      </p>
-      <form class="newsletter-form">
-        <input
-          type="email"
-          class="newsletter-input"
-          placeholder="Enter your email"
-          required
-        >
-        <button type="button" class="btn btn-primary newsletter-submit">Subscribe</button>
-      </form>
+      <div class="editorial-grid">
+        <div class="editorial-item">
+          <div class="editorial-number">01</div>
+          <h3 class="editorial-title">Handpicked Selection</h3>
+          <p class="editorial-text">Each piece is curated by our team of luxury fashion experts to meet the highest standards of quality and design.</p>
+        </div>
+
+        <div class="editorial-item">
+          <div class="editorial-number">02</div>
+          <h3 class="editorial-title">Premium Materials</h3>
+          <p class="editorial-text">We source only the finest fabrics and materials from renowned mills and suppliers across Europe.</p>
+        </div>
+
+        <div class="editorial-item">
+          <div class="editorial-number">03</div>
+          <h3 class="editorial-title">Lifetime Commitment</h3>
+          <p class="editorial-text">We stand behind every piece with professional care instructions and dedicated customer support.</p>
+        </div>
+
+        <div class="editorial-item">
+          <div class="editorial-number">04</div>
+          <h3 class="editorial-title">Exclusive Access</h3>
+          <p class="editorial-text">Subscribe to our newsletter for early access to new collections and exclusive member-only drops.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEWSLETTER SUBSCRIPTION — Minimal, Editorial -->
+  <section class="section section-newsletter">
+    <div class="container">
+      <div class="newsletter-content">
+        <h2 class="newsletter-title">Stay Connected</h2>
+        <p class="newsletter-description">
+          Be the first to discover new arrivals, exclusive collections, and editorial insights.
+        </p>
+
+        <form class="newsletter-form" onsubmit="return false;">
+          <input
+            type="email"
+            class="newsletter-input"
+            placeholder="Enter your email address"
+            aria-label="Email address for newsletter"
+            required
+          >
+          <button type="submit" class="btn btn-primary newsletter-submit">Subscribe</button>
+        </form>
+
+        <p class="newsletter-privacy">
+          We respect your privacy. <a href="#">Read our policy</a>.
+        </p>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <div class="footer-content">
-        <!-- Column 1 -->
+      <div class="footer-grid">
         <div class="footer-section">
-          <h4>Shop</h4>
-          <a href="products.html">All Products</a>
-          <a href="products.html">New Arrivals</a>
-          <a href="products.html">Collections</a>
-          <a href="products.html">Sale</a>
+          <h4 class="footer-title">Shop</h4>
+          <ul class="footer-links">
+            <li><a href="products.html">All Products</a></li>
+            <li><a href="products.html">New Arrivals</a></li>
+            <li><a href="products.html">Collections</a></li>
+            <li><a href="products.html">Sale</a></li>
+          </ul>
         </div>
 
-        <!-- Column 2 -->
         <div class="footer-section">
-          <h4>Company</h4>
-          <a href="about.html">About Us</a>
-          <a href="#">Sustainability</a>
-          <a href="#">Careers</a>
-          <a href="contact.html">Contact</a>
+          <h4 class="footer-title">Company</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="#">Sustainability</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
         </div>
 
-        <!-- Column 3 -->
         <div class="footer-section">
-          <h4>Support</h4>
-          <a href="#">FAQ</a>
-          <a href="#">Shipping & Returns</a>
-          <a href="#">Size Guide</a>
-          <a href="#">Care Instructions</a>
+          <h4 class="footer-title">Support</h4>
+          <ul class="footer-links">
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Shipping & Returns</a></li>
+            <li><a href="#">Size Guide</a></li>
+            <li><a href="#">Care Instructions</a></li>
+          </ul>
         </div>
 
-        <!-- Column 4 -->
         <div class="footer-section">
-          <h4>Connect</h4>
+          <h4 class="footer-title">Connect</h4>
           <div class="social-links">
-            <a href="#" title="Instagram">In</a>
-            <a href="#" title="Facebook">Fb</a>
-            <a href="#" title="Twitter">Tw</a>
-            <a href="#" title="LinkedIn">Li</a>
+            <a href="#" title="Instagram" class="social-link">In</a>
+            <a href="#" title="Facebook" class="social-link">Fb</a>
+            <a href="#" title="Twitter" class="social-link">Tw</a>
+            <a href="#" title="LinkedIn" class="social-link">Li</a>
           </div>
         </div>
       </div>
 
+      <div class="footer-divider"></div>
+
       <div class="footer-bottom">
-        <p>&copy; 2024 NOIR. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p class="footer-copyright">
+          &copy; 2024 NOIR. All rights reserved.
+        </p>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
       </div>
     </div>
   </footer>
