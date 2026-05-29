@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Veridis Hukuk'un sunduğu hukuki hizmetler — Ceza, Ticaret, Aile, Miras, İş ve Gayrimenkul hukuku.">
+  <title>Hizmetler — Veridis Hukuk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Hizmetler Sayfası — Özel Stil */
+
+    .page-hero {
+      position: relative;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+      padding: 100px 20px 60px;
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .page-hero h1 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .page-hero h1 em {
+      color: var(--gold);
+    }
+
+    .page-hero .breadcrumb {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .page-hero .breadcrumb a {
+      color: var(--gold);
+      transition: color var(--transition);
+    }
+
+    .page-hero .breadcrumb a:hover {
+      color: var(--white);
+    }
+
+    /* Filter Tabs */
+    .filter-section {
+      background: var(--navy);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .filter-tabs {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-tab {
+      padding: 10px 20px;
+      border: 2px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: all var(--transition);
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .filter-tab:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .filter-tab.active {
+      background: var(--gold);
+      color: var(--navy);
+      border-color: var(--gold);
+    }
+
+    /* Services Grid */
+    .services-section {
+      background: var(--navy);
+      padding: 60px 20px;
+    }
+
+    .services-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .service-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 32px 24px;
+      border-radius: var(--radius);
+      transition: all var(--transition);
+      border-left: 3px solid transparent;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      border-left-color: var(--gold);
+      transform: translateX(4px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card.hidden {
+      display: none;
+    }
+
+    .service-icon {
+      font-size: 2.8rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .service-card h3 {
+      color: var(--white);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+      font-family: var(--font-heading);
+    }
+
+    .service-card > p:first-of-type {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .sub-services {
+      background: rgba(201,168,76,0.05);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin-bottom: 16px;
+    }
+
+    .sub-services h4 {
+      font-size: 0.85rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .sub-services ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sub-services li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .sub-services li:before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+
+    .service-card .service-cta {
+      display: inline-block;
+      color: var(--gold);
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: 1px solid var(--gold);
+      padding: 8px 16px;
+      border-radius: 4px;
+      transition: all var(--transition);
+    }
+
+    .service-card .service-cta:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Process Section */
+    .process-section {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+      padding: 60px 20px;
+    }
+
+    .section-header {
+      max-width: 700px;
+      margin: 0 auto 56px;
+      text-align: center;
+    }
+
+    .section-header h2 {
+      color: var(--white);
+      margin-top: 12px;
+    }
+
+    .process-timeline {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .process-step {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 28px 20px;
+      border-radius: var(--radius);
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      right: -22px;
+      width: 20px;
+      height: 2px;
+      background: var(--gold);
+      display: none;
+    }
+
+    @media (min-width: 640px) {
+      .process-step:not(:last-child)::after {
+        display: block;
+      }
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: var(--gold);
+      color: var(--navy);
+      border-radius: 50%;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+
+    .process-step h4 {
+      color: var(--white);
+      margin-bottom: 8px;
+      font-size: 1rem;
+      font-family: var(--font-heading);
+    }
+
+    .process-step p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* CTA Banner */
+    .services-cta-banner {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 64px 20px;
+      text-align: center;
+    }
+
+    .services-cta-banner h2 {
+      color: var(--navy);
+      margin-bottom: 12px;
+    }
+
+    .services-cta-banner p {
+      color: var(--navy);
+      opacity: 0.9;
+      font-size: 1.05rem;
+      margin-bottom: 32px;
+    }
+
+    .cta-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cta-actions .btn-primary {
+      background: var(--navy);
+      color: var(--white);
+      border-color: var(--navy);
+    }
+
+    .cta-actions .btn-primary:hover {
+      background: var(--navy-light);
+      border-color: var(--navy-light);
+    }
+
+    .cta-actions .btn-outline {
+      color: var(--navy);
+      border-color: var(--navy);
+    }
+
+    .cta-actions .btn-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .page-hero {
+        padding: 80px 20px 40px;
+        margin-top: 60px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .process-timeline {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-tabs {
+        gap: 8px;
+      }
+
+      .filter-tab {
+        padding: 8px 14px;
+        font-size: 0.85rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">⚖️ İlk Hukuki Danışma Ücretsiz</span>
+      <span class="announcement-item">🏆 500+ Başarılı Dava — 25 Yıllık Deneyim</span>
+      <span class="announcement-item">📞 Acil Hukuki Destek: 7/24 Hizmetinizdeyiz</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">VERIDIS<span>HUKUK</span></a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Anasayfa</a>
+        <a href="hizmetler.html" class="nav-link active">Hizmetler</a>
+        <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+        <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+        <a href="iletisim.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="iletisim.html" class="nav-cta">Danışma Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Anasayfa</a>
+    <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+    <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+    <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+    <a href="iletisim.html" class="nav-link">İletişim</a>
+    <a href="iletisim.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Danışma Al</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>HİZMETLERİMİZ</h1>
+        <div class="breadcrumb">
+          <a href="index.html">Anasayfa</a> &gt; Hizmetler
+        </div>
+        <p style="color: var(--silver); font-size: 1.05rem; max-width: 600px; margin: 0 auto;">Geniş kapsamlı hukuki hizmetler, deneyimli avukatlar, sonuç odaklı yaklaşım. Sizin haklarınız, bizim öncelliğimiz.</p>
+      </div>
+    </section>
+
+    <!-- Filter Tabs -->
+    <section class="filter-section">
+      <div class="filter-tabs">
+        <button class="filter-tab active" data-cat="">Tümü</button>
+        <button class="filter-tab" data-cat="ceza">Ceza Hukuku</button>
+        <button class="filter-tab" data-cat="ticaret">Ticaret Hukuku</button>
+        <button class="filter-tab" data-cat="aile">Aile & Miras</button>
+        <button class="filter-tab" data-cat="is">İş & Gayrimenkul</button>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section">
+      <div class="container">
+        <div class="services-grid">
+          <!-- Hizmet 1: Ceza Savunması -->
+          <div class="service-card" data-cat="ceza">
+            <span class="service-icon">⚖️</span>
+            <h3>Ceza Savunması</h3>
+            <p>Ağır ceza, hafif ceza ve idari ceza davalarında güçlü savunma stratejileri geliştiriyoruz. Tutukluluğun kaldırılmasından beraat talebine kadar her aşamada yanınızdayız.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Ağır ceza savunması</li>
+                <li>Tutukluluğun kaldırılması</li>
+                <li>Beraat talepleri</li>
+                <li>İcra müdürlüğü takipçileri</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 2: Ticari Sözleşmeler -->
+          <div class="service-card" data-cat="ticaret">
+            <span class="service-icon">📋</span>
+            <h3>Ticari Sözleşmeler</h3>
+            <p>İşletmenizin yasal temelini sağlam tutmak için şirket kuruluşundan sözleşme hazırlığına, ticari uyuşmazlık çözümüne kadar hizmet sağlıyoruz.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Şirket kuruluş danışmanlığı</li>
+                <li>Sözleşme hazırlığı ve müzakere</li>
+                <li>Ticari uyuşmazlık çözümü</li>
+                <li>Müşteri-tedarikçi anlaşmaları</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 3: Şirket Birleşmeleri ve Devralmalar -->
+          <div class="service-card" data-cat="ticaret">
+            <span class="service-icon">🤝</span>
+            <h3>Şirket Birleşmeleri (M&A)</h3>
+            <p>Şirket satın alımı, birleşme ve hisse devrinde kapsamlı yasal danışmanlık. Due diligence, kontrat hazırlığı, mevzuat uyumluluğu.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Due diligence incelemesi</li>
+                <li>Satış-alım sözleşmeleri</li>
+                <li>Şirket birleşme prosedürleri</li>
+                <li>Hisse devri danışmanlığı</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 4: Boşanma Davaları -->
+          <div class="service-card" data-cat="aile">
+            <span class="service-icon">👨‍👩‍👧</span>
+            <h3>Boşanma & Velayet</h3>
+            <p>Boşanma davalarında anlaşmalı veya çekişmeli olsun, haklarınızı ve çocuklarınızı korumak için stratejik rehberlik sağlıyoruz. Nafaka ve velayet konularında uzman avukatlar.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Anlaşmalı boşanma</li>
+                <li>Çekişmeli boşanma davaları</li>
+                <li>Velayet tespiti ve değiştirilmesi</li>
+                <li>Nafaka müzakereleri</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 5: Miras Planlaması -->
+          <div class="service-card" data-cat="aile">
+            <span class="service-icon">📜</span>
+            <h3>Miras Hukuku & Planlaması</h3>
+            <p>Vasiyet hazırlığından tereke paylaşımına kadar miras konularında kapsamlı hizmet. Mirasçı haklarını koruyoruz, miras uyuşmazlıklarını çözüyoruz.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Vasiyet hazırlığı ve tasdiki</li>
+                <li>Tereke paylaşımı danışmanlığı</li>
+                <li>Miras uyuşmazlığı çözümü</li>
+                <li>Mirasçı hakları koruması</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 6: İş Hukuku -->
+          <div class="service-card" data-cat="is">
+            <span class="service-icon">💼</span>
+            <h3>İş Hukuku Danışmanlığı</h3>
+            <p>İş sözleşmesi müzakereleri, işçi-işveren uyuşmazlıkları, işletme hukuku. Çalışan hakları ve işveren sorumlulukları dengesi kurarız.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>İş sözleşmesi hazırlığı</li>
+                <li>Fesih ve işe iade davası</li>
+                <li>Kıdem tazminatı danışmanlığı</li>
+                <li>Ücret ve maaş uyuşmazlıkları</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 7: Gayrimenkul Alım-Satım -->
+          <div class="service-card" data-cat="is">
+            <span class="service-icon">🏠</span>
+            <h3>Gayrimenkul Hukuku</h3>
+            <p>Mülk satın alımı ve satışından tapulama işlemleri, kira sözleşmeleri, kat mülkiyeti sorunlarına kadar gayrimenkul yatırımlarında yasal koruma.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Gayrimenkul satın alma rehberliği</li>
+                <li>Tapu ve tapulama işlemleri</li>
+                <li>Kiralama sözleşmeleri</li>
+                <li>Kat mülkiyeti anlaşmazlıkları</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 8: Aile Şirketi Hukuku -->
+          <div class="service-card" data-cat="ticaret aile">
+            <span class="service-icon">🏢</span>
+            <h3>Aile Şirketi Hukuku</h3>
+            <p>Aile şirketlerinin ortaklık anlaşmaları, hissedar uyuşmazlıkları, nesil devri. Aile işletmelerine özel strategik danışmanlık ve çözümler.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Ortaklık anlaşmaları</li>
+                <li>Hissedar uyuşmazlıkları</li>
+                <li>Nesil devri danışmanlığı</li>
+                <li>Muhasebe ve vergi uyumu</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+
+          <!-- Hizmet 9: Vergi Hukuku -->
+          <div class="service-card" data-cat="ticaret">
+            <span class="service-icon">💰</span>
+            <h3>Vergi Hukuku</h3>
+            <p>Vergi uyuşmazlığı çözümü, vergi danışmanlığı, uzlaşma yönetimi. Vergi müfettişliği işlemleri ve istinaf davalarında hukuki destek.</p>
+            <div class="sub-services">
+              <h4>Alt Hizmetler</h4>
+              <ul>
+                <li>Vergi uyuşmazlığı çözümü</li>
+                <li>Uzlaşma müzakereleri</li>
+                <li>Vergi danışmanlığı</li>
+                <li>İstinaf davaları ve temyiz</li>
+              </ul>
+            </div>
+            <a href="iletisim.html" class="service-cta">Danışma Al →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process-section">
+      <div class="container">
+        <div class="section-header">
+          <p class="section-eyebrow">Hizmet Süreci</p>
+          <h2>ÇALIŞMA<br><em>SÜRECİMİZ</em></h2>
+        </div>
+        <div class="process-timeline">
+          <div class="process-step">
+            <div class="step-number">1</div>
+            <h4>Ücretsiz İlk Görüşme</h4>
+            <p>Durumunuzu detaylı dinleriz, sorunun boyutunu ve çözüm yollarını değerlendiririz.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">2</div>
+            <h4>Dosya Analizi</h4>
+            <p>Tüm belgeleri inceleriz, yasal durumunuzu objektif olarak değerlendiririz.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">3</div>
+            <h4>Strateji Hazırlığı</h4>
+            <p>En iyi hukuki stratejiyi belirler, size detaylı dava planını sunarız.</p>
+          </div>
+          <div class="process-step">
+            <div class="step-number">4</div>
+            <h4>Sonuç ve Destek</h4>
+            <p>Davayı yönetir, tüm aşamalarda yanınızda kalır, sonucu güvenle ulaştırırız.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="services-cta-banner">
+      <div class="container">
+        <h2>ÜCRETSİZ DANIŞMA ALIN</h2>
+        <p>Hukuki sorunlarınızı çözmek için uzman avukatlarımızla konuşun. İlk görüşme tamamen ücretsizdir.</p>
+        <div class="cta-actions">
+          <a href="tel:+902125550177" class="btn-primary">Hemen Ara: +90 (212) 555 0177</a>
+          <a href="iletisim.html" class="btn-outline">Online Randevu Al</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Veridis Hukuk</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">25 yıllık deneyim ve güvenli hukuki danışmanlık. İstanbul'da kurulu, geniş kapsamlı hizmetler.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Facebook">f</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Hizmetler</h4>
+          <a href="hizmetler.html">Ceza Hukuku</a>
+          <a href="hizmetler.html">Ticaret Hukuku</a>
+          <a href="hizmetler.html">Aile Hukuku</a>
+          <a href="hizmetler.html">Miras Hukuku</a>
+          <a href="hizmetler.html">İş Hukuku</a>
+          <a href="hizmetler.html">Gayrimenkul Hukuku</a>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <a href="index.html">Anasayfa</a>
+          <a href="avukatlar.html">Avukatlarımız</a>
+          <a href="basarilar.html">Başarılarımız</a>
+          <a href="iletisim.html">İletişim</a>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim</h4>
+          <a href="tel:+902125550177">+90 (212) 555 0177</a>
+          <a href="mailto:info@veridishukuk.com">info@veridishukuk.com</a>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;">📍 Levent, İstanbul</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Veridis Hukuk. Tüm hakları saklıdır. | Avukatlık Hizmetleri</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a id="whatsappFab" href="https://wa.me/905551234567" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.973 1.198l-.356.21-3.686-.964.984 3.9.235.364a9.847 9.847 0 001.156 4.897 9.867 9.867 0 008.561 4.573 9.862 9.862 0 006.998-2.707 9.879 9.879 0 002.841-6.991c0-5.45-4.436-9.884-9.888-9.884"/>
+    </svg>
+  </a>
+
+  <script src="main.js"></script>
+  <script>
+    // Hizmetler Sayfası — Filter JS
+    document.querySelectorAll('.filter-tab').forEach(tab => {
+      tab.addEventListener('click', function() {
+        const selectedCat = this.getAttribute('data-cat');
+
+        // Active tab güncelle
+        document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+
+        // Service card'ları filtrele
+        document.querySelectorAll('.service-card').forEach(card => {
+          const cardCats = card.getAttribute('data-cat').split(' ');
+          if (selectedCat === '' || cardCats.includes(selectedCat)) {
+            card.classList.remove('hidden');
+          } else {
+            card.classList.add('hidden');
+          }
+        });
+      });
+    });
+
+    // Header scroll + WhatsApp FAB
+    document.addEventListener('DOMContentLoaded', () => {
+      const header = document.getElementById('header');
+      const whatsappFab = document.getElementById('whatsappFab');
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+          header.classList.add('scrolled');
+          whatsappFab.classList.add('visible');
+        } else {
+          header.classList.remove('scrolled');
+          whatsappFab.classList.remove('visible');
+        }
+      });
+
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        mobileMenu.classList.toggle('open');
+      });
+
+      mobileMenuClose.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('active');
+          mobileMenu.classList.remove('open');
+        });
+      });
+
+      // Announcement bar carousel
+      const announcementItems = document.querySelectorAll('.announcement-item');
+      let currentIndex = 0;
+      if (announcementItems.length > 1) {
+        setInterval(() => {
+          announcementItems[currentIndex].classList.remove('active');
+          currentIndex = (currentIndex + 1) % announcementItems.length;
+          announcementItems[currentIndex].classList.add('active');
+        }, 5000);
+      }
+
+      window.dismissAnnouncement = function() {
+        document.getElementById('announcementBar').style.display = 'none';
+      };
+    });
+
+    // Reveal animations on scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOnScroll = () => {
+      revealElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('visible');
+        }
+      });
+    };
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+</body>
+</html>

@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri — Koru Kitchen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Gallery Page Specific Styles */
+    .gallery-page-hero {
+      background: url('https://images.unsplash.com/photo-1504674900153-0c900b63af5b?w=1600&q=80&fm=webp') center/cover;
+    }
+
+    .gallery-masonry {
+      display: columns;
+      column-count: 3;
+      column-gap: 28px;
+      margin-bottom: 80px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 28px;
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform var(--transition);
+    }
+
+    .gallery-item:hover {
+      transform: scale(1.02);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 26, 14, 0.6);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: flex-end;
+      padding: 16px;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-overlay .category {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 600;
+    }
+
+    .gallery-item-overlay .title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--cream);
+      margin-top: 8px;
+      text-align: right;
+    }
+
+    /* Lightbox Modal */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+    }
+
+    .lightbox-img {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 2.5rem;
+      cursor: pointer;
+      z-index: 1001;
+      opacity: 0.8;
+      transition: opacity var(--transition);
+    }
+
+    .lightbox-close:hover {
+      opacity: 1;
+    }
+
+    .lightbox-prev,
+    .lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--cream);
+      font-size: 2rem;
+      padding: 16px 20px;
+      cursor: pointer;
+      transition: all var(--transition);
+      display: none;
+    }
+
+    .lightbox-prev {
+      left: 20px;
+    }
+
+    .lightbox-next {
+      right: 20px;
+    }
+
+    .lightbox-prev:hover,
+    .lightbox-next:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Special Cards Section */
+    .special-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-bottom: 60px;
+    }
+
+    .special-card {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--olive-mid);
+      border: 1px solid rgba(196, 98, 45, 0.1);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .special-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+    }
+
+    .special-card-img {
+      width: 100%;
+      height: 240px;
+      overflow: hidden;
+    }
+
+    .special-card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .special-card:hover .special-card-img img {
+      transform: scale(1.06);
+    }
+
+    .special-card-body {
+      padding: 28px;
+    }
+
+    .special-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--cream);
+      margin-bottom: 12px;
+    }
+
+    .special-card-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .gallery-masonry {
+        column-count: 2;
+      }
+      .special-cards {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-masonry {
+        column-count: 1;
+      }
+      .special-cards {
+        grid-template-columns: 1fr;
+      }
+      .lightbox-prev,
+      .lightbox-next {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">🌿 Organik Malzemeler, Yerel Üreticiler</span>
+      <span class="announcement-item">🍷 Her Gece Canlı Müzik — Cuma & Cumartesi</span>
+      <span class="announcement-item">📞 Rezervasyon: 0212 XXX XX XX (Demo)</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Koru<span>·</span>Kitchen</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="menu.html" class="nav-link">Menü</a>
+        <a href="gallery.html" class="nav-link active">Galeri</a>
+        <a href="#" class="nav-link">Şeflerimiz</a>
+        <a href="#" class="nav-link">Rezervasyon</a>
+      </nav>
+      <a href="#" class="nav-cta">Rezervasyon</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="menu.html" class="nav-link">Menü</a>
+    <a href="gallery.html" class="nav-link active">Galeri</a>
+    <a href="#" class="nav-link">Şeflerimiz</a>
+    <a href="#" class="nav-link">Rezervasyon</a>
+    <a href="#" class="btn-primary" style="width:fit-content;margin-top:16px">Rezervasyon Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero gallery-page-hero" id="gallery-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Atmosfer · Lezzetler · Anlar</div>
+        <h1>Gözlerinizle <em>Tadın</em></h1>
+        <p>Her köşesi özenle tasarlanmış mekanımızda yaşanan anlar ve mutfağımızdan kareler.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="menu-preview section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Sayfalarımızı Keşfedin</div>
+        <h2>Galeri <em>Anları</em></h2>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="menu-categories">
+        <button class="filter-tab active" data-cat="all">Tümü</button>
+        <button class="filter-tab" data-cat="mekan">Mekan</button>
+        <button class="filter-tab" data-cat="yemek">Yemekler</button>
+        <button class="filter-tab" data-cat="mutfak">Mutfak</button>
+        <button class="filter-tab" data-cat="bahce">Bahçe</button>
+      </div>
+
+      <!-- Masonry Gallery -->
+      <div class="gallery-masonry" id="galleryMasonry">
+        <!-- Mekan -->
+        <div class="gallery-item reveal" data-cat="mekan" onclick="openLightbox(0)">
+          <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=500&q=80&fm=webp" alt="Restoran İç Mekan">
+          <div class="gallery-item-overlay">
+            <div class="category">Mekan</div>
+            <div class="title">İç Mekan</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="mekan" onclick="openLightbox(1)">
+          <img src="https://images.unsplash.com/photo-1517701550927-30cf4ba54d4d?w=500&q=80&fm=webp" alt="Masa Düzeni">
+          <div class="gallery-item-overlay">
+            <div class="category">Mekan</div>
+            <div class="title">Masa Düzeni</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="mekan" onclick="openLightbox(2)">
+          <img src="https://images.unsplash.com/photo-1582909413957-c3edf8cc63e5?w=500&q=80&fm=webp" alt="Bar">
+          <div class="gallery-item-overlay">
+            <div class="category">Mekan</div>
+            <div class="title">Bar</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="mekan" onclick="openLightbox(3)">
+          <img src="https://images.unsplash.com/photo-1536959915551-11d84d89fb0d?w=500&q=80&fm=webp" alt="Lounge">
+          <div class="gallery-item-overlay">
+            <div class="category">Mekan</div>
+            <div class="title">Lounge</div>
+          </div>
+        </div>
+
+        <!-- Yemekler -->
+        <div class="gallery-item reveal" data-cat="yemek" onclick="openLightbox(4)">
+          <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=500&q=80&fm=webp" alt="Kuzu Tandır">
+          <div class="gallery-item-overlay">
+            <div class="category">Yemek</div>
+            <div class="title">Kuzu Tandır</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="yemek" onclick="openLightbox(5)">
+          <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80&fm=webp" alt="Balık Tabağı">
+          <div class="gallery-item-overlay">
+            <div class="category">Yemek</div>
+            <div class="title">Çipura Izgara</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="yemek" onclick="openLightbox(6)">
+          <img src="https://images.unsplash.com/photo-1488477181946-6428a0291840?w=500&q=80&fm=webp" alt="Tatlı">
+          <div class="gallery-item-overlay">
+            <div class="category">Yemek</div>
+            <div class="title">Fıstıklı Künefe</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="yemek" onclick="openLightbox(7)">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80&fm=webp" alt="Başlangıç">
+          <div class="gallery-item-overlay">
+            <div class="category">Yemek</div>
+            <div class="title">Zeytinyağlı Enginar</div>
+          </div>
+        </div>
+
+        <!-- Mutfak -->
+        <div class="gallery-item reveal" data-cat="mutfak" onclick="openLightbox(8)">
+          <img src="https://images.unsplash.com/photo-1507238691854-566c06377d38?w=500&q=80&fm=webp" alt="Şef Pişiriyor">
+          <div class="gallery-item-overlay">
+            <div class="category">Mutfak</div>
+            <div class="title">Şef Pişiriyor</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="mutfak" onclick="openLightbox(9)">
+          <img src="https://images.unsplash.com/photo-1556910103-2202dfa299c2?w=500&q=80&fm=webp" alt="Mutfak Detayı">
+          <div class="gallery-item-overlay">
+            <div class="category">Mutfak</div>
+            <div class="title">Mutfak Detayı</div>
+          </div>
+        </div>
+
+        <!-- Bahçe -->
+        <div class="gallery-item reveal" data-cat="bahce" onclick="openLightbox(10)">
+          <img src="https://images.unsplash.com/photo-1551632786-de41ec16a83a?w=500&q=80&fm=webp" alt="Bahçe Masaları">
+          <div class="gallery-item-overlay">
+            <div class="category">Bahçe</div>
+            <div class="title">Bahçe Masaları</div>
+          </div>
+        </div>
+
+        <div class="gallery-item reveal" data-cat="bahce" onclick="openLightbox(11)">
+          <img src="https://images.unsplash.com/photo-1504674900153-0c900b63af5b?w=500&q=80&fm=webp" alt="Açık Hava">
+          <div class="gallery-item-overlay">
+            <div class="category">Bahçe</div>
+            <div class="title">Açık Hava Deneyimi</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Special Moments Section -->
+  <section class="section" style="background: var(--olive-mid); padding: 96px 0;">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Özel Anlar</div>
+        <h2>Koru'da <em>Kutla</em></h2>
+      </div>
+
+      <div class="special-cards">
+        <div class="special-card reveal">
+          <div class="special-card-img">
+            <img src="https://images.unsplash.com/photo-1519167758481-dc8743210399?w=500&q=80&fm=webp" alt="Özel Günler">
+          </div>
+          <div class="special-card-body">
+            <h3 class="special-card-title">Özel Günler</h3>
+            <p class="special-card-desc">Doğum günü masaları, nişan kutlamaları, iş yemekleri — her anı unutulmaz kılmak için buradayız.</p>
+          </div>
+        </div>
+
+        <div class="special-card reveal">
+          <div class="special-card-img">
+            <img src="https://images.unsplash.com/photo-1551632786-de41ec16a83a?w=500&q=80&fm=webp" alt="Bahçe Yemekleri">
+          </div>
+          <div class="special-card-body">
+            <h3 class="special-card-title">Bahçe Yemekleri</h3>
+            <p class="special-card-desc">Açık hava masalarımızda mevsim deneyimi — doğa içinde, şeflerin hazırladığı lezzetlerle.</p>
+          </div>
+        </div>
+
+        <div class="special-card reveal">
+          <div class="special-card-img">
+            <img src="https://images.unsplash.com/photo-1495521821757-a1efb6729352?w=500&q=80&fm=webp" alt="Canlı Müzik">
+          </div>
+          <div class="special-card-body">
+            <h3 class="special-card-title">Canlı Müzik</h3>
+            <p class="special-card-desc">Cuma ve cumartesi akşamları canlı Türk müziği — yemek ve müzik, mükemmel uyum.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-banner">
+    <div class="cta-banner-content">
+      <h2>Bir Sonraki <em>Anınızı Planlayın</em></h2>
+      <p>Galeriyi gördüğüne göre, masanızı ayırmak zamanı geldi.</p>
+      <a href="#" class="btn-cream">Rezervasyon Al</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Koru<span>·</span>Kitchen</div>
+          <p class="footer-desc">Farm-to-table modern Türk mutfağı. Yerel çiftçilerden gelen mevsimsel malzemelerle hazırlanan benzersiz lezzetler.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="https://wa.me/905551234567" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="#">Şeflerimiz</a></li>
+            <li><a href="#">Rezervasyon</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Menü</h4>
+          <ul class="footer-links">
+            <li><a href="menu.html">Başlangıçlar</a></li>
+            <li><a href="menu.html">Ana Yemekler</a></li>
+            <li><a href="menu.html">Tatlılar</a></li>
+            <li><a href="menu.html">İçecekler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Kuruçeşme Cad. No:12<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Tel:</strong><br>
+            <a href="tel:+902121234567" style="color:rgba(245,237,214,0.6)">0212 XXX XX XX</a><br>
+            <small style="color:rgba(245,237,214,0.4)">(Demo numara)</small><br><br>
+            <strong>Saatler:</strong><br>
+            Sal-Per 12:00-22:00<br>
+            Cum-Paz 12:00-24:00<br>
+            Pzt Kapalı
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Koru Kitchen. Tüm hakları saklıdır.</span>
+        <span>Tasarım: <a href="https://claude.ai" style="color:rgba(245,237,214,0.6)">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()">×</button>
+    <button class="lightbox-prev" onclick="prevLightbox()">‹</button>
+    <div class="lightbox-content">
+      <img src="" alt="Gallery image" class="lightbox-img" id="lightboxImg">
+    </div>
+    <button class="lightbox-next" onclick="nextLightbox()">›</button>
+  </div>
+
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp">💬</a>
+
+  <script>
+    // Announcement Bar Rotation
+    const announcementBar = document.getElementById('announcementBar');
+    const announcements = document.querySelectorAll('.announcement-item');
+    let currentAnnounce = 0;
+
+    function rotateAnnouncement() {
+      announcements.forEach((el, i) => {
+        el.classList.toggle('active', i === currentAnnounce);
+      });
+      currentAnnounce = (currentAnnounce + 1) % announcements.length;
+    }
+
+    function dismissAnnouncement() {
+      announcementBar.style.display = 'none';
+    }
+
+    rotateAnnouncement();
+    setInterval(rotateAnnouncement, 6000);
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.style.display = 'none';
+    });
+
+    // Gallery Category Filter
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const category = tab.dataset.cat;
+
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        galleryItems.forEach(item => {
+          if (category === 'all' || item.dataset.cat === category) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox Functionality
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const allGalleryItems = document.querySelectorAll('.gallery-item');
+    const allImages = Array.from(allGalleryItems).map(item => item.querySelector('img').src);
+    let currentLightboxIndex = 0;
+
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      lightboxImg.src = allImages[index];
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    function nextLightbox() {
+      currentLightboxIndex = (currentLightboxIndex + 1) % allImages.length;
+      lightboxImg.src = allImages[currentLightboxIndex];
+    }
+
+    function prevLightbox() {
+      currentLightboxIndex = (currentLightboxIndex - 1 + allImages.length) % allImages.length;
+      lightboxImg.src = allImages[currentLightboxIndex];
+    }
+
+    // Close lightbox on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') nextLightbox();
+      if (e.key === 'ArrowLeft') prevLightbox();
+    });
+
+    // Reveal on Scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // WhatsApp FAB Visibility
+    const whatsappFab = document.getElementById('whatsappFab');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        whatsappFab.classList.add('visible');
+      } else {
+        whatsappFab.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>

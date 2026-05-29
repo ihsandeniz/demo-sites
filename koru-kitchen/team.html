@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Şeflerimiz — Koru Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Flip Card Styles */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .flip-card {
+      perspective: 1000px;
+      height: 450px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .flip-card-front {
+      background: linear-gradient(135deg, var(--olive-mid) 0%, var(--olive-dark) 100%);
+      justify-content: flex-end;
+      padding: 24px;
+      color: var(--cream);
+    }
+
+    .flip-card-front::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 450"><defs><pattern id="chef-pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="30" fill="rgba(245,237,214,0.03)"/></pattern></defs><rect width="400" height="450" fill="url(%23chef-pattern)"/></svg>');
+      opacity: 0.5;
+      z-index: 0;
+    }
+
+    .flip-card-front > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .flip-card-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 28px;
+      font-weight: 700;
+      margin: 0 0 8px 0;
+      color: var(--gold);
+    }
+
+    .flip-card-role {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin: 0;
+    }
+
+    .flip-card-back {
+      background: var(--olive-dark);
+      color: var(--cream);
+      padding: 24px;
+      justify-content: space-between;
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-back-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1;
+    }
+
+    .flip-card-back-name {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0;
+    }
+
+    .flip-card-back-role {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--terracotta);
+      margin: 0;
+    }
+
+    .flip-card-bio {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: rgba(245, 237, 214, 0.85);
+      margin: 0;
+    }
+
+    .flip-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 8px 0 0 0;
+    }
+
+    .flip-card-tag {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      background: var(--olive-mid);
+      color: var(--terracotta);
+      border: 1px solid var(--terracotta);
+      padding: 4px 8px;
+      border-radius: 4px;
+    }
+
+    .flip-card-cta {
+      background: var(--terracotta);
+      color: var(--cream);
+      border: none;
+      padding: 10px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      align-self: flex-start;
+      text-decoration: none;
+    }
+
+    .flip-card-cta:hover {
+      opacity: 0.9;
+    }
+
+    /* Stats Bar */
+    .stats-bar {
+      background: var(--olive-mid);
+      padding: 32px 0;
+      margin: 48px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 32px;
+      padding: 0 24px;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0 0 8px 0;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--cream);
+      margin: 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Philosophy Section */
+    .philosophy-section {
+      background: var(--olive-mid);
+      padding: 64px 24px;
+      margin: 64px 0 0 0;
+    }
+
+    .philosophy-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .philosophy-title {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      margin: 0 0 48px 0;
+    }
+
+    .philosophy-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+
+    .philosophy-card {
+      background: rgba(245, 237, 214, 0.05);
+      padding: 32px;
+      border-radius: 12px;
+      border-left: 3px solid var(--terracotta);
+    }
+
+    .philosophy-icon {
+      font-size: 32px;
+      margin-bottom: 16px;
+    }
+
+    .philosophy-heading {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0 0 12px 0;
+    }
+
+    .philosophy-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(245, 237, 214, 0.85);
+      margin: 0;
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .flip-card {
+        height: 380px;
+      }
+
+      .flip-card-name {
+        font-size: 24px;
+      }
+
+      .stat-number {
+        font-size: 36px;
+      }
+
+      .philosophy-title {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">🌿 Organik Malzemeler, Yerel Üreticiler</span>
+      <span class="announcement-item">🍷 Her Gece Canlı Müzik — Cuma & Cumartesi</span>
+      <span class="announcement-item">📞 Rezervasyon: 0212 XXX XX XX (Demo)</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Koru<span>·</span>Kitchen</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="menu.html" class="nav-link">Menü</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link active">Şeflerimiz</a>
+        <a href="contact.html" class="nav-link">Rezervasyon</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Rezervasyon</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="menu.html" class="nav-link">Menü</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Şeflerimiz</a>
+    <a href="contact.html" class="nav-link">Rezervasyon</a>
+    <a href="contact.html" class="btn-primary" style="width: fit-content; margin-top: 16px;">Rezervasyon Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 600%22><defs><pattern id=%22chef-bg%22 x=%220%22 y=%220%22 width=%22200%22 height=%22200%22 patternUnits=%22userSpaceOnUse%22><circle cx=%22100%22 cy=%22100%22 r=%2280%22 fill=%22rgba(245,237,214,0.05)%22/></pattern></defs><rect width=%221200%22 height=%22600%22 fill=%22%231C2B1A%22/><rect width=%221200%22 height=%22600%22 fill=%22url(%23chef-bg)%22/></svg>');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Tutku · Zanaat · Lezzet</p>
+      <h1 class="hero-title">Mutfağın <em>Ustası</em></h1>
+      <p class="hero-description">Yıllarca süren tutkuyla, her tabakta bir hikaye anlatıyoruz.</p>
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <p class="stat-number">3</p>
+          <p class="stat-label">Usta Şef</p>
+        </div>
+        <div class="stat-item">
+          <p class="stat-number">45+</p>
+          <p class="stat-label">Menü Çeşidi</p>
+        </div>
+        <div class="stat-item">
+          <p class="stat-number">18</p>
+          <p class="stat-label">Yıl Toplam Deneyim</p>
+        </div>
+        <div class="stat-item">
+          <p class="stat-number">4.9</p>
+          <p class="stat-label">Ortalama Puan</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team Cards -->
+  <section class="container">
+    <div class="team-grid">
+      <!-- Chef 1: Murat Koç -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <h3 class="flip-card-name">Murat Koç</h3>
+              <p class="flip-card-role">Baş Şef · 18 Yıl Deneyim</p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-card-back-content">
+              <h3 class="flip-card-back-name">Murat Koç</h3>
+              <p class="flip-card-back-role">Baş Şef · 18 Yıl Deneyim</p>
+              <p class="flip-card-bio">İstanbul Gastronomi Okulu mezunu Murat Bey, Paris'te Le Cordon Bleu'de aldığı eğitimle Türk mutfağını dünya sahnesine taşıyor.</p>
+              <div class="flip-card-tags">
+                <span class="flip-card-tag">Türk Mutfağı</span>
+                <span class="flip-card-tag">Et Teknikleri</span>
+                <span class="flip-card-tag">Fermentasyon</span>
+              </div>
+            </div>
+            <a href="contact.html" class="flip-card-cta">Rezervasyon Al</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chef 2: Seda Yılmaz -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <h3 class="flip-card-name">Seda Yılmaz</h3>
+              <p class="flip-card-role">Pastane Şefi · 10 Yıl Deneyim</p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-card-back-content">
+              <h3 class="flip-card-back-name">Seda Yılmaz</h3>
+              <p class="flip-card-back-role">Pastane Şefi · 10 Yıl Deneyim</p>
+              <p class="flip-card-bio">Geleneksel Türk tatlılarını modern pastacılık teknikleriyle yeniden yorumlayan Seda Hanım, her tatlıda bir sürpriz yaratıyor.</p>
+              <div class="flip-card-tags">
+                <span class="flip-card-tag">Pasta Sanatı</span>
+                <span class="flip-card-tag">Türk Tatlıları</span>
+                <span class="flip-card-tag">Çikolata</span>
+              </div>
+            </div>
+            <a href="contact.html" class="flip-card-cta">Rezervasyon Al</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chef 3: Kemal Arslan -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <h3 class="flip-card-name">Kemal Arslan</h3>
+              <p class="flip-card-role">Sous Şef · 12 Yıl Deneyim</p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-card-back-content">
+              <h3 class="flip-card-back-name">Kemal Arslan</h3>
+              <p class="flip-card-back-role">Sous Şef · 12 Yıl Deneyim</p>
+              <p class="flip-card-bio">Ege bölgesi mutfağında uzmanlaşan Kemal Bey, zeytinyağlı yemekler ve deniz ürünleri konusunda restoranın vazgeçilmezi.</p>
+              <div class="flip-card-tags">
+                <span class="flip-card-tag">Ege Mutfağı</span>
+                <span class="flip-card-tag">Deniz Ürünleri</span>
+                <span class="flip-card-tag">Zeytinyağlı</span>
+              </div>
+            </div>
+            <a href="contact.html" class="flip-card-cta">Rezervasyon Al</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chef 4: Fatma Demir -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <h3 class="flip-card-name">Fatma Demir</h3>
+              <p class="flip-card-role">Izgara Şefi · 8 Yıl Deneyim</p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-card-back-content">
+              <h3 class="flip-card-back-name">Fatma Demir</h3>
+              <p class="flip-card-back-role">Izgara Şefi · 8 Yıl Deneyim</p>
+              <p class="flip-card-bio">Geleneksel tandır ve açık ateş pişirme tekniklerinde uzman Fatma Hanım, etin doğru sıcaklıkta, doğru sürede pişmesi için sabırla çalışır.</p>
+              <div class="flip-card-tags">
+                <span class="flip-card-tag">Tandır</span>
+                <span class="flip-card-tag">Açık Ateş</span>
+                <span class="flip-card-tag">Et Marinasyon</span>
+              </div>
+            </div>
+            <a href="contact.html" class="flip-card-cta">Rezervasyon Al</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chef 5: Ali Çelik -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <h3 class="flip-card-name">Ali Çelik</h3>
+              <p class="flip-card-role">Çorba & Başlangıç Şefi · 6 Yıl Deneyim</p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-card-back-content">
+              <h3 class="flip-card-back-name">Ali Çelik</h3>
+              <p class="flip-card-back-role">Çorba & Başlangıç Şefi · 6 Yıl Deneyim</p>
+              <p class="flip-card-bio">Anadolu'nun dört bir yanından derlenen çorba ve başlangıç tarifleriyle yemeğin en sıcak bölümünü hazırlayan Ali Bey.</p>
+              <div class="flip-card-tags">
+                <span class="flip-card-tag">Anadolu Mutfağı</span>
+                <span class="flip-card-tag">Çorba</span>
+                <span class="flip-card-tag">Fermentasyon</span>
+              </div>
+            </div>
+            <a href="contact.html" class="flip-card-cta">Rezervasyon Al</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chef 6: Zehra Kaya -->
+      <div class="flip-card" onclick="this.classList.toggle('flipped')">
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+            <div>
+              <h3 class="flip-card-name">Zehra Kaya</h3>
+              <p class="flip-card-role">Servis & Sunum Şefi · 9 Yıl Deneyim</p>
+            </div>
+          </div>
+          <div class="flip-card-back">
+            <div class="flip-card-back-content">
+              <h3 class="flip-card-back-name">Zehra Kaya</h3>
+              <p class="flip-card-back-role">Servis & Sunum Şefi · 9 Yıl Deneyim</p>
+              <p class="flip-card-bio">Tablo gibi tabaklar hazırlayan Zehra Hanım, her yemeği görsel bir deneyime dönüştürür. Fine dining sunumda özel eğitim almıştır.</p>
+              <div class="flip-card-tags">
+                <span class="flip-card-tag">Tabak Sunumu</span>
+                <span class="flip-card-tag">Fine Dining</span>
+                <span class="flip-card-tag">Sos Sanatı</span>
+              </div>
+            </div>
+            <a href="contact.html" class="flip-card-cta">Rezervasyon Al</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Philosophy Section -->
+  <div class="philosophy-section">
+    <div class="philosophy-content">
+      <h2 class="philosophy-title">Felsefemiz</h2>
+      <div class="philosophy-grid">
+        <div class="philosophy-card">
+          <div class="philosophy-icon">🌱</div>
+          <h3 class="philosophy-heading">Farm-to-Table</h3>
+          <p class="philosophy-text">Malzemelerimizin %80'i 100 km yarıçapındaki yerel üreticilerden geliyor.</p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-icon">🔥</div>
+          <h3 class="philosophy-heading">Geleneksel Teknikler</h3>
+          <p class="philosophy-text">Tandır, közleme ve fermentasyon — dedelerimizin bilgeliğini modern mutfakla buluşturuyoruz.</p>
+        </div>
+        <div class="philosophy-card">
+          <div class="philosophy-icon">♻️</div>
+          <h3 class="philosophy-heading">Sürdürülebilirlik</h3>
+          <p class="philosophy-text">Sıfır israf hedefiyle çalışıyor, her malzemeyi en verimli şekilde kullanıyoruz.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA Banner -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Masanızı Ayırtın</h2>
+        <p>Unutulmaz bir deneyim için şimdi rezervasyon yapın.</p>
+        <a href="contact.html" class="btn-primary">Rezervasyon Talebi Gönder</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Koru<span>·</span>Kitchen</div>
+          <p class="footer-desc">Farm-to-table modern Türk mutfağı. Yerel çiftçilerden gelen mevsimsel malzemelerle hazırlanan benzersiz lezzetler.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">f</a>
+            <a href="https://wa.me/905551234567" class="social-link">💬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="team.html">Şeflerimiz</a></li>
+            <li><a href="contact.html">Rezervasyon</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Menü</h4>
+          <ul class="footer-links">
+            <li><a href="menu.html">Başlangıçlar</a></li>
+            <li><a href="menu.html">Ana Yemekler</a></li>
+            <li><a href="menu.html">Tatlılar</a></li>
+            <li><a href="menu.html">İçecekler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            Kuruçeşme Cad. No:12<br>
+            Beşiktaş/İstanbul<br><br>
+            <a href="tel:+902121234567" style="color: rgba(245, 237, 214, 0.6);">0212 XXX XX XX</a><br>
+            <small style="color: rgba(245, 237, 214, 0.4);">(Demo numara)</small><br><br>
+            Sal-Per 12:00-22:00<br>
+            Cum-Paz 12:00-24:00<br>
+            Pzt Kapalı
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Koru Kitchen. Tüm hakları saklıdır.</span>
+        <span>Tasarım: <a href="https://claude.ai" style="color: rgba(245, 237, 214, 0.6);">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp">💬</a>
+
+  <script src="main.js"></script>
+</body>
+</html>

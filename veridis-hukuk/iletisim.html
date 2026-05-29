@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Veridis Hukuk İletişim — Ücretsiz danışma talep edin, randevu alın. İstanbul'da hukuki destek.">
+  <title>İletişim & Randevu — Veridis Hukuk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Contact Page Specific Styles */
+
+    .page-hero {
+      position: relative;
+      min-height: 50dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 60px;
+      background: linear-gradient(135deg, rgba(10,22,40,0.8) 0%, rgba(13,31,60,0.6) 100%),
+                  url('https://images.unsplash.com/photo-1589994965851-14209e92fc3d?w=1600&q=80&fm=webp') center/cover;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      font-family: var(--font-heading);
+    }
+
+    /* Contact Layout */
+    .contact-section {
+      padding: 80px 20px;
+    }
+
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Consultation Form */
+    .consultation-form-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .form-header {
+      margin-bottom: 32px;
+    }
+
+    .form-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2rem);
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .form-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    #consultationForm {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      color: var(--silver);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      color: var(--white);
+      padding: 12px 16px;
+      border-radius: var(--radius);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201,168,76,0.1);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-group select option {
+      background: var(--navy-mid);
+      color: var(--white);
+    }
+
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .form-submit {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 14px 32px;
+      border: none;
+      border-radius: var(--radius);
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all var(--transition);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-top: 12px;
+    }
+
+    .form-submit:hover {
+      background: var(--gold-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(201,168,76,0.3);
+    }
+
+    /* Form Success Message */
+    #formSuccess {
+      display: none;
+      background: rgba(201,168,76,0.1);
+      border: 2px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 40px 24px;
+      text-align: center;
+      animation: slideIn 0.5s ease;
+    }
+
+    #formSuccess.show {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #formSuccess .success-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    #formSuccess h3 {
+      color: var(--gold);
+      font-size: 1.3rem;
+      margin-bottom: 12px;
+    }
+
+    #formSuccess p {
+      color: var(--silver);
+      font-size: 0.95rem;
+      margin-bottom: 8px;
+    }
+
+    #formSuccess .reference-number {
+      color: var(--gold);
+      font-family: 'Monaco', monospace;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* Contact Info */
+    .contact-info-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .info-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all var(--transition);
+    }
+
+    .info-card:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .info-card h3 {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: var(--font-body);
+      font-weight: 700;
+    }
+
+    .info-card p {
+      color: var(--silver);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 12px;
+    }
+
+    .info-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-card a {
+      color: var(--gold);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+
+    .info-card a:hover {
+      color: var(--gold-dim);
+    }
+
+    .office-hours {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* Map Section */
+    .map-section {
+      margin-top: 40px;
+    }
+
+    .map-section h3 {
+      color: var(--gold);
+      font-size: 1rem;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-family: var(--font-body);
+      font-weight: 700;
+    }
+
+    .map-container {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 320px;
+      border: none;
+      display: block;
+    }
+
+    /* Office Features */
+    .office-features {
+      padding: 80px 20px;
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+    }
+
+    .office-features .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .office-features-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .office-features-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .feature-card {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      padding: 40px 32px;
+      border-radius: var(--radius);
+      text-align: center;
+      transition: all var(--transition);
+    }
+
+    .feature-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-card-icon {
+      font-size: 2.4rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-card h3 {
+      color: var(--white);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+
+    .feature-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .contact-info-wrapper {
+        order: -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        padding: 48px 20px;
+      }
+
+      .form-header h2 {
+        font-size: 1.4rem;
+      }
+
+      .map-container iframe {
+        height: 250px;
+      }
+
+      .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .feature-card {
+        padding: 28px 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-hero {
+        min-height: 40dvh;
+      }
+
+      .contact-section {
+        padding: 40px 20px;
+      }
+
+      .contact-info-wrapper {
+        gap: 24px;
+      }
+
+      .info-card {
+        padding: 20px;
+      }
+
+      .map-container iframe {
+        height: 200px;
+      }
+
+      .office-features {
+        padding: 48px 20px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .feature-card {
+        padding: 24px 16px;
+      }
+
+      #formSuccess {
+        padding: 24px 16px;
+      }
+
+      #formSuccess .success-icon {
+        font-size: 2.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">⚖️ İlk Hukuki Danışma Ücretsiz</span>
+      <span class="announcement-item">🏆 500+ Başarılı Dava — 25 Yıllık Deneyim</span>
+      <span class="announcement-item">📞 Acil Hukuki Destek: 7/24 Hizmetinizdeyiz</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">VERIDIS<span>HUKUK</span></a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Anasayfa</a>
+        <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+        <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+        <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+        <a href="iletisim.html" class="nav-link active">İletişim</a>
+      </nav>
+      <a href="iletisim.html" class="nav-cta">Danışma Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Anasayfa</a>
+    <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+    <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+    <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+    <a href="iletisim.html" class="nav-link">İletişim</a>
+    <a href="iletisim.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Danışma Al</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <h1>İLETİŞİM & RANDEVU</h1>
+      </div>
+    </section>
+
+    <!-- Contact Section with Form & Info -->
+    <section class="contact-section">
+      <div class="contact-container">
+        <!-- Form Column -->
+        <div class="consultation-form-wrapper">
+          <div class="form-header">
+            <h2>Ücretsiz İlk Danışma</h2>
+            <p>Hukuki sorununuzu bize anlatın. İlk görüşme tamamen ücretsizidir ve gizli kalır.</p>
+          </div>
+
+          <form id="consultationForm">
+            <div class="form-group">
+              <label for="name">Ad Soyad *</label>
+              <input type="text" id="name" name="name" required placeholder="Adınız ve soyadınız">
+            </div>
+
+            <div class="form-group">
+              <label for="email">E-Posta *</label>
+              <input type="email" id="email" name="email" required placeholder="ornek@mail.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+90 (XXX) XXX XX XX">
+            </div>
+
+            <div class="form-group">
+              <label for="date">Tercih Edilen Tarih *</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="area">Hukuki Alan *</label>
+              <select id="area" name="area" required>
+                <option value="">-- Seçin --</option>
+                <option value="ceza">Ceza Hukuku</option>
+                <option value="ticaret">Ticaret Hukuku</option>
+                <option value="aile">Aile Hukuku</option>
+                <option value="miras">Miras Hukuku</option>
+                <option value="is">İş Hukuku</option>
+                <option value="gayrimenkul">Gayrimenkul Hukuku</option>
+                <option value="diger">Diğer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="summary">Dava Özeti *</label>
+              <textarea id="summary" name="summary" required placeholder="Durumunuzu kısaca açıklayın. En az 20 karakter."></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="source">Bizi Nasıl Duydunuz? *</label>
+              <select id="source" name="source" required>
+                <option value="">-- Seçin --</option>
+                <option value="google">Google Arama</option>
+                <option value="tavsiye">Tavsiye / Referans</option>
+                <option value="sosyal">Sosyal Medya</option>
+                <option value="gazete">Gazete / Dergi</option>
+                <option value="diger">Diğer</option>
+              </select>
+            </div>
+
+            <button type="submit" class="form-submit">RANDEVU TALEP ET</button>
+          </form>
+
+          <div id="formSuccess">
+            <span class="success-icon">✓</span>
+            <h3>Talebiniz Alındı!</h3>
+            <p>En kısa sürede sizinle iletişime geçeceğiz.</p>
+            <p>Başvuru Numaranız: <span class="reference-number" id="referenceNumber"></span></p>
+          </div>
+        </div>
+
+        <!-- Contact Info Column -->
+        <div class="contact-info-wrapper">
+          <!-- Address Card -->
+          <div class="info-card">
+            <h3>Adres</h3>
+            <p>
+              Levent Plaza<br>
+              Büyükdere Caddesi No:185<br>
+              34394 Levent, İstanbul<br>
+              Türkiye
+            </p>
+          </div>
+
+          <!-- Phone Card -->
+          <div class="info-card">
+            <h3>Telefon</h3>
+            <p>
+              <strong>Muhabir:</strong><br>
+              <a href="tel:+902125550177">+90 (212) 555 0177</a>
+            </p>
+            <p style="margin-top: 12px;">
+              <strong>Acil Hat (7/24):</strong><br>
+              <a href="tel:+905305550177">+90 (530) 555 0177</a>
+            </p>
+          </div>
+
+          <!-- Email Card -->
+          <div class="info-card">
+            <h3>E-Posta</h3>
+            <p>
+              <a href="mailto:info@veridishukuk.com">info@veridishukuk.com</a>
+            </p>
+            <p style="margin-top: 12px;">
+              <strong>Destek:</strong><br>
+              <a href="mailto:destek@veridishukuk.com">destek@veridishukuk.com</a>
+            </p>
+          </div>
+
+          <!-- Working Hours Card -->
+          <div class="info-card">
+            <h3>Çalışma Saatleri</h3>
+            <p>
+              <strong>Pazartesi - Cuma:</strong><br>
+              09:00 - 18:00
+            </p>
+            <p style="margin-top: 12px;">
+              <strong>Cumartesi:</strong><br>
+              Randevu ile açık
+            </p>
+            <p style="margin-top: 12px;">
+              <strong>Pazar:</strong><br>
+              Kapalı
+            </p>
+            <div class="office-hours">
+              * Acil durumlar için 7/24 destek sunulmaktadır.
+            </div>
+          </div>
+
+          <!-- Map -->
+          <div class="map-section">
+            <h3>Konumumuz</h3>
+            <div class="map-container">
+              <iframe src="https://maps.google.com/maps?q=Levent+Istanbul&output=embed" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Office Features Section -->
+    <section class="office-features">
+      <div class="container">
+        <div class="office-features-header">
+          <h2>Neden Bize Güvenebilirsiniz</h2>
+        </div>
+        <div class="features-grid">
+          <div class="feature-card">
+            <span class="feature-card-icon">🔐</span>
+            <h3>Gizlilik Taahhüdü</h3>
+            <p>Avukat-müvekkil gizliliği yasayla korunur. Tüm bilgileriniz tamamen güvende kalır.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-card-icon">✓</span>
+            <h3>İlk Danışma Ücretsiz</h3>
+            <p>Herhangi bir mali yükümlülük olmadan hukuki durumunuz değerlendirilebilir.</p>
+          </div>
+          <div class="feature-card">
+            <span class="feature-card-icon">⚡</span>
+            <h3>Hızlı Yanıt Garantisi</h3>
+            <p>Tüm soruluğunuz 24 saat içinde cevaplandırılır. Hizmet, hız ve kaliteden ödün vermez.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>HEMEN BAŞLAYIN</h2>
+        <p>Formunu doldur veya bize doğrudan ara. En kısa sürede yanınıza katılacağız.</p>
+        <div class="cta-actions">
+          <a href="tel:+902125550177" class="btn-primary">Hemen Ara</a>
+          <a href="#consultationForm" class="btn-outline">Forma Dön</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Veridis Hukuk</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">25 yıllık deneyim ve güvenli hukuki danışmanlık. İstanbul'da kurulu, geniş kapsamlı hizmetler.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Facebook">f</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Hizmetler</h4>
+          <a href="hizmetler.html">Ceza Hukuku</a>
+          <a href="hizmetler.html">Ticaret Hukuku</a>
+          <a href="hizmetler.html">Aile Hukuku</a>
+          <a href="hizmetler.html">Miras Hukuku</a>
+          <a href="hizmetler.html">İş Hukuku</a>
+          <a href="hizmetler.html">Gayrimenkul Hukuku</a>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <a href="index.html">Anasayfa</a>
+          <a href="avukatlar.html">Avukatlarımız</a>
+          <a href="basarilar.html">Başarılarımız</a>
+          <a href="iletisim.html">İletişim</a>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim</h4>
+          <a href="tel:+902125550177">+90 (212) 555 0177</a>
+          <a href="mailto:info@veridishukuk.com">info@veridishukuk.com</a>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;">📍 Levent, İstanbul</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Veridis Hukuk. Tüm hakları saklıdır. | Avukatlık Hizmetleri</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a id="whatsappFab" href="https://wa.me/905551234567" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.973 1.198l-.356.21-3.686-.964.984 3.9.235.364a9.847 9.847 0 001.156 4.897 9.867 9.867 0 008.561 4.573 9.862 9.862 0 006.998-2.707 9.879 9.879 0 002.841-6.991c0-5.45-4.436-9.884-9.888-9.884"/>
+    </svg>
+  </a>
+
+  <script src="main.js"></script>
+  <script>
+    // Form Submission Handler
+    const consultationForm = document.getElementById('consultationForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    consultationForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Collect form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        phone: document.getElementById('phone').value,
+        date: document.getElementById('date').value,
+        area: document.getElementById('area').value,
+        summary: document.getElementById('summary').value,
+        source: document.getElementById('source').value,
+        timestamp: new Date().toISOString()
+      };
+
+      // Save to localStorage
+      const existingData = JSON.parse(localStorage.getItem('veridis_consultations') || '[]');
+      existingData.push(formData);
+      localStorage.setItem('veridis_consultations', JSON.stringify(existingData));
+
+      // Generate reference number (last 6 digits of timestamp)
+      const refNumber = Date.now().toString().slice(-6).toUpperCase();
+      document.getElementById('referenceNumber').textContent = refNumber;
+
+      // Hide form, show success
+      consultationForm.style.display = 'none';
+      formSuccess.classList.add('show');
+
+      // Optional: Reset and show form again after 8 seconds
+      setTimeout(() => {
+        consultationForm.style.display = 'flex';
+        formSuccess.classList.remove('show');
+        consultationForm.reset();
+      }, 8000);
+    });
+  </script>
+</body>
+</html>

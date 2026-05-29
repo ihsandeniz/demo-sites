@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Veridis Hukuk Avukatları — 6 uzman avukat, 120+ yıl birleşik deneyim, 8 hukuk okulu mezunu.">
+  <title>Avukatlarımız — Veridis Hukuk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Attorney Page Specific Styles */
+
+    .page-hero {
+      position: relative;
+      min-height: 50dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 60px;
+      background: linear-gradient(135deg, rgba(10,22,40,0.8) 0%, rgba(13,31,60,0.6) 100%),
+                  url('https://images.unsplash.com/photo-1589994965851-14209e92fc3d?w=1600&q=80&fm=webp') center/cover;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .page-hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      padding: 0 20px;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: var(--white);
+      margin-bottom: 16px;
+      font-family: var(--font-heading);
+    }
+
+    .page-hero em {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    .page-hero .subtitle {
+      font-size: 1.1rem;
+      color: var(--silver);
+      font-family: var(--font-heading);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Attorney Stats Bar */
+    .attorney-stats {
+      background: var(--gold);
+      color: var(--navy);
+      padding: 40px 20px;
+      margin-bottom: 80px;
+    }
+
+    .attorney-stats .container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+      text-align: center;
+    }
+
+    .attorney-stat {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .attorney-stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      font-family: var(--font-heading);
+      color: var(--navy);
+    }
+
+    .attorney-stat-label {
+      font-size: 0.9rem;
+      color: var(--navy);
+      opacity: 0.85;
+    }
+
+    /* Flip Card */
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 500px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front, .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+    }
+
+    .flip-card-front {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .flip-card-front img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .flip-card-front-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(10,22,40,0.95), transparent);
+      padding: 32px 20px 20px;
+      text-align: center;
+    }
+
+    .flip-card-front-name {
+      font-size: 1.3rem;
+      font-family: var(--font-heading);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .flip-card-front-title {
+      font-size: 0.95rem;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .flip-card-front-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .flip-card-front-tag {
+      display: inline-block;
+      background: rgba(201,168,76,0.2);
+      color: var(--gold);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      border: 1px solid var(--border);
+    }
+
+    .flip-card-back {
+      background: var(--navy-light);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      color: var(--white);
+      transform: rotateY(180deg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 24px;
+      text-align: center;
+    }
+
+    .flip-card-back h3 {
+      font-size: 1.3rem;
+      color: var(--white);
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+
+    .flip-card-back-detail {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    .flip-card-back-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--gold);
+      margin-top: 16px;
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .flip-card-back-list {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .flip-card-back-list li {
+      margin-bottom: 6px;
+    }
+
+    .flip-card-back-cta {
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .flip-card-back .btn-primary {
+      width: 100%;
+    }
+
+    /* Attorney Grid */
+    .attorney-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+      margin-bottom: 80px;
+    }
+
+    /* Memberships Section */
+    .memberships {
+      background: var(--navy-light);
+      padding: 60px 20px;
+      margin-bottom: 80px;
+      border-radius: var(--radius);
+      text-align: center;
+    }
+
+    .memberships-header {
+      margin-bottom: 48px;
+    }
+
+    .memberships-header h2 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .memberships-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 20px;
+    }
+
+    .membership-card {
+      background: var(--navy);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      transition: all var(--transition);
+    }
+
+    .membership-card:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+
+    .membership-card-icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .membership-card-name {
+      font-size: 1rem;
+      font-family: var(--font-heading);
+      color: var(--gold);
+      font-weight: 700;
+    }
+
+    /* Join Section */
+    .join-section {
+      background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+      padding: 80px 20px;
+      text-align: center;
+      margin-bottom: 80px;
+      border-radius: var(--radius);
+    }
+
+    .join-section h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .join-section > p {
+      font-size: 1.05rem;
+      color: var(--silver);
+      margin-bottom: 32px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .join-email-box {
+      display: flex;
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .join-email-box a {
+      padding: 12px 28px;
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Section Spacing */
+    .section-space {
+      padding: 80px 20px;
+    }
+
+    /* Reveal animation */
+    .reveal-item {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal-item.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .page-hero {
+        min-height: 40dvh;
+        margin-top: 60px;
+      }
+
+      .attorney-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flip-card {
+        height: 450px;
+      }
+
+      .attorney-stats .container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .memberships-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .join-email-box {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .join-email-box a {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .attorney-stats .container {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .memberships-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flip-card {
+        height: 420px;
+      }
+
+      .flip-card-front-info {
+        padding: 24px 16px 16px;
+      }
+
+      .flip-card-back {
+        padding: 24px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">⚖️ İlk Hukuki Danışma Ücretsiz</span>
+      <span class="announcement-item">🏆 500+ Başarılı Dava — 25 Yıllık Deneyim</span>
+      <span class="announcement-item">📞 Acil Hukuki Destek: 7/24 Hizmetinizdeyiz</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">VERIDIS<span>HUKUK</span></a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Anasayfa</a>
+        <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+        <a href="avukatlar.html" class="nav-link active">Avukatlarımız</a>
+        <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+        <a href="iletisim.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="iletisim.html" class="nav-cta">Danışma Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Anasayfa</a>
+    <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+    <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+    <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+    <a href="iletisim.html" class="nav-link">İletişim</a>
+    <a href="iletisim.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Danışma Al</a>
+  </div>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="page-hero-content">
+        <h1>AVUKATLARIMIZ</h1>
+        <p class="subtitle">Deneyim, bilgi ve adanmışlık.</p>
+      </div>
+    </section>
+
+    <!-- Attorney Stats -->
+    <section class="attorney-stats">
+      <div class="container">
+        <div class="attorney-stat">
+          <div class="attorney-stat-number">6</div>
+          <div class="attorney-stat-label">Uzman Avukat</div>
+        </div>
+        <div class="attorney-stat">
+          <div class="attorney-stat-number">120+</div>
+          <div class="attorney-stat-label">Yıl Birleşik Deneyim</div>
+        </div>
+        <div class="attorney-stat">
+          <div class="attorney-stat-number">8</div>
+          <div class="attorney-stat-label">Hukuk Okulu Mezunu</div>
+        </div>
+        <div class="attorney-stat">
+          <div class="attorney-stat-number">3</div>
+          <div class="attorney-stat-label">Ülke Deneyimi</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Attorney Cards -->
+    <section class="section-space">
+      <div class="container">
+        <div class="attorney-grid">
+          <!-- Av. Mehmet Veridis -->
+          <div class="reveal-item">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&q=80&fm=webp" alt="Av. Mehmet Veridis" loading="lazy" width="400" height="500">
+                  <div class="flip-card-front-info">
+                    <div class="flip-card-front-name">Av. Mehmet Veridis</div>
+                    <div class="flip-card-front-title">Kurucu Ortak</div>
+                    <div class="flip-card-front-tags">
+                      <span class="flip-card-front-tag">Ceza Hukuku</span>
+                      <span class="flip-card-front-tag">Ticaret</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Av. Mehmet Veridis</h3>
+                  <p class="flip-card-back-detail">30 yıllık deneyim, Veridis Hukuk'un kurucu ortağı ve vizyon mimarı.</p>
+                  <div class="flip-card-back-label">Baro Üyeliği</div>
+                  <p class="flip-card-back-detail">İstanbul Barosu (1994)</p>
+                  <div class="flip-card-back-label">Eğitim</div>
+                  <p class="flip-card-back-detail">Galatasaray Üniversitesi Hukuk Fakültesi</p>
+                  <div class="flip-card-back-label">Diller</div>
+                  <p class="flip-card-back-detail">Türkçe, İngilizce, Almanca</p>
+                  <div class="flip-card-back-label">Uzmanlık Alanları</div>
+                  <ul class="flip-card-back-list">
+                    <li>• Ceza Hukuku (Savunma)</li>
+                    <li>• Ticaret Hukuku</li>
+                    <li>• Kurumsal İş Hukuku</li>
+                  </ul>
+                  <a href="iletisim.html" class="btn-primary flip-card-back-cta">Randevu Al</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Av. Leyla Arslan -->
+          <div class="reveal-item">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop&q=80&fm=webp" alt="Av. Leyla Arslan" loading="lazy" width="400" height="500">
+                  <div class="flip-card-front-info">
+                    <div class="flip-card-front-name">Av. Leyla Arslan</div>
+                    <div class="flip-card-front-title">Kıdemli Ortak</div>
+                    <div class="flip-card-front-tags">
+                      <span class="flip-card-front-tag">Aile Hukuku</span>
+                      <span class="flip-card-front-tag">Miras</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Av. Leyla Arslan</h3>
+                  <p class="flip-card-back-detail">18 yıllık deneyim, hassas aile hukuku davalarında uzman.</p>
+                  <div class="flip-card-back-label">Baro Üyeliği</div>
+                  <p class="flip-card-back-detail">İstanbul Barosu (2006)</p>
+                  <div class="flip-card-back-label">Eğitim</div>
+                  <p class="flip-card-back-detail">İstanbul Üniversitesi Hukuk Fakültesi</p>
+                  <div class="flip-card-back-label">Diller</div>
+                  <p class="flip-card-back-detail">Türkçe, İngilizce, Francais</p>
+                  <div class="flip-card-back-label">Uzmanlık Alanları</div>
+                  <ul class="flip-card-back-list">
+                    <li>• Aile Hukuku</li>
+                    <li>• Miras Hukuku</li>
+                    <li>• Velayet ve Nafaka</li>
+                  </ul>
+                  <a href="iletisim.html" class="btn-primary flip-card-back-cta">Randevu Al</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Av. Tarık Şahin -->
+          <div class="reveal-item">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=500&fit=crop&q=80&fm=webp" alt="Av. Tarık Şahin" loading="lazy" width="400" height="500">
+                  <div class="flip-card-front-info">
+                    <div class="flip-card-front-name">Av. Tarık Şahin</div>
+                    <div class="flip-card-front-title">Ortak</div>
+                    <div class="flip-card-front-tags">
+                      <span class="flip-card-front-tag">İş Hukuku</span>
+                      <span class="flip-card-front-tag">Ticaret</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Av. Tarık Şahin</h3>
+                  <p class="flip-card-back-detail">15 yıllık deneyim, işletme ve ticari uyuşmazlıklarda çözüm fokuslu.</p>
+                  <div class="flip-card-back-label">Baro Üyeliği</div>
+                  <p class="flip-card-back-detail">İstanbul Barosu (2009)</p>
+                  <div class="flip-card-back-label">Eğitim</div>
+                  <p class="flip-card-back-detail">Ankara Üniversitesi Hukuk Fakültesi</p>
+                  <div class="flip-card-back-label">Diller</div>
+                  <p class="flip-card-back-detail">Türkçe, İngilizce</p>
+                  <div class="flip-card-back-label">Uzmanlık Alanları</div>
+                  <ul class="flip-card-back-list">
+                    <li>• İş Hukuku</li>
+                    <li>• Ticari Uyuşmazlıklar</li>
+                    <li>• Sözleşme Hazırlığı</li>
+                  </ul>
+                  <a href="iletisim.html" class="btn-primary flip-card-back-cta">Randevu Al</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Av. Selin Koç -->
+          <div class="reveal-item">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=500&fit=crop&q=80&fm=webp" alt="Av. Selin Koç" loading="lazy" width="400" height="500">
+                  <div class="flip-card-front-info">
+                    <div class="flip-card-front-name">Av. Selin Koç</div>
+                    <div class="flip-card-front-title">Kıdemli Avukat</div>
+                    <div class="flip-card-front-tags">
+                      <span class="flip-card-front-tag">Gayrimenkul</span>
+                      <span class="flip-card-front-tag">Mülkiyet</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Av. Selin Koç</h3>
+                  <p class="flip-card-back-detail">10 yıllık deneyim, gayrimenkul işlemlerinde titiz ve güvenilir.</p>
+                  <div class="flip-card-back-label">Baro Üyeliği</div>
+                  <p class="flip-card-back-detail">İstanbul Barosu (2014)</p>
+                  <div class="flip-card-back-label">Eğitim</div>
+                  <p class="flip-card-back-detail">Marmara Üniversitesi Hukuk Fakültesi</p>
+                  <div class="flip-card-back-label">Diller</div>
+                  <p class="flip-card-back-detail">Türkçe, İngilizce</p>
+                  <div class="flip-card-back-label">Uzmanlık Alanları</div>
+                  <ul class="flip-card-back-list">
+                    <li>• Gayrimenkul Alışverişi</li>
+                    <li>• Tapu ve Tapulama</li>
+                    <li>• Emlak Hukuku</li>
+                  </ul>
+                  <a href="iletisim.html" class="btn-primary flip-card-back-cta">Randevu Al</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Av. Burak Demirtaş -->
+          <div class="reveal-item">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&q=80&fm=webp" alt="Av. Burak Demirtaş" loading="lazy" width="400" height="500">
+                  <div class="flip-card-front-info">
+                    <div class="flip-card-front-name">Av. Burak Demirtaş</div>
+                    <div class="flip-card-front-title">Avukat</div>
+                    <div class="flip-card-front-tags">
+                      <span class="flip-card-front-tag">Ceza Hukuku</span>
+                      <span class="flip-card-front-tag">Savunma</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Av. Burak Demirtaş</h3>
+                  <p class="flip-card-back-detail">7 yıllık deneyim, ceza davalarında savunma ve hak koruma uzmanı.</p>
+                  <div class="flip-card-back-label">Baro Üyeliği</div>
+                  <p class="flip-card-back-detail">İstanbul Barosu (2017)</p>
+                  <div class="flip-card-back-label">Eğitim</div>
+                  <p class="flip-card-back-detail">Yıldız Teknik Üniversitesi Hukuk Fakültesi</p>
+                  <div class="flip-card-back-label">Diller</div>
+                  <p class="flip-card-back-detail">Türkçe, İngilizce</p>
+                  <div class="flip-card-back-label">Uzmanlık Alanları</div>
+                  <ul class="flip-card-back-list">
+                    <li>• Ceza Hukuku</li>
+                    <li>• Savunma Hakkı</li>
+                    <li>• Adli Haklarımız</li>
+                  </ul>
+                  <a href="iletisim.html" class="btn-primary flip-card-back-cta">Randevu Al</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Av. Zeynep Yılmaz -->
+          <div class="reveal-item">
+            <div class="flip-card" onclick="this.classList.toggle('flipped')">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop&q=80&fm=webp" alt="Av. Zeynep Yılmaz" loading="lazy" width="400" height="500">
+                  <div class="flip-card-front-info">
+                    <div class="flip-card-front-name">Av. Zeynep Yılmaz</div>
+                    <div class="flip-card-front-title">Avukat</div>
+                    <div class="flip-card-front-tags">
+                      <span class="flip-card-front-tag">Vergi Hukuku</span>
+                      <span class="flip-card-front-tag">Ticaret</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="flip-card-back">
+                  <h3>Av. Zeynep Yılmaz</h3>
+                  <p class="flip-card-back-detail">6 yıllık deneyim, vergi hukuku ve ticari işletmeler konusunda anlayışlı.</p>
+                  <div class="flip-card-back-label">Baro Üyeliği</div>
+                  <p class="flip-card-back-detail">İstanbul Barosu (2018)</p>
+                  <div class="flip-card-back-label">Eğitim</div>
+                  <p class="flip-card-back-detail">Boğaziçi Üniversitesi Hukuk Fakültesi</p>
+                  <div class="flip-card-back-label">Diller</div>
+                  <p class="flip-card-back-detail">Türkçe, İngilizce, Almanca</p>
+                  <div class="flip-card-back-label">Uzmanlık Alanları</div>
+                  <ul class="flip-card-back-list">
+                    <li>• Vergi Hukuku</li>
+                    <li>• Ticari İşletme</li>
+                    <li>• Gümrük Hukuku</li>
+                  </ul>
+                  <a href="iletisim.html" class="btn-primary flip-card-back-cta">Randevu Al</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Memberships Section -->
+    <section class="memberships">
+      <div class="memberships-header">
+        <h2>ÜYELİKLER & AKREDİTASYONLAR</h2>
+        <p style="color: var(--text-muted); margin-top: 12px;">Uluslararası standartlar ve etik kurallara uygun çalışma</p>
+      </div>
+      <div class="memberships-grid">
+        <div class="membership-card reveal-item">
+          <span class="membership-card-icon">⚖️</span>
+          <div class="membership-card-name">İstanbul Barosu</div>
+        </div>
+        <div class="membership-card reveal-item">
+          <span class="membership-card-icon">🇹🇷</span>
+          <div class="membership-card-name">Türkiye Barolar Birliği</div>
+        </div>
+        <div class="membership-card reveal-item">
+          <span class="membership-card-icon">🌍</span>
+          <div class="membership-card-name">International Bar Association</div>
+        </div>
+        <div class="membership-card reveal-item">
+          <span class="membership-card-icon">🏛️</span>
+          <div class="membership-card-name">Avrupa Baro Konseyi</div>
+        </div>
+        <div class="membership-card reveal-item">
+          <span class="membership-card-icon">📜</span>
+          <div class="membership-card-name">Hukuk Müşavirleri Odası</div>
+        </div>
+        <div class="membership-card reveal-item">
+          <span class="membership-card-icon">🎓</span>
+          <div class="membership-card-name">Avukatlık Etik Kurulu</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="join-section">
+      <div class="container">
+        <h2>EKİBİMİZE KATILIN</h2>
+        <p>Staj yaptıktan sonra avukatlık kariyer fırsatları. CV'niz ve motivasyon mektubunuzu gönderin.</p>
+        <div class="join-email-box">
+          <a href="mailto:kariyer@veridishukuk.com" class="btn-primary">CV Gönder</a>
+          <a href="iletisim.html" class="btn-outline">Bilgi Al</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>ÜCRETSİZ DANIŞMA ALIN</h2>
+        <p>Doğru avukat seçimi dava başarısının temelini oluşturur. Konusunda uzman ekibimiz sizin için burada.</p>
+        <div class="cta-actions">
+          <a href="tel:+902125550177" class="btn-primary">Hemen Ara</a>
+          <a href="iletisim.html" class="btn-outline">Online Randevu</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Veridis Hukuk</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">25 yıllık deneyim ve güvenli hukuki danışmanlık. İstanbul'da kurulu, geniş kapsamlı hizmetler.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Facebook">f</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Hizmetler</h4>
+          <a href="hizmetler.html">Ceza Hukuku</a>
+          <a href="hizmetler.html">Ticaret Hukuku</a>
+          <a href="hizmetler.html">Aile Hukuku</a>
+          <a href="hizmetler.html">Miras Hukuku</a>
+          <a href="hizmetler.html">İş Hukuku</a>
+          <a href="hizmetler.html">Gayrimenkul Hukuku</a>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <a href="index.html">Anasayfa</a>
+          <a href="avukatlar.html">Avukatlarımız</a>
+          <a href="basarilar.html">Başarılarımız</a>
+          <a href="iletisim.html">İletişim</a>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim</h4>
+          <a href="tel:+902125550177">+90 (212) 555 0177</a>
+          <a href="mailto:info@veridishukuk.com">info@veridishukuk.com</a>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;">📍 Levent, İstanbul</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Veridis Hukuk. Tüm hakları saklıdır. | Avukatlık Hizmetleri</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a id="whatsappFab" href="https://wa.me/905551234567" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.973 1.198l-.356.21-3.686-.964.984 3.9.235.364a9.847 9.847 0 001.156 4.897 9.867 9.867 0 008.561 4.573 9.862 9.862 0 006.998-2.707 9.879 9.879 0 002.841-6.991c0-5.45-4.436-9.884-9.888-9.884"/>
+    </svg>
+  </a>
+
+  <script src="main.js"></script>
+  <script>
+    // Reveal animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal-item').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina Beauty galeri — öncesi ve sonrası fotoğraflar, cilt bakımı, saç tasarımı, tırnak bakımı sonuçları.">
+  <title>Galeri — Lumina Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Gallery Page Styles */
+    .gallery-hero {
+      background: var(--dark);
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gallery-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=60&fm=webp') center/cover;
+      opacity: 0.12;
+    }
+
+    .gallery-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .gallery-hero h1 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .gallery-hero p {
+      color: rgba(245, 240, 232, 0.7);
+    }
+
+    /* Category Filter Tabs */
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 48px 0 32px;
+    }
+
+    .tab-btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1.5px solid var(--rose-light);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: var(--font-body);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+    }
+
+    .tab-btn.active {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--white);
+    }
+
+    /* Masonry Gallery Grid */
+    .gallery-grid {
+      columns: 3;
+      column-gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      display: block;
+      background: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .gallery-item.hidden {
+      display: none;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.04);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(26, 20, 16, 0.8), transparent);
+      padding: 20px 16px 16px;
+      color: var(--cream);
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      transform: translateY(0);
+    }
+
+    .gallery-item-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .gallery-item-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+    }
+
+    /* Before/After Showcase */
+    .ba-showcase {
+      background: var(--dark-soft);
+      padding: 80px 0;
+    }
+
+    .ba-title {
+      color: var(--white);
+      margin-bottom: 48px;
+    }
+
+    .ba-title .section-eyebrow {
+      color: var(--gold);
+    }
+
+    .ba-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .ba-card {
+      border-radius: 16px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .ba-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+    }
+
+    .ba-images img {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+    }
+
+    .ba-label {
+      position: absolute;
+      padding: 4px 10px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 700;
+      border-radius: 20px;
+      z-index: 10;
+    }
+
+    .ba-label.before {
+      top: 12px;
+      left: 8px;
+      background: rgba(0, 0, 0, 0.6);
+      color: var(--cream);
+    }
+
+    .ba-label.after {
+      top: 12px;
+      right: 8px;
+      background: var(--rose);
+      color: var(--white);
+    }
+
+    .ba-info {
+      background: var(--dark);
+      padding: 16px 20px;
+    }
+
+    .ba-cat {
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .ba-desc {
+      font-size: 0.85rem;
+      color: rgba(245, 240, 232, 0.75);
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 500;
+      background: rgba(26, 20, 16, 0.95);
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lightbox.open {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 85vh;
+      border-radius: 8px;
+      object-fit: contain;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      color: var(--cream);
+      font-size: 2rem;
+      cursor: pointer;
+      z-index: 501;
+      padding: 0;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        columns: 2;
+      }
+
+      .ba-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .gallery-grid {
+        columns: 1;
+      }
+
+      .ba-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-hero {
+        padding: 80px 0 60px;
+      }
+
+      .category-tabs {
+        padding: 32px 0 24px;
+      }
+
+      .ba-showcase {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">✨ Yaz Kampanyası: İlk Randevuda %15 İndirim</span>
+      <span class="announcement-item">🌿 Yeni: Organik Cilt Bakımı Serisi Geldi</span>
+      <span class="announcement-item">📱 WhatsApp'tan randevu almak artık çok kolay</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Lumina<span>·</span>Beauty</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="services.html" class="nav-link">Hizmetler</a>
+        <a href="gallery.html" class="nav-link active">Galeri</a>
+        <a href="team.html" class="nav-link">Ekibimiz</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Randevu Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Ekibimiz</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <a href="contact.html" class="btn-primary" style="width: fit-content; margin-top: 16px;">Randevu Al</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="gallery-hero">
+    <div class="gallery-hero-content container">
+      <p class="section-eyebrow" style="color: var(--gold)">Çalışmalarımız</p>
+      <h1>Gerçek Sonuçlar</h1>
+      <p>Müşterilerimizin izniyle paylaşılan gerçek öncesi/sonrası fotoğraflar.</p>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <section class="section" style="background: var(--cream); padding: 0 0 32px;">
+    <div class="container">
+      <div class="category-tabs">
+        <button class="tab-btn active" data-filter="all">Tümü</button>
+        <button class="tab-btn" data-filter="cilt">Cilt</button>
+        <button class="tab-btn" data-filter="sac">Saç</button>
+        <button class="tab-btn" data-filter="tirnak">Tırnak</button>
+        <button class="tab-btn" data-filter="masaj">SPA</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <section class="section" style="background: var(--cream);">
+    <div class="container">
+      <div class="gallery-grid" id="galleryGrid">
+        <!-- Cilt Bakımı -->
+        <a class="gallery-item" data-cat="cilt" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&fm=webp" alt="Hydrafacial Sonucu" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Cilt Bakımı</div>
+            <div class="gallery-item-title">Hydrafacial Sonucu</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="cilt" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&q=80&fm=webp" alt="Vitamin C Aydınlatma" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Cilt Bakımı</div>
+            <div class="gallery-item-title">Vitamin C Aydınlatma</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="cilt" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80&fm=webp" alt="Kollajen Maske Sonrası" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Cilt Bakımı</div>
+            <div class="gallery-item-title">Kollajen Tedavisi</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="cilt" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80&fm=webp" alt="Peeling Sonucu" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Cilt Bakımı</div>
+            <div class="gallery-item-title">Kimyasal Peeling</div>
+          </div>
+        </a>
+
+        <!-- Saç Tasarımı -->
+        <a class="gallery-item" data-cat="sac" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fm=webp" alt="Balayage Tasarımı" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Saç Tasarımı</div>
+            <div class="gallery-item-title">Balayage Boyama</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="sac" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80&fm=webp" alt="Keratin Düzleştirme" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Saç Tasarımı</div>
+            <div class="gallery-item-title">Keratin Tedavisi</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="sac" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&fm=webp" alt="Saç Kesim" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Saç Tasarımı</div>
+            <div class="gallery-item-title">Profesyonel Kesim</div>
+          </div>
+        </a>
+
+        <!-- Tırnak Bakımı -->
+        <a class="gallery-item" data-cat="tirnak" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fm=webp" alt="Nail Art" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Tırnak Bakımı</div>
+            <div class="gallery-item-title">Nail Art Tasarımı</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="tirnak" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80&fm=webp" alt="Jel Manikür" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Tırnak Bakımı</div>
+            <div class="gallery-item-title">Jel Manikür Seti</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="tirnak" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1519960468789-fd553b96b67f?w=600&q=80&fm=webp" alt="Premium Tırnak" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Tırnak Bakımı</div>
+            <div class="gallery-item-title">Premium Tasarım</div>
+          </div>
+        </a>
+
+        <!-- Masaj & SPA -->
+        <a class="gallery-item" data-cat="masaj" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80&fm=webp" alt="Aromaterapi Masajı" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Masaj & SPA</div>
+            <div class="gallery-item-title">Aromaterapi</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="masaj" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80&fm=webp" alt="Sıcak Taş Masajı" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Masaj & SPA</div>
+            <div class="gallery-item-title">Sıcak Taş Masajı</div>
+          </div>
+        </a>
+
+        <a class="gallery-item" data-cat="masaj" onclick="openLightbox(this)">
+          <img src="https://images.unsplash.com/photo-1540555700478-a763b8eb6718?w=600&q=80&fm=webp" alt="Spa Deneyimi" loading="lazy">
+          <div class="gallery-item-overlay">
+            <div class="gallery-item-label">Masaj & SPA</div>
+            <div class="gallery-item-title">Relaksasyon Seansı</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Before/After Showcase -->
+  <section class="ba-showcase">
+    <div class="container">
+      <div class="ba-title section-header">
+        <p class="section-eyebrow">Öncesi & Sonrası</p>
+        <h2 style="color: var(--white)">Farkı Gözlerinizle Görün</h2>
+      </div>
+      <div class="ba-grid">
+        <div class="ba-card">
+          <div class="ba-images">
+            <img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=400&q=80&fm=webp" alt="Cilt Bakımı Öncesi" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=400&q=80&fm=webp" alt="Cilt Bakımı Sonrası" loading="lazy">
+          </div>
+          <span class="ba-label before">Önce</span>
+          <span class="ba-label after">Sonra</span>
+          <div class="ba-info">
+            <div class="ba-cat">Cilt Bakımı</div>
+            <div class="ba-desc">4 Seans Hydrafacial</div>
+          </div>
+        </div>
+
+        <div class="ba-card">
+          <div class="ba-images">
+            <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=400&q=80&fm=webp" alt="Saç Tasarımı Öncesi" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=400&q=80&fm=webp" alt="Saç Tasarımı Sonrası" loading="lazy">
+          </div>
+          <span class="ba-label before">Önce</span>
+          <span class="ba-label after">Sonra</span>
+          <div class="ba-info">
+            <div class="ba-cat">Saç Tasarımı</div>
+            <div class="ba-desc">Balayage & Keratin</div>
+          </div>
+        </div>
+
+        <div class="ba-card">
+          <div class="ba-images">
+            <img src="https://images.unsplash.com/photo-1519960468789-fd553b96b67f?w=400&q=80&fm=webp" alt="Tırnak Bakımı Öncesi" loading="lazy">
+            <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80&fm=webp" alt="Tırnak Bakımı Sonrası" loading="lazy">
+          </div>
+          <span class="ba-label before">Önce</span>
+          <span class="ba-label after">Sonra</span>
+          <div class="ba-info">
+            <div class="ba-cat">Tırnak Bakımı</div>
+            <div class="ba-desc">Gel Manikür & Art</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: var(--dark); color: var(--cream); padding: 80px 0 24px; position: relative;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-bottom: 48px;">
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 16px;">Lumina Beauty</h4>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7);">İstanbul'un en seçkin güzellik merkezi. Uzman hands, premium ürünler, kişiye özel hizmetler.</p>
+        </div>
+        <div>
+          <h5 style="font-family: var(--font-heading); margin-bottom: 16px;">Hızlı Linkler</h5>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="index.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">Ana Sayfa</a></li>
+            <li style="margin-bottom: 8px;"><a href="services.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">Hizmetler</a></li>
+            <li style="margin-bottom: 8px;"><a href="gallery.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">Galeri</a></li>
+            <li><a href="contact.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">İletişim</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="font-family: var(--font-heading); margin-bottom: 16px;">İletişim</h5>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7); margin-bottom: 8px;">📱 +90 555 123 4567</p>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7); margin-bottom: 8px;">📧 info@luminabeauty.com</p>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7);">📍 Nişantaşı, İstanbul</p>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(245, 240, 232, 0.1); padding-top: 24px; text-align: center; font-size: 0.8rem; color: rgba(245, 240, 232, 0.5);">
+        <p>&copy; 2024 Lumina Beauty. Tüm Hakları Saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" onclick="closeLightbox()" aria-label="Kapat">×</button>
+    <img id="lightboxImg" src="" alt="">
+  </div>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="fab" id="whatsappFab" style="position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); z-index: 100; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
+    📱
+  </a>
+
+  <style>
+    #whatsappFab.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+
+  <script src="main.js"></script>
+  <script>
+    // Tab Filter Functionality
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.gallery-item').forEach(item => {
+          if (filter === 'all' || item.dataset.cat === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox Functionality
+    function openLightbox(el) {
+      const img = el.querySelector('img');
+      document.getElementById('lightboxImg').src = img.src;
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // Close lightbox on overlay click
+    document.getElementById('lightbox').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeLightbox();
+    });
+
+    // Close lightbox on Escape key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeLightbox();
+    });
+  </script>
+</body>
+</html>

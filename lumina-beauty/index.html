@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina Beauty — Profesyonel güzellik ve bakım merkezi. Cilt bakımı, saç tasarımı, tırnak bakımı ve masaj hizmetleri. Online randevu alın.">
+  <title>Lumina Beauty — Güzellik & Bakım Merkezi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">✨ Yaz Kampanyası: İlk Randevuda %15 İndirim</span>
+      <span class="announcement-item">🌿 Yeni: Organik Cilt Bakımı Serisi Geldi</span>
+      <span class="announcement-item">📱 WhatsApp'tan randevu almak artık çok kolay</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Lumina<span>·</span>Beauty</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">Ana Sayfa</a>
+        <a href="services.html" class="nav-link">Hizmetler</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link">Ekibimiz</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Randevu Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Ekibimiz</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <a href="contact.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Randevu Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content container">
+      <p class="hero-eyebrow">İstanbul'un En İyi Güzellik Merkezi</p>
+      <h1>Güzelliğin<br>En <em>Saf</em> Hali</h1>
+      <p>Uzman ellerle, özel bakım protokolleriyle ve doğal ürünlerle kendinizi yeniden keşfedin. Her randevu, size özel bir deneyim.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn-primary">Randevu Al</a>
+        <a href="services.html" class="btn-outline">Hizmetlerimizi İncele</a>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="number">850+</div>
+      <div class="label">Mutlu Müşteri</div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="services section" id="services">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Hizmetlerimiz</p>
+        <h2>Her İhtiyacınız<br>İçin Uzman Dokunuş</h2>
+      </div>
+      <div class="services-bento">
+        <div class="service-card featured reveal">
+          <div class="service-icon">✨</div>
+          <h3 class="service-title">Cilt Bakımı</h3>
+          <p class="service-desc">Derin temizleme, nemlendirme ve gençleştirici tedavilerle cildiniz yenileniyor. Hyaluronik asit, vitamin C serumları ve özel maskelerle radyan bir görünüm.</p>
+          <p class="service-count">12 Farklı Protokol →</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">💇</div>
+          <h3 class="service-title">Saç Tasarımı</h3>
+          <p class="service-desc">Kesim, renk, keratin ve bakım. Saçınıza yeni bir kimlik kazandırıyoruz.</p>
+          <p class="service-count">8 Hizmet →</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">💅</div>
+          <h3 class="service-title">Tırnak Bakımı</h3>
+          <p class="service-desc">Manikür, pedikür, kalıcı oje ve nail art ile elleriniz konuşuyor.</p>
+          <p class="service-count">10 Hizmet →</p>
+        </div>
+        <div class="service-card reveal reveal-delay-1">
+          <div class="service-icon">🌿</div>
+          <h3 class="service-title">Masaj & SPA</h3>
+          <p class="service-desc">Klasik, aromaterapi ve taş masajıyla bedeninizi yenileyin.</p>
+          <p class="service-count">6 Protokol →</p>
+        </div>
+        <div class="service-card reveal reveal-delay-2">
+          <div class="service-icon">👁️</div>
+          <h3 class="service-title">Kaş & Kirpik</h3>
+          <p class="service-desc">Laminasyon, boya ve şekillendirme ile bakışlarınızı güçlendirin.</p>
+          <p class="service-count">7 Hizmet →</p>
+        </div>
+        <div class="service-card reveal reveal-delay-3">
+          <div class="service-icon">🌸</div>
+          <h3 class="service-title">Epilasyon</h3>
+          <p class="service-desc">Lazer ve brezilya ağda ile konforlu ve uzun süreli sonuçlar.</p>
+          <p class="service-count">5 Yöntem →</p>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:48px;">
+        <a href="services.html" class="btn-primary">Tüm Hizmetleri Gör</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Strip -->
+  <section class="gallery-strip">
+    <div class="gallery-strip-title container">
+      <p class="section-eyebrow" style="color:var(--gold)">Öncesi & Sonrası</p>
+      <h2 style="color:var(--white)">Gerçek Sonuçlar,<br><em style="color:var(--rose-light)">Gerçek Müşteriler</em></h2>
+    </div>
+    <div class="gallery-scroll">
+      <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=560&q=80&fm=webp" alt="Cilt bakımı sonrası" loading="lazy"><div class="gallery-thumb-overlay">Cilt Bakımı</div></div>
+      <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=560&q=80&fm=webp" alt="Saç tasarımı" loading="lazy"><div class="gallery-thumb-overlay">Saç Tasarımı</div></div>
+      <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=560&q=80&fm=webp" alt="Tırnak bakımı" loading="lazy"><div class="gallery-thumb-overlay">Tırnak Bakımı</div></div>
+      <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=560&q=80&fm=webp" alt="Masaj ve SPA" loading="lazy"><div class="gallery-thumb-overlay">Masaj & SPA</div></div>
+      <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=560&q=80&fm=webp" alt="Kaş tasarımı" loading="lazy"><div class="gallery-thumb-overlay">Kaş & Kirpik</div></div>
+      <div class="gallery-thumb"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=560&q=80&fm=webp" alt="Güzellik rutini" loading="lazy"><div class="gallery-thumb-overlay">Premium Bakım</div></div>
+    </div>
+    <div style="text-align:center; margin-top:48px; padding-bottom:16px;">
+      <a href="gallery.html" class="btn-outline" style="display:inline-block;">Tüm Galeriyi Gör</a>
+    </div>
+  </section>
+
+  <!-- Team Preview -->
+  <section class="team-preview section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Uzman Ekibimiz</p>
+        <h2>Deneyimli Ellerde<br>Güvende Hissettirin</h2>
+      </div>
+      <div class="team-cards">
+        <div class="team-card reveal">
+          <div class="team-card-img"><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80&fm=webp" alt="Ayşe Kaya" loading="lazy"></div>
+          <div class="team-card-info">
+            <h3 class="team-name">Ayşe Kaya</h3>
+            <p class="team-role">Cilt Uzmanı & Kozmetolog</p>
+            <p class="team-exp">12 Yıl Deneyim</p>
+            <div class="team-tags"><span class="team-tag">Cilt Bakımı</span><span class="team-tag">Kimyasal Peeling</span><span class="team-tag">Hyaluron</span></div>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card-img"><img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=80&fm=webp" alt="Selin Arslan" loading="lazy"></div>
+          <div class="team-card-info">
+            <h3 class="team-name">Selin Arslan</h3>
+            <p class="team-role">Saç Stilisti & Renk Uzmanı</p>
+            <p class="team-exp">9 Yıl Deneyim</p>
+            <div class="team-tags"><span class="team-tag">Balayage</span><span class="team-tag">Keratin</span><span class="team-tag">Saç Kürü</span></div>
+          </div>
+        </div>
+        <div class="team-card reveal reveal-delay-2">
+          <div class="team-card-img"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&fm=webp" alt="Dr. Merve Demir" loading="lazy"></div>
+          <div class="team-card-info">
+            <h3 class="team-name">Dr. Merve Demir</h3>
+            <p class="team-role">Estetik & SPA Uzmanı</p>
+            <p class="team-exp">15 Yıl Deneyim</p>
+            <div class="team-tags"><span class="team-tag">Aromaterapi</span><span class="team-tag">Anti-Aging</span><span class="team-tag">SPA</span></div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align:center; margin-top:48px;">
+        <a href="team.html" class="btn-primary">Tüm Ekibi Tanıyın</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Müşteri Yorumları</p>
+        <h2>Onlar Söylüyor,<br>Biz Dinliyoruz</h2>
+      </div>
+      <div class="testimonials-carousel" id="testimonialCarousel">
+        <div class="testimonial-item active">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Ayşe Hanım'ın ellerinde cildin nasıl değişebileceğini görünce inanamadım. 3 seans sonra 10 yaş genç görünüyorum. Herkese tavsiye ederim!"</p>
+          <div class="testimonial-author">
+            <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=96&q=80&fm=webp" alt="Zeynep Y.">
+            <div><div class="testimonial-name">Zeynep Y.</div><div class="testimonial-date">Nisan 2026</div></div>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Selin'in balayage çalışması mükemmeldi. İstanbulda pek çok salona gittim ama Lumina'nın kalitesine erişemedim. Gerçek bir sanat."</p>
+          <div class="testimonial-author">
+            <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=96&q=80&fm=webp" alt="Elif K.">
+            <div><div class="testimonial-name">Elif K.</div><div class="testimonial-date">Mart 2026</div></div>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"SPA paketi aldım ve hayatımda ilk kez bu kadar rahatladım. Masaj kalitesi, ortam, koku... Her detay düşünülmüş. Aylık ritual haline geldi."</p>
+          <div class="testimonial-author">
+            <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1499952127939-9bbf5af6c51c?w=96&q=80&fm=webp" alt="Büşra M.">
+            <div><div class="testimonial-name">Büşra M.</div><div class="testimonial-date">Mayıs 2026</div></div>
+          </div>
+        </div>
+        <div class="testimonial-item">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Online randevu sistemi çok pratik. Gece 11'de rezervasyon yaptım, sabah hemen onay geldi. Bu kolaylık çok değerli."</p>
+          <div class="testimonial-author">
+            <img class="testimonial-avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=96&q=80&fm=webp" alt="Gizem A.">
+            <div><div class="testimonial-name">Gizem A.</div><div class="testimonial-date">Mayıs 2026</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-dots" id="carouselDots">
+        <button class="dot active" onclick="goToSlide(0)"></button>
+        <button class="dot" onclick="goToSlide(1)"></button>
+        <button class="dot" onclick="goToSlide(2)"></button>
+        <button class="dot" onclick="goToSlide(3)"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-content container">
+      <p class="section-eyebrow" style="color:var(--gold)">Şimdi Başla</p>
+      <h2>Kendine İyi <em>Bak</em></h2>
+      <p>İlk randevunuzda %15 indirim. Uzmanlarımız sizi bekliyor.</p>
+      <a href="contact.html" class="btn-primary">Ücretsiz Randevu Al →</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Lumina<span>·</span>Beauty</div>
+          <p class="footer-desc">İstanbul'un kalbinde, güzelliğin sanatını yaşatan bir deneyim merkezi. Doğal ürünler, uzman eller, kendinize en iyi yatırım.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">IG</a>
+            <a href="#" class="social-link" aria-label="Facebook">FB</a>
+            <a href="#" class="social-link" aria-label="TikTok">TK</a>
+            <a href="#" class="social-link" aria-label="WhatsApp">WA</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-heading">Hizmetler</p>
+          <ul class="footer-links">
+            <li><a href="services.html">Cilt Bakımı</a></li>
+            <li><a href="services.html">Saç Tasarımı</a></li>
+            <li><a href="services.html">Tırnak Bakımı</a></li>
+            <li><a href="services.html">Masaj & SPA</a></li>
+            <li><a href="services.html">Kaş & Kirpik</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Bağlantılar</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="team.html">Ekibimiz</a></li>
+            <li><a href="contact.html">Randevu Al</a></li>
+            <li><a href="contact.html">İletişim</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-heading">Çalışma Saatleri</p>
+          <div class="footer-hours">
+            Pazartesi – Cuma<br><strong style="color:var(--cream)">09:00 – 20:00</strong><br><br>
+            Cumartesi<br><strong style="color:var(--cream)">09:00 – 18:00</strong><br><br>
+            Pazar<br><strong style="color:var(--rose)">Kapalı</strong>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Lumina Beauty. Tüm hakları saklıdır.</span>
+        <span>📍 Nişantaşı, İstanbul</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp ile iletişim" target="_blank" rel="noopener">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>

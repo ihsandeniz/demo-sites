@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronForge Gym — İstanbul'un En Zorlu Antrenman Merkezi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-item active">🔥 YAZ KAMPANYASI — İlk Ay %50 İndirim</span>
+    <span class="announcement-item">💪 ÜCRETSIZ Deneme Antrenmanı — Bugün Kayıt Ol</span>
+    <span class="announcement-item">🏆 150+ Aktif Üye — Sen de Katıl</span>
+    <button class="announcement-close">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">IRON<span>FORGE</span></div>
+      <nav class="nav-menu">
+        <a href="#" class="nav-link active">Ana Sayfa</a>
+        <a href="#programs" class="nav-link">Programlar</a>
+        <a href="#trainers" class="nav-link">Ekip</a>
+        <a href="#" class="nav-link">Üyelik</a>
+        <a href="#" class="nav-link">İletişim</a>
+        <button class="nav-cta">Üye Ol</button>
+      </nav>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close">&times;</button>
+    <a href="#" class="nav-link">Ana Sayfa</a>
+    <a href="#programs" class="nav-link">Programlar</a>
+    <a href="#trainers" class="nav-link">Ekip</a>
+    <a href="#" class="nav-link">Üyelik</a>
+    <a href="#" class="nav-link">İletişim</a>
+    <button class="btn-primary">Üye Ol</button>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">İstanbul · Fitness · Güç</div>
+        <h1>FORGE<span>YOUR</span>BODY</h1>
+        <p>Sınırlarını zorla. Kendini aş. 150+ üyemizle İstanbul'un en zorlu antrenman merkezinde güçlen.</p>
+        <div class="hero-actions">
+          <button class="btn-primary">Ücretsiz Dene</button>
+          <button class="btn-outline">Programları Gör</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      SCROLL
+    </div>
+  </section>
+
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">150+</div>
+          <div class="stat-label">Aktif Üye</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Program</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">12</div>
+          <div class="stat-label">Eğitmen</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Yıl</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Programs Section -->
+  <section class="programs section" id="programs">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Güçlenme Yolları</div>
+        <h2>PROGRAMLARIMIZ<span>SEÇ</span></h2>
+      </div>
+      <div class="programs-grid">
+        <div class="program-card reveal">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80&fm=webp" alt="Powerlifting">
+          <div class="program-card-overlay">
+            <div class="program-label">Program</div>
+            <div class="program-name">Powerlifting</div>
+            <div class="program-desc">Maksimum kuvvet. Squat, bench, deadlift.</div>
+            <div class="program-arrow">Daha Fazla →</div>
+          </div>
+        </div>
+        <div class="program-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1587280591026-7ffd8ad81a36?w=600&q=80&fm=webp" alt="CrossFit">
+          <div class="program-card-overlay">
+            <div class="program-label">Program</div>
+            <div class="program-name">Crossfit</div>
+            <div class="program-desc">Fonksiyonel hareketler, yüksek yoğunluk.</div>
+            <div class="program-arrow">Daha Fazla →</div>
+          </div>
+        </div>
+        <div class="program-card reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1549720217-7e46aecc266d?w=600&q=80&fm=webp" alt="Boksing">
+          <div class="program-card-overlay">
+            <div class="program-label">Program</div>
+            <div class="program-name">Boksing</div>
+            <div class="program-desc">Teknik, hız ve dayanıklılık.</div>
+            <div class="program-arrow">Daha Fazla →</div>
+          </div>
+        </div>
+        <div class="program-card reveal">
+          <img src="https://images.unsplash.com/photo-1538805060514-97d3b894f046?w=600&q=80&fm=webp" alt="Cardio HIIT">
+          <div class="program-card-overlay">
+            <div class="program-label">Program</div>
+            <div class="program-name">Cardio HIIT</div>
+            <div class="program-desc">Yağ yak, kondisyon kazan.</div>
+            <div class="program-arrow">Daha Fazla →</div>
+          </div>
+        </div>
+        <div class="program-card reveal reveal-delay-1">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80&fm=webp" alt="Mobilite">
+          <div class="program-card-overlay">
+            <div class="program-label">Program</div>
+            <div class="program-name">Mobilite</div>
+            <div class="program-desc">Esneklik ve hareket kalitesi.</div>
+            <div class="program-arrow">Daha Fazla →</div>
+          </div>
+        </div>
+        <div class="program-card reveal reveal-delay-2">
+          <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&fm=webp" alt="Beslenme">
+          <div class="program-card-overlay">
+            <div class="program-label">Program</div>
+            <div class="program-name">Beslenme</div>
+            <div class="program-desc">Koç desteğiyle kişisel plan.</div>
+            <div class="program-arrow">Daha Fazla →</div>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 48px;">
+        <button class="btn-outline">Tüm Programları Gör</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trainers Section -->
+  <section class="trainers-preview section" id="trainers">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Uzmanlar</div>
+        <h2>EĞİTMENLERİMİZ</h2>
+      </div>
+      <div class="trainers-grid">
+        <div class="trainer-card reveal">
+          <div class="trainer-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&q=80&fm=webp" alt="Emre Kaya">
+          </div>
+          <div class="trainer-info">
+            <div class="trainer-name">Emre Kaya</div>
+            <div class="trainer-role">Baş Antrenör</div>
+            <div class="trainer-tags">
+              <span class="trainer-tag">Powerlifting</span>
+              <span class="trainer-tag">Kuvvet</span>
+            </div>
+          </div>
+        </div>
+        <div class="trainer-card reveal reveal-delay-1">
+          <div class="trainer-img">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&q=80&fm=webp" alt="Sıla Demir">
+          </div>
+          <div class="trainer-info">
+            <div class="trainer-name">Sıla Demir</div>
+            <div class="trainer-role">CrossFit Koçu</div>
+            <div class="trainer-tags">
+              <span class="trainer-tag">CrossFit</span>
+              <span class="trainer-tag">HIIT</span>
+            </div>
+          </div>
+        </div>
+        <div class="trainer-card reveal reveal-delay-2">
+          <div class="trainer-img">
+            <img src="https://images.unsplash.com/photo-1507209409857-a3c4a1a2d72c?w=500&q=80&fm=webp" alt="Tarık Yıldız">
+          </div>
+          <div class="trainer-info">
+            <div class="trainer-name">Tarık Yıldız</div>
+            <div class="trainer-role">Boks Eğitmeni</div>
+            <div class="trainer-tags">
+              <span class="trainer-tag">Boks</span>
+              <span class="trainer-tag">Kondisyon</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Başarı Hikayeleri</div>
+        <h2>ÜYELERİMİZ NE <span>DİYOR</span></h2>
+      </div>
+      <div class="testimonial-carousel">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"6 ayda 20 kilo verdim ve hayatımda hiç bu kadar güçlü hissetmedim."</div>
+            <div class="testimonial-author">Ahmet K.</div>
+          </div>
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"Emre hoca dünyanın en iyi koçu. Deadlift PR'ımı kırdım!"</div>
+            <div class="testimonial-author">Burak T.</div>
+          </div>
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"Crossfit programı muhteşem. Hem zayıfladım hem de kondisyonum arttı."</div>
+            <div class="testimonial-author">Merve Y.</div>
+          </div>
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <div class="testimonial-text">"2 yıldır buradayım, hiç vazgeçmedim. Ekip harika."</div>
+            <div class="testimonial-author">Can Ö.</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-dots" id="testimonialDots">
+        <button class="testimonial-dot active" data-index="0"></button>
+        <button class="testimonial-dot" data-index="1"></button>
+        <button class="testimonial-dot" data-index="2"></button>
+        <button class="testimonial-dot" data-index="3"></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-content">
+      <h2>DAHA FAZLA<span>BEKLEME</span></h2>
+      <p>Her gün ertelediğin o başlangıcı bugün yap.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <button class="btn-primary">Ücretsiz Deneme Al</button>
+        <button class="btn-outline">Programları İncele</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">IRON<span>FORGE</span></div>
+          <p class="footer-desc">İstanbul'un en zorlu antrenman merkezi. Sınırlarını zorla, kendini aş. 150+ üyemiz güçlenmeye başladı.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Sayfalar</div>
+          <ul class="footer-links">
+            <li><a href="#">Ana Sayfa</a></li>
+            <li><a href="#">Hakkımızda</a></li>
+            <li><a href="#">Programlar</a></li>
+            <li><a href="#">Fiyatlandırma</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Programlar</div>
+          <ul class="footer-links">
+            <li><a href="#">Powerlifting</a></li>
+            <li><a href="#">CrossFit</a></li>
+            <li><a href="#">Boksing</a></li>
+            <li><a href="#">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">İletişim</div>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Levent Mah. No:44<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Telefon:</strong><br>
+            0212 XXX XX XX (Demo)<br><br>
+            <strong>Saatler:</strong><br>
+            Pzt-Cum: 06:00-23:00<br>
+            Haf.Sonu: 08:00-21:00
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 IronForge Gym. Tüm hakları saklıdır.</span>
+        <div>
+          <a href="#" style="color: var(--gray); margin-right: 20px;">Gizlilik Politikası</a>
+          <a href="#" style="color: var(--gray);">Kullanım Şartları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/90212xxxxxxxx" class="whatsapp-fab" id="whatsappFab">💬</a>
+
+  <script src="main.js"></script>
+</body>
+</html>

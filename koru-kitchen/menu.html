@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menü — Koru Kitchen</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Menu Page Specific Styles */
+    .menu-page-hero {
+      background: url('https://images.unsplash.com/photo-1495564061068-c1a4b2b80f08?w=1600&q=80&fm=webp') center/cover;
+    }
+
+    .menu-info-box {
+      background: var(--terracotta);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin: 60px 0;
+      text-align: center;
+      color: var(--cream);
+    }
+
+    .menu-info-box p {
+      margin: 0;
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">🌿 Organik Malzemeler, Yerel Üreticiler</span>
+      <span class="announcement-item">🍷 Her Gece Canlı Müzik — Cuma & Cumartesi</span>
+      <span class="announcement-item">📞 Rezervasyon: 0212 XXX XX XX (Demo)</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Koru<span>·</span>Kitchen</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="menu.html" class="nav-link active">Menü</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="#" class="nav-link">Şeflerimiz</a>
+        <a href="#" class="nav-link">Rezervasyon</a>
+      </nav>
+      <a href="#" class="nav-cta">Rezervasyon</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="menu.html" class="nav-link active">Menü</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="#" class="nav-link">Şeflerimiz</a>
+    <a href="#" class="nav-link">Rezervasyon</a>
+    <a href="#" class="btn-primary" style="width:fit-content;margin-top:16px">Rezervasyon Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero menu-page-hero" id="menu-hero">
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">Mevsimsel · Organik · Yerel</div>
+        <h1>Mutfağımızın <em>Ruhu</em></h1>
+        <p>Her mevsim taze, her tabak özen dolu. Yerel çiftçilerle kurduğumuz ilişki, menümüzü sürekli canlı tutar.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu-preview section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Tam Menü</div>
+        <h2>Tüm <em>Lezzetler</em></h2>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="menu-categories">
+        <button class="filter-tab active" data-cat="all">Tümü</button>
+        <button class="filter-tab" data-cat="baslangic">Başlangıç</button>
+        <button class="filter-tab" data-cat="ana">Ana Yemek</button>
+        <button class="filter-tab" data-cat="tatli">Tatlı & İçecek</button>
+      </div>
+
+      <!-- Menu Grid -->
+      <div class="menu-grid">
+        <!-- Başlangıçlar -->
+        <div class="menu-item-card reveal" data-cat="baslangic">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&q=80&fm=webp" alt="Zeytinyağlı Enginar">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Başlangıç</div>
+            <h3 class="menu-card-name">Zeytinyağlı Enginar</h3>
+            <p class="menu-card-desc">Ege'nin organik enginarları, limon ve taze kekik</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺185</span>
+              <span class="menu-tag">V</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="baslangic">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&q=80&fm=webp" alt="Acılı Közlenmiş Biber">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Başlangıç</div>
+            <h3 class="menu-card-name">Acılı Közlenmiş Biber</h3>
+            <p class="menu-card-desc">Tandırda közlenen biberler, nar ekşisi ile</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺145</span>
+              <span class="menu-tag">Acılı</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="baslangic">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=500&q=80&fm=webp" alt="Mercimek Çorbası">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Başlangıç</div>
+            <h3 class="menu-card-name">Mercimek Çorbası</h3>
+            <p class="menu-card-desc">Köy mercimeği, tereyağı ve kimyon aromalı</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺120</span>
+              <span class="menu-tag">V</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="baslangic">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?w=500&q=80&fm=webp" alt="Humus Tabağı">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Başlangıç</div>
+            <h3 class="menu-card-name">Humus Tabağı</h3>
+            <p class="menu-card-desc">Ev yapımı humus, extra virgin zeytinyağı, pul biber</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺165</span>
+              <span class="menu-tag">V</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Ana Yemekler -->
+        <div class="menu-item-card reveal" data-cat="ana">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=500&q=80&fm=webp" alt="Kuzu Tandır">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Ana Yemek</div>
+            <h3 class="menu-card-name">Kuzu Tandır</h3>
+            <p class="menu-card-desc">12 saat pişirilmiş, biberiye ve kekik ile</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺485</span>
+              <span class="menu-tag">Şef Önerisi</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="ana">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80&fm=webp" alt="Çipura Izgara">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Ana Yemek</div>
+            <h3 class="menu-card-name">Çipura Izgara</h3>
+            <p class="menu-card-desc">Günlük taze balık, sarımsaklı zeytinyağı</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺420</span>
+              <span class="menu-tag">Günlük</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="ana">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1476124369162-f4978e1e89e0?w=500&q=80&fm=webp" alt="Mantarlı Risotto">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Ana Yemek</div>
+            <h3 class="menu-card-name">Mantarlı Risotto</h3>
+            <p class="menu-card-desc">Yerli mantar, parmesan, taze kekik</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺295</span>
+              <span class="menu-tag">V</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="ana">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80&fm=webp" alt="Bonfile">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Ana Yemek</div>
+            <h3 class="menu-card-name">Bonfile</h3>
+            <p class="menu-card-desc">Dana bonfile, tereyağı sos, közlenmiş domates</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺560</span>
+              <span class="menu-tag"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tatlı & İçecek -->
+        <div class="menu-item-card reveal" data-cat="tatli">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291840?w=500&q=80&fm=webp" alt="Fıstıklı Künefe">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Tatlı & İçecek</div>
+            <h3 class="menu-card-name">Fıstıklı Künefe</h3>
+            <p class="menu-card-desc">Geleneksel tarif, Antep fıstığı, kaymak</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺220</span>
+              <span class="menu-tag"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="tatli">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1470521159735-c894fdbb538d?w=500&q=80&fm=webp" alt="Sütlaç">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Tatlı & İçecek</div>
+            <h3 class="menu-card-name">Sütlaç</h3>
+            <p class="menu-card-desc">Fırın sütlaç, tarçın, ev reçeli</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺165</span>
+              <span class="menu-tag">V</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="tatli">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1532634726-8f824c2149d0?w=500&q=80&fm=webp" alt="Ev Limonatası">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Tatlı & İçecek</div>
+            <h3 class="menu-card-name">Ev Limonatası</h3>
+            <p class="menu-card-desc">Taze sıkılmış, organik nane, buz</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺85</span>
+              <span class="menu-tag">Soğuk</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-item-card reveal" data-cat="tatli">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=500&q=80&fm=webp" alt="Türk Kahvesi">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Tatlı & İçecek</div>
+            <h3 class="menu-card-name">Türk Kahvesi</h3>
+            <p class="menu-card-desc">Geleneksel çekirdek, lokum ikramı ile</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺65</span>
+              <span class="menu-tag"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="menu-info-box">
+        <p>⚠️ Menümüz mevsime göre değişir. Alerjileriniz için lütfen servis ekibimizi bilgilendirin.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-banner">
+    <div class="cta-banner-content">
+      <h2>Masanızı <em>Ayırtın</em></h2>
+      <p>Menus deneyimi tamamlamak için hemen rezervasyon yapın.</p>
+      <a href="#" class="btn-cream">Rezervasyon Al</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Koru<span>·</span>Kitchen</div>
+          <p class="footer-desc">Farm-to-table modern Türk mutfağı. Yerel çiftçilerden gelen mevsimsel malzemelerle hazırlanan benzersiz lezzetler.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Facebook">f</a>
+            <a href="https://wa.me/905551234567" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="#">Şeflerimiz</a></li>
+            <li><a href="#">Rezervasyon</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Menü</h4>
+          <ul class="footer-links">
+            <li><a href="menu.html">Başlangıçlar</a></li>
+            <li><a href="menu.html">Ana Yemekler</a></li>
+            <li><a href="menu.html">Tatlılar</a></li>
+            <li><a href="menu.html">İçecekler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Kuruçeşme Cad. No:12<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Tel:</strong><br>
+            <a href="tel:+902121234567" style="color:rgba(245,237,214,0.6)">0212 XXX XX XX</a><br>
+            <small style="color:rgba(245,237,214,0.4)">(Demo numara)</small><br><br>
+            <strong>Saatler:</strong><br>
+            Sal-Per 12:00-22:00<br>
+            Cum-Paz 12:00-24:00<br>
+            Pzt Kapalı
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Koru Kitchen. Tüm hakları saklıdır.</span>
+        <span>Tasarım: <a href="https://claude.ai" style="color:rgba(245,237,214,0.6)">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp">💬</a>
+
+  <script>
+    // Announcement Bar Rotation
+    const announcementBar = document.getElementById('announcementBar');
+    const announcements = document.querySelectorAll('.announcement-item');
+    let currentAnnounce = 0;
+
+    function rotateAnnouncement() {
+      announcements.forEach((el, i) => {
+        el.classList.toggle('active', i === currentAnnounce);
+      });
+      currentAnnounce = (currentAnnounce + 1) % announcements.length;
+    }
+
+    function dismissAnnouncement() {
+      announcementBar.style.display = 'none';
+    }
+
+    rotateAnnouncement();
+    setInterval(rotateAnnouncement, 6000);
+
+    // Mobile Menu Toggle
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      mobileMenu.style.display = mobileMenu.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    mobileMenuClose.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      mobileMenu.style.display = 'none';
+    });
+
+    // Menu Category Filter
+    const filterTabs = document.querySelectorAll('.filter-tab');
+    const menuItems = document.querySelectorAll('.menu-item-card');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const category = tab.dataset.cat;
+
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        menuItems.forEach(card => {
+          if (category === 'all' || card.dataset.cat === category) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Reveal on Scroll
+    const revealElements = document.querySelectorAll('.reveal');
+    const observerOptions = {
+      threshold: 0.2,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => observer.observe(el));
+
+    // WhatsApp FAB Visibility
+    const whatsappFab = document.getElementById('whatsappFab');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) {
+        whatsappFab.classList.add('visible');
+      } else {
+        whatsappFab.classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>

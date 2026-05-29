@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina Beauty randevu al — online randevu formu, iletişim bilgileri ve konum.">
+  <title>Randevu Al — Lumina Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .contact-hero {
+      background: var(--dark);
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1400&q=60&fm=webp') center/cover;
+      opacity: 0.12;
+    }
+
+    .contact-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-hero h1 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .contact-hero p {
+      color: rgba(245, 240, 232, 0.7);
+      margin-top: 0;
+    }
+
+    /* Contact layout */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    /* Form */
+    .form-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px;
+      box-shadow: 0 8px 40px rgba(26, 20, 16, 0.08);
+    }
+
+    .form-title {
+      font-family: var(--font-heading);
+      font-size: 1.6rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .form-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1.5px solid var(--cream-dark);
+      border-radius: 10px;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: var(--text);
+      background: var(--cream);
+      transition: border-color 0.3s;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--rose);
+    }
+
+    input.error,
+    select.error {
+      border-color: #e74c3c;
+    }
+
+    .field-error {
+      font-size: 0.75rem;
+      color: #e74c3c;
+      margin-top: 4px;
+      display: none;
+    }
+
+    .field-error.show {
+      display: block;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    select {
+      appearance: none;
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A6B65' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--rose);
+      color: var(--white);
+      border: none;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 8px;
+      font-family: var(--font-body);
+    }
+
+    .form-submit:hover {
+      background: var(--rose-dark);
+      transform: translateY(-1px);
+    }
+
+    .form-submit:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .form-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .form-success.show {
+      display: block;
+    }
+
+    .form-success-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .form-success h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .form-success p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* Info column */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .info-card {
+      background: var(--white);
+      border-radius: 20px;
+      padding: 32px;
+      border-left: 3px solid var(--rose);
+    }
+
+    .info-card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .info-card-title {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .info-card-text {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .info-card-text a {
+      color: var(--rose);
+      text-decoration: none;
+      transition: text-decoration 0.3s;
+    }
+
+    .info-card-text a:hover {
+      text-decoration: underline;
+    }
+
+    /* Map placeholder */
+    .map-placeholder {
+      background: var(--cream-dark);
+      border-radius: 20px;
+      height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+      border: 2px dashed var(--rose-light);
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .map-placeholder span {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 1024px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .form-card {
+        padding: 28px 20px;
+      }
+      .contact-hero {
+        padding: 80px 0 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">✨ Yaz Kampanyası: İlk Randevuda %15 İndirim</span>
+      <span class="announcement-item">🌿 Yeni: Organik Cilt Bakımı Serisi Geldi</span>
+      <span class="announcement-item">📱 WhatsApp'tan randevu almak artık çok kolay</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Lumina<span>·</span>Beauty</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="services.html" class="nav-link">Hizmetler</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link">Ekibimiz</a>
+        <a href="contact.html" class="nav-link active">İletişim</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Randevu Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Ekibimiz</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <a href="contact.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Randevu Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="contact-hero-content container">
+      <h1>Randevu Talep Formu</h1>
+      <p>Online form ile kolayca randevu alabilirsiniz</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <!-- Form Column -->
+        <div>
+          <div class="form-card">
+            <div id="formContent">
+              <h2 class="form-title">Randevu Talep Formu</h2>
+              <p class="form-subtitle">En kısa sürede sizi arayarak randevunuzu onaylayacağız.</p>
+              <form id="appointmentForm" novalidate>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="firstName">Ad</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Ayşe">
+                    <div class="field-error" id="firstNameError">Ad gereklidir</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lastName">Soyad</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Yılmaz">
+                    <div class="field-error" id="lastNameError">Soyad gereklidir</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="phone">Telefon</label>
+                  <input type="tel" id="phone" name="phone" placeholder="0532 123 45 67">
+                  <div class="field-error" id="phoneError">Geçerli bir telefon numarası girin</div>
+                </div>
+                <div class="form-group">
+                  <label for="service">Hizmet Seçin</label>
+                  <select id="service" name="service">
+                    <option value="">— Seçiniz —</option>
+                    <option value="cilt">Cilt Bakımı</option>
+                    <option value="sac">Saç Tasarımı</option>
+                    <option value="tirnak">Tırnak Bakımı</option>
+                    <option value="masaj">Masaj & SPA</option>
+                    <option value="kas">Kaş & Kirpik</option>
+                    <option value="epilasyon">Epilasyon</option>
+                  </select>
+                  <div class="field-error" id="serviceError">Hizmet seçimi gereklidir</div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label for="date">Tarih</label>
+                    <input type="date" id="date" name="date">
+                    <div class="field-error" id="dateError">Geçerli bir tarih seçin</div>
+                  </div>
+                  <div class="form-group">
+                    <label for="time">Saat Tercihi</label>
+                    <select id="time" name="time">
+                      <option value="">— Seçiniz —</option>
+                      <option>09:00</option>
+                      <option>10:00</option>
+                      <option>11:00</option>
+                      <option>13:00</option>
+                      <option>14:00</option>
+                      <option>15:00</option>
+                      <option>16:00</option>
+                      <option>17:00</option>
+                      <option>18:00</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="note">Notunuz (İsteğe bağlı)</label>
+                  <textarea id="note" name="note" placeholder="Özel bir isteğiniz veya notunuz varsa buraya yazabilirsiniz..."></textarea>
+                </div>
+                <button type="submit" class="form-submit" id="submitBtn">Randevu Talep Et →</button>
+                <p class="form-note">📞 Dummy tel/email kullanılıyor. Gerçek site için güncelleyin.<br>Bilgileriniz yalnızca randevu amacıyla kullanılır.</p>
+              </form>
+            </div>
+            <div class="form-success" id="formSuccess">
+              <div class="form-success-icon">✅</div>
+              <h3>Randevu Talebiniz Alındı!</h3>
+              <p>En geç <strong>2 saat içinde</strong> sizi arayarak randevunuzu onaylayacağız.<br><br>Acil durumlar için: <a href="tel:+905551234567" style="color:var(--rose)">0555 123 45 67</a></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Info Column -->
+        <div class="contact-info">
+          <div class="info-card">
+            <div class="info-card-icon">📍</div>
+            <div class="info-card-title">Adres</div>
+            <div class="info-card-text">
+              Teşvikiye Caddesi No:24, Nişantaşı<br>
+              Şişli / İstanbul
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">📞</div>
+            <div class="info-card-title">Telefon</div>
+            <div class="info-card-text">
+              <a href="tel:+905551234567">0555 123 45 67</a><br>
+              <small style="color:rgba(61,46,40,0.4)">(Dummy numara — gerçek ile değiştirin)</small>
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">🕐</div>
+            <div class="info-card-title">Çalışma Saatleri</div>
+            <div class="info-card-text">
+              <strong>Pazartesi – Cuma:</strong> 09:00 – 20:00<br>
+              <strong>Cumartesi:</strong> 09:00 – 18:00<br>
+              <strong>Pazar:</strong> Kapalı
+            </div>
+          </div>
+          <div class="info-card">
+            <div class="info-card-icon">💬</div>
+            <div class="info-card-title">WhatsApp</div>
+            <div class="info-card-text">
+              <a href="https://wa.me/905551234567" target="_blank" rel="noopener">WhatsApp'tan Yazın</a><br>
+              <small style="color:rgba(61,46,40,0.4)">7/24 mesaj alıyoruz</small>
+            </div>
+          </div>
+          <div class="map-placeholder">
+            <span>🗺️</span>
+            <div>Harita burada gösterilecek<br><small>(Google Maps embed — gerçek adres ile güncelleyin)</small></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-content container">
+      <h2>Sorunuz mu var?<br><em>Bize Yazın</em></h2>
+      <p>Herhangi bir soru veya özel talebiniz için bize ulaşabilirsiniz. En kısa sürede dönüş yapacağız.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Lumina<span>·</span>Beauty</div>
+          <p class="footer-desc">Profesyonel güzellik ve bakım merkezi. İstanbul'un en güvenilir güzellik sarayı.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com" class="social-link" aria-label="Instagram">f</a>
+            <a href="https://instagram.com" class="social-link" aria-label="Instagram">📷</a>
+            <a href="https://wa.me/905551234567" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="services.html">Hizmetler</a></li>
+            <li><a href="team.html">Ekibimiz</a></li>
+            <li><a href="contact.html">İletişim</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Hizmetler</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Cilt Bakımı</a></li>
+            <li><a href="services.html">Saç Tasarımı</a></li>
+            <li><a href="services.html">Masaj & SPA</a></li>
+            <li><a href="services.html">Tırnak Bakımı</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            <strong>Telefon:</strong><br>
+            <a href="tel:+905551234567" style="color:rgba(245,240,232,0.6)">0555 123 45 67</a><br>
+            <small style="color:rgba(245,240,232,0.4)">(Dummy numara)</small><br><br>
+            <strong>Konum:</strong><br>
+            Teşvikiye Cad. No:24<br>
+            Nişantaşı, Şişli/İstanbul
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Lumina Beauty. Tüm hakları saklıdır.</span>
+        <span>Tasarım & Geliştirme: <a href="https://claude.ai" style="color:rgba(245,240,232,0.6)">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp">
+    💬
+  </a>
+
+  <script src="main.js"></script>
+  <script>
+    (function() {
+      const form = document.getElementById('appointmentForm');
+      if (!form) return;
+
+      // Set min date to today
+      const dateInput = document.getElementById('date');
+      if (dateInput) {
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.min = today;
+      }
+
+      function showError(id, msg) {
+        const input = document.getElementById(id);
+        const err = document.getElementById(id + 'Error');
+        if (input) input.classList.add('error');
+        if (err) {
+          err.textContent = msg || err.textContent;
+          err.classList.add('show');
+        }
+      }
+
+      function clearError(id) {
+        const input = document.getElementById(id);
+        const err = document.getElementById(id + 'Error');
+        if (input) input.classList.remove('error');
+        if (err) err.classList.remove('show');
+      }
+
+      ['firstName', 'lastName', 'phone', 'service', 'date'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.addEventListener('input', () => clearError(id));
+      });
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        let valid = true;
+
+        const firstName = document.getElementById('firstName').value.trim();
+        const lastName = document.getElementById('lastName').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const service = document.getElementById('service').value;
+        const date = document.getElementById('date').value;
+
+        if (!firstName) {
+          showError('firstName');
+          valid = false;
+        }
+        if (!lastName) {
+          showError('lastName');
+          valid = false;
+        }
+        if (!phone || !/^[0-9\s\+\-]{10,15}$/.test(phone.replace(/\s/g, ''))) {
+          showError('phone', 'Geçerli telefon: 0532 123 45 67');
+          valid = false;
+        }
+        if (!service) {
+          showError('service');
+          valid = false;
+        }
+        if (!date) {
+          showError('date', 'Tarih seçiniz');
+          valid = false;
+        }
+
+        if (!valid) return;
+
+        // Save to localStorage
+        const appointment = {
+          id: Date.now(),
+          firstName,
+          lastName,
+          phone,
+          service,
+          date,
+          time: document.getElementById('time').value,
+          note: document.getElementById('note').value,
+          createdAt: new Date().toISOString()
+        };
+
+        const existing = JSON.parse(localStorage.getItem('lumina_appointments') || '[]');
+        existing.push(appointment);
+        localStorage.setItem('lumina_appointments', JSON.stringify(existing));
+
+        // Show success
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('formSuccess').classList.add('show');
+        window.scrollTo({
+          top: document.getElementById('formSuccess').offsetTop - 100,
+          behavior: 'smooth'
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

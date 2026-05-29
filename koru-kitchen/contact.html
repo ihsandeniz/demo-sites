@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rezervasyon — Koru Kitchen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Contact Form Styles */
+    .contact-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    .form-card {
+      background: var(--olive-mid);
+      border-radius: 20px;
+      padding: 36px;
+    }
+
+    .form-card h2 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0 0 32px 0;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 12px 16px;
+      background: rgba(245, 237, 214, 0.08);
+      border: 1px solid rgba(245, 237, 214, 0.2);
+      border-radius: 8px;
+      color: var(--cream);
+      transition: all 0.3s;
+      box-sizing: border-box;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(245, 237, 214, 0.4);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--terracotta);
+      background: rgba(245, 237, 214, 0.12);
+      box-shadow: 0 0 0 3px rgba(196, 98, 45, 0.1);
+    }
+
+    .form-group select {
+      appearance: none;
+      background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="rgba(245,237,214,0.6)" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+      padding-right: 40px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-note {
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      color: rgba(245, 237, 214, 0.7);
+      margin: 20px 0 0 0;
+      padding: 16px;
+      background: rgba(245, 237, 214, 0.05);
+      border-left: 3px solid var(--terracotta);
+      border-radius: 4px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 14px 24px;
+      margin-top: 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      background: var(--terracotta);
+      color: var(--cream);
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: opacity 0.3s, transform 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-submit:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    #formSuccess {
+      display: none;
+      text-align: center;
+    }
+
+    #formSuccess h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 24px 0 12px 0;
+    }
+
+    #formSuccess p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(245, 237, 214, 0.8);
+      margin: 0;
+    }
+
+    /* Contact Info Cards */
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: var(--olive-mid);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .info-card h3 {
+      font-family: 'Cormorant Garant', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--gold);
+      margin: 0 0 12px 0;
+    }
+
+    .info-card p {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: rgba(245, 237, 214, 0.85);
+      margin: 0 0 12px 0;
+    }
+
+    .info-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-card a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: 600;
+      transition: opacity 0.3s;
+    }
+
+    .info-card a:hover {
+      opacity: 0.8;
+    }
+
+    .map-placeholder {
+      width: 100%;
+      height: 200px;
+      background: var(--olive-dark);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(245, 237, 214, 0.4);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      margin-top: 12px;
+      border: 1px dashed rgba(245, 237, 214, 0.1);
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      background: #25D366;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 12px;
+      transition: opacity 0.3s;
+    }
+
+    .whatsapp-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .form-card {
+        padding: 24px;
+      }
+
+      .form-card h2 {
+        font-size: 24px;
+      }
+
+      .contact-container {
+        padding: 32px 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">🌿 Organik Malzemeler, Yerel Üreticiler</span>
+      <span class="announcement-item">🍷 Her Gece Canlı Müzik — Cuma & Cumartesi</span>
+      <span class="announcement-item">📞 Rezervasyon: 0212 XXX XX XX (Demo)</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Koru<span>·</span>Kitchen</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="menu.html" class="nav-link">Menü</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link">Şeflerimiz</a>
+        <a href="contact.html" class="nav-link active">Rezervasyon</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Rezervasyon</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="menu.html" class="nav-link">Menü</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Şeflerimiz</a>
+    <a href="contact.html" class="nav-link">Rezervasyon</a>
+    <a href="contact.html" class="btn-primary" style="width: fit-content; margin-top: 16px;">Rezervasyon Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" style="background-image: url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 1200 500%22><defs><pattern id=%22contact-pattern%22 x=%220%22 y=%220%22 width=%22150%22 height=%22150%22 patternUnits=%22userSpaceOnUse%22><path d=%22M0,0 L150,150 M150,0 L0,150%22 stroke=%22rgba(245,237,214,0.03)%22 stroke-width=%222%22/></pattern></defs><rect width=%221200%22 height=%22500%22 fill=%22%231C2B1A%22/><rect width=%221200%22 height=%22500%22 fill=%22url(%23contact-pattern)%22/></svg>');">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Masanızı Ayırtın</p>
+      <h1 class="hero-title">Unutulmaz Bir <em>Akşam</em> için</h1>
+      <p class="hero-description">Özel günler, iş yemekleri veya romantik akşamlar için masanızı şimdiden ayırtın.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <div class="contact-container">
+    <div class="contact-grid">
+      <!-- Reservation Form -->
+      <div class="form-card">
+        <h2>Rezervasyon Formu</h2>
+        <form id="reservationForm" onsubmit="handleFormSubmit(event)">
+          <div class="form-group">
+            <label for="firstName">Ad *</label>
+            <input type="text" id="firstName" name="firstName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="lastName">Soyad *</label>
+            <input type="text" id="lastName" name="lastName" required>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Telefon *</label>
+            <input type="tel" id="phone" name="phone" placeholder="05XX XXX XX XX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="email">E-posta (isteğe bağlı)</label>
+            <input type="email" id="email" name="email" placeholder="example@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="date">Tarih *</label>
+            <input type="date" id="date" name="date" required>
+          </div>
+
+          <div class="form-group">
+            <label for="time">Saat *</label>
+            <select id="time" name="time" required>
+              <option value="">Saat Seçiniz</option>
+              <option value="12:00">12:00</option>
+              <option value="13:00">13:00</option>
+              <option value="14:00">14:00</option>
+              <option value="19:00">19:00</option>
+              <option value="20:00">20:00</option>
+              <option value="21:00">21:00</option>
+              <option value="22:00">22:00</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="guests">Kişi Sayısı *</label>
+            <select id="guests" name="guests" required>
+              <option value="">Kişi Sayısı Seçiniz</option>
+              <option value="1-2">1-2 Kişi</option>
+              <option value="3-4">3-4 Kişi</option>
+              <option value="5-6">5-6 Kişi</option>
+              <option value="7+">7+ Kişi (Özel Etkinlik)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="occasion">Etkinlik Türü</label>
+            <select id="occasion" name="occasion">
+              <option value="">Seçiniz</option>
+              <option value="birthday">Doğum Günü</option>
+              <option value="anniversary">Yıl Dönümü</option>
+              <option value="engagement">Nişan</option>
+              <option value="business">İş Yemeği</option>
+              <option value="special">Özel Etkinlik</option>
+              <option value="other">Diğer</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="note">Özel İstek veya Alerji Bilgisi</label>
+            <textarea id="note" name="note" placeholder="Özel istekleri buraya yazınız..."></textarea>
+          </div>
+
+          <button type="submit" class="form-submit">Rezervasyon Talebi Gönder</button>
+
+          <p class="form-note">📞 Rezervasyonunuz alındıktan sonra sizi 24 saat içinde arayacağız. Tel: 0212 XXX XX XX (Demo)</p>
+        </form>
+
+        <!-- Success Message -->
+        <div id="formSuccess">
+          <div style="font-size: 3rem; margin-bottom: 16px;">🍽️</div>
+          <h3>Rezervasyon Talebiniz Alındı!</h3>
+          <p>En kısa sürede sizi arayacağız. Koru Kitchen'da görüşmek üzere!</p>
+        </div>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="contact-info">
+        <!-- Location Card -->
+        <div class="info-card">
+          <h3>📍 Konum</h3>
+          <p>Kuruçeşme Cad. No:12<br>Beşiktaş/İstanbul</p>
+          <div class="map-placeholder">🗺️ Harita</div>
+        </div>
+
+        <!-- Phone & WhatsApp Card -->
+        <div class="info-card">
+          <h3>📞 İletişim</h3>
+          <p><a href="tel:+902121234567">0212 XXX XX XX</a> (Demo)</p>
+          <p><small style="color: rgba(245, 237, 214, 0.5);">Hafta içi 10:00-22:00 | Hafta sonu 12:00-24:00</small></p>
+          <a href="https://wa.me/905551234567" class="whatsapp-btn">💬 WhatsApp ile İletişime Geç</a>
+        </div>
+
+        <!-- Hours Card -->
+        <div class="info-card">
+          <h3>🕐 Çalışma Saatleri</h3>
+          <p>
+            <strong>Salı-Perşembe:</strong> 12:00-22:00<br>
+            <strong>Cuma-Cumartesi:</strong> 12:00-24:00 ⭐<br>
+            <small style="color: rgba(245, 237, 214, 0.6);">Canlı Müzik Her Gece</small><br><br>
+            <strong>Pazar:</strong> 12:00-21:00<br>
+            <strong>Pazartesi:</strong> Kapalı
+          </p>
+        </div>
+
+        <!-- Special Events Card -->
+        <div class="info-card">
+          <h3>🎉 Özel Etkinlik</h3>
+          <p>20+ kişilik gruplar için özel menü ve fiyatlandırma seçenekleri sunuyoruz.</p>
+          <p>Detaylı bilgi almak için <a href="tel:+902121234567">0212 XXX XX XX</a> numarasından bize ulaşın.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Koru<span>·</span>Kitchen</div>
+          <p class="footer-desc">Farm-to-table modern Türk mutfağı. Yerel çiftçilerden gelen mevsimsel malzemelerle hazırlanan benzersiz lezzetler.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">f</a>
+            <a href="https://wa.me/905551234567" class="social-link">💬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="menu.html">Menü</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="team.html">Şeflerimiz</a></li>
+            <li><a href="contact.html">Rezervasyon</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Menü</h4>
+          <ul class="footer-links">
+            <li><a href="menu.html">Başlangıçlar</a></li>
+            <li><a href="menu.html">Ana Yemekler</a></li>
+            <li><a href="menu.html">Tatlılar</a></li>
+            <li><a href="menu.html">İçecekler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            Kuruçeşme Cad. No:12<br>
+            Beşiktaş/İstanbul<br><br>
+            <a href="tel:+902121234567" style="color: rgba(245, 237, 214, 0.6);">0212 XXX XX XX</a><br>
+            <small style="color: rgba(245, 237, 214, 0.4);">(Demo numara)</small><br><br>
+            Sal-Per 12:00-22:00<br>
+            Cum-Paz 12:00-24:00<br>
+            Pzt Kapalı
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Koru Kitchen. Tüm hakları saklıdır.</span>
+        <span>Tasarım: <a href="https://claude.ai" style="color: rgba(245, 237, 214, 0.6);">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp">💬</a>
+
+  <script>
+    // Set minimum date to today
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('date').setAttribute('min', today);
+
+    // Form validation and submission
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      const formData = {
+        firstName: document.getElementById('firstName').value,
+        lastName: document.getElementById('lastName').value,
+        phone: document.getElementById('phone').value,
+        email: document.getElementById('email').value,
+        date: document.getElementById('date').value,
+        time: document.getElementById('time').value,
+        guests: document.getElementById('guests').value,
+        occasion: document.getElementById('occasion').value,
+        note: document.getElementById('note').value
+      };
+
+      // Phone validation regex
+      const phoneRegex = /^[0-9\s\+\-]{10,15}$/;
+      if (!phoneRegex.test(formData.phone)) {
+        alert('Lütfen geçerli bir telefon numarası girin.');
+        return;
+      }
+
+      // Save to localStorage
+      const reservations = JSON.parse(localStorage.getItem('koru_reservations') || '[]');
+      reservations.push({
+        id: Date.now(),
+        date: new Date().toISOString(),
+        fields: formData
+      });
+      localStorage.setItem('koru_reservations', JSON.stringify(reservations));
+
+      // Hide form, show success
+      document.getElementById('reservationForm').style.display = 'none';
+      document.getElementById('formSuccess').style.display = 'block';
+    }
+  </script>
+
+  <script src="main.js"></script>
+</body>
+</html>

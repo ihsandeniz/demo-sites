@@ -1,0 +1,687 @@
+<!-- IronForge Gym — contact.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronForge Gym — Üyelik & İletişim</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Contact Page Specific Styles --- */
+    .contact-hero {
+      position: relative;
+      height: 55vh;
+      min-height: 480px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .contact-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(232,255,0,0.08) 100%);
+      z-index: 1;
+    }
+
+    .contact-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .contact-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .contact-hero h1 span {
+      color: var(--neon);
+    }
+
+    .contact-hero-desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* --- Main Contact Section --- */
+    .contact-main {
+      padding: 80px 0;
+      background: var(--black);
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: 60% 40%;
+      gap: 48px;
+      align-items: flex-start;
+    }
+
+    /* --- Membership Form --- */
+    #membershipForm {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-group label {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neon);
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 14px 16px;
+      background: var(--black-light);
+      border: 1px solid rgba(232,255,0,0.2);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color var(--transition), background-color var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--neon);
+      background: rgba(232,255,0,0.02);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-group select {
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--black-light);
+      color: var(--white);
+    }
+
+    .form-submit {
+      padding: 16px 32px;
+      background: var(--neon);
+      color: var(--black);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      cursor: pointer;
+      transition: background var(--transition), transform var(--transition);
+      margin-top: 8px;
+    }
+
+    .form-submit:hover {
+      background: var(--neon-dim);
+      transform: translateY(-2px);
+    }
+
+    .form-submit:active {
+      transform: translateY(0);
+    }
+
+    /* --- Form Success State --- */
+    #formSuccess {
+      display: none;
+      text-align: center;
+      padding: 48px 32px;
+      background: var(--black-light);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(232,255,0,0.2);
+    }
+
+    #formSuccess.visible {
+      display: block;
+      animation: successPop 0.4s ease-out;
+    }
+
+    @keyframes successPop {
+      0% {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .success-checkmark {
+      font-size: 4rem;
+      color: var(--neon);
+      margin-bottom: 16px;
+    }
+
+    .success-title {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .success-message {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .success-cta {
+      display: inline-block;
+      padding: 12px 28px;
+      background: var(--neon);
+      color: var(--black);
+      border: none;
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background var(--transition);
+    }
+
+    .success-cta:hover {
+      background: var(--neon-dim);
+    }
+
+    /* --- Info Cards --- */
+    .info-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .info-card {
+      background: var(--black-light);
+      padding: 28px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(232,255,0,0.1);
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .info-card:hover {
+      border-color: rgba(232,255,0,0.25);
+      transform: translateY(-4px);
+    }
+
+    .info-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--neon);
+      margin-bottom: 12px;
+    }
+
+    .info-card-content {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.7;
+    }
+
+    .info-card-content a {
+      color: var(--neon);
+      transition: opacity var(--transition);
+    }
+
+    .info-card-content a:hover {
+      opacity: 0.8;
+    }
+
+    /* --- Map Section --- */
+    .map-section {
+      padding: 60px 0;
+      background: var(--black-mid);
+    }
+
+    .map-section-header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .map-section-header h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+    }
+
+    .map-section-header h2 span {
+      color: var(--neon);
+    }
+
+    .map-container {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(232,255,0,0.15);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      display: block;
+      border: none;
+    }
+
+    /* --- CTA Banner --- */
+    .contact-cta-banner {
+      background: var(--black-light);
+      border-top: 3px solid var(--neon);
+      border-bottom: 3px solid var(--neon);
+      padding: 60px 0;
+      text-align: center;
+    }
+
+    .contact-cta-banner h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .contact-cta-banner h2 span {
+      color: var(--neon);
+    }
+
+    .contact-cta-banner p {
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 28px;
+      font-size: 1rem;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .contact-wrapper {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .contact-hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .contact-hero-desc {
+        font-size: 1rem;
+      }
+
+      .contact-main {
+        padding: 60px 0;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+      }
+
+      .map-container iframe {
+        height: 300px;
+      }
+
+      .info-cards {
+        gap: 20px;
+      }
+
+      .info-card {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-item active">🔥 YAZ KAMPANYASI — İlk Ay %50 İndirim</span>
+    <span class="announcement-item">💪 ÜCRETSIZ Deneme Antrenmanı — Bugün Kayıt Ol</span>
+    <span class="announcement-item">🏆 150+ Aktif Üye — Sen de Katıl</span>
+    <button class="announcement-close">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">IRON<span>FORGE</span></div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="index.html#programs" class="nav-link">Programlar</a>
+        <a href="team.html" class="nav-link">Ekip</a>
+        <a href="contact.html" class="nav-link active">Üyelik</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+        <button class="nav-cta">Üye Ol</button>
+      </nav>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close">&times;</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="index.html#programs" class="nav-link">Programlar</a>
+    <a href="team.html" class="nav-link">Ekip</a>
+    <a href="contact.html" class="nav-link">Üyelik</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <button class="btn-primary">Üye Ol</button>
+  </div>
+
+  <!-- Contact Hero Section -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="contact-hero-content">
+        <h1>ÜYELİK &<span>İLETİŞİM</span></h1>
+        <p class="contact-hero-desc">IronForge ailesine katılmaya hazır mısın? Üyelik formunu doldur, sana en uygun programı bul, ve sınırlarını aşmaya başla.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Main Section -->
+  <section class="contact-main">
+    <div class="container">
+      <div class="contact-wrapper">
+        <!-- Form Column -->
+        <div>
+          <form id="membershipForm">
+            <div class="form-group">
+              <label for="name">Ad Soyad *</label>
+              <input type="text" id="name" name="name" required placeholder="Adını ve soyadını gir">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required placeholder="ornek@email.com">
+            </div>
+
+            <div class="form-group">
+              <label for="phone">Telefon *</label>
+              <input type="tel" id="phone" name="phone" required placeholder="+90 (5XX) XXX XXXX">
+            </div>
+
+            <div class="form-group">
+              <label for="birthdate">Doğum Tarihi *</label>
+              <input type="date" id="birthdate" name="birthdate" required>
+            </div>
+
+            <div class="form-group">
+              <label for="plan">Seçilen Plan *</label>
+              <select id="plan" name="plan" required>
+                <option value="">Bir plan seç</option>
+                <option value="temel">Temel (2 gün/hafta)</option>
+                <option value="standart">Standart (Sınırsız Erişim)</option>
+                <option value="elite">Elite (Kişisel Eğitmen)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="program">Hangi Programla İlgileniyorsunuz? *</label>
+              <select id="program" name="program" required>
+                <option value="">Bir program seç</option>
+                <option value="powerlifting">Powerlifting</option>
+                <option value="boxfit">BoxFit</option>
+                <option value="crossfit">CrossFit</option>
+                <option value="cardio-hiit">Cardio HIIT</option>
+                <option value="mobilite">Mobilite & Yoga</option>
+                <option value="beslenme">Beslenme Koçluğu</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="source">Nasıl Duydunuz? *</label>
+              <select id="source" name="source" required>
+                <option value="">Kaynağı seç</option>
+                <option value="instagram">Instagram</option>
+                <option value="arkadas">Arkadaş Tavsiyesi</option>
+                <option value="google">Google Arama</option>
+                <option value="diger">Diğer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Mesaj (Opsiyonel)</label>
+              <textarea id="message" name="message" placeholder="Soruların veya özel talebiniz varsa buraya yaz..."></textarea>
+            </div>
+
+            <button type="submit" class="form-submit">ÜYELİĞİ BAŞLAT</button>
+          </form>
+
+          <div id="formSuccess">
+            <div class="success-checkmark">✓</div>
+            <div class="success-title" id="successName">Hoş Geldin!</div>
+            <p class="success-message" id="successMessage">Başarıyla kayıt oldun! Seni kısa sürede arayacağız ve sana en uygun program hakkında konuşacağız.</p>
+            <button class="success-cta" onclick="resetForm()">Yeni Kayıt</button>
+          </div>
+        </div>
+
+        <!-- Info Cards Column -->
+        <div class="info-cards">
+          <div class="info-card">
+            <div class="info-card-title">📍 Adres</div>
+            <div class="info-card-content">
+              Levent Mah., Barbaros Bulvarı No:44<br>
+              Beşiktaş, 34394<br>
+              İstanbul, Türkiye
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">📞 İletişim</div>
+            <div class="info-card-content">
+              <strong>Telefon:</strong><br>
+              <a href="tel:+905551234567">+90 (555) 123 4567</a><br><br>
+              <strong>Email:</strong><br>
+              <a href="mailto:info@ironforge.com">info@ironforge.com</a>
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">⏰ Çalışma Saatleri</div>
+            <div class="info-card-content">
+              <strong>Pazartesi - Cuma:</strong><br>
+              06:00 - 23:00<br><br>
+              <strong>Cumartesi - Pazar:</strong><br>
+              08:00 - 21:00
+            </div>
+          </div>
+
+          <div class="info-card">
+            <div class="info-card-title">💬 WhatsApp</div>
+            <div class="info-card-content">
+              Hızlı cevap için WhatsApp üzerinden bize ulaş.<br><br>
+              <a href="https://wa.me/905551234567" style="display: inline-block; padding: 10px 20px; background: #25D366; color: white; border-radius: var(--radius); text-decoration: none; font-weight: 700; transition: opacity var(--transition);" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">WhatsApp Aç</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <div class="map-section-header">
+        <h2>Bizi<span>BUL</span></h2>
+      </div>
+      <div class="map-container">
+        <iframe src="https://maps.google.com/maps?q=Levent+Istanbul&output=embed" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact CTA Banner -->
+  <section class="contact-cta-banner">
+    <div class="container">
+      <h2>SORULARINIZ<span>VAR MI?</span></h2>
+      <p>Telefonla, email'le veya WhatsApp'la bize ulaş. Ekibimiz sana yardımcı olmaya hazır.</p>
+      <div style="display: flex; justify-content: center; gap: 16px; flex-wrap: wrap;">
+        <a href="tel:+905551234567" class="btn-primary">ARAYAMIZ</a>
+        <a href="mailto:info@ironforge.com" class="btn-outline">EMAIL GÖNDER</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">IRON<span>FORGE</span></div>
+          <p class="footer-desc">İstanbul'un en zorlu antrenman merkezi. Sınırlarını zorla, kendini aş. 150+ üyemiz güçlenmeye başladı.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Sayfalar</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="team.html">Ekip</a></li>
+            <li><a href="index.html#programs">Programlar</a></li>
+            <li><a href="contact.html">Üyelik</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Programlar</div>
+          <ul class="footer-links">
+            <li><a href="#">Powerlifting</a></li>
+            <li><a href="#">CrossFit</a></li>
+            <li><a href="#">Boksing</a></li>
+            <li><a href="#">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">İletişim</div>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Levent Mah. No:44<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Telefon:</strong><br>
+            +90 (212) 555 0199<br><br>
+            <strong>Saatler:</strong><br>
+            Pzt-Cum: 06:00-23:00<br>
+            Haf.Sonu: 08:00-21:00
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 IronForge Gym. Tüm hakları saklıdır.</span>
+        <div>
+          <a href="#" style="color: var(--gray); margin-right: 20px;">Gizlilik Politikası</a>
+          <a href="#" style="color: var(--gray);">Kullanım Şartları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab">💬</a>
+
+  <script src="main.js"></script>
+  <script>
+    // Contact Form Handler
+    const membershipForm = document.getElementById('membershipForm');
+    const formSuccess = document.getElementById('formSuccess');
+
+    membershipForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Get form values
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const birthdate = document.getElementById('birthdate').value;
+      const plan = document.getElementById('plan').value;
+      const program = document.getElementById('program').value;
+      const source = document.getElementById('source').value;
+      const message = document.getElementById('message').value.trim();
+
+      // Prepare data object
+      const membershipData = {
+        name: name,
+        email: email,
+        phone: phone,
+        birthdate: birthdate,
+        plan: plan,
+        program: program,
+        source: source,
+        message: message,
+        registeredAt: new Date().toISOString()
+      };
+
+      // Save to localStorage
+      const existingMemberships = JSON.parse(localStorage.getItem('ironforge_memberships') || '[]');
+      existingMemberships.push(membershipData);
+      localStorage.setItem('ironforge_memberships', JSON.stringify(existingMemberships));
+
+      // Update success message
+      document.getElementById('successName').textContent = `Hoş Geldin, ${name.split(' ')[0]}!`;
+      document.getElementById('successMessage').textContent = `Başarıyla kayıt oldun! Seni kısa sürede ${phone} numarasından arayacağız ve sana en uygun program hakkında konuşacağız.`;
+
+      // Show success state
+      membershipForm.style.display = 'none';
+      formSuccess.classList.add('visible');
+
+      // Log success
+      console.log('Membership registered:', membershipData);
+    });
+
+    function resetForm() {
+      membershipForm.reset();
+      membershipForm.style.display = 'flex';
+      formSuccess.classList.remove('visible');
+      document.getElementById('name').focus();
+    }
+  </script>
+</body>
+</html>

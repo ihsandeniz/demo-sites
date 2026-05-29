@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Veridis Hukuk — 25 yıllık deneyim, 500+ başarılı dava, 6 uzmanlık alanı. İstanbul'da güvenilir hukuki danışmanlık.">
+  <title>Veridis Hukuk — Haklarınız İçin Güvenilir Ortağınız</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">⚖️ İlk Hukuki Danışma Ücretsiz</span>
+      <span class="announcement-item">🏆 500+ Başarılı Dava — 25 Yıllık Deneyim</span>
+      <span class="announcement-item">📞 Acil Hukuki Destek: 7/24 Hizmetinizdeyiz</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">VERIDIS<span>HUKUK</span></a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link active">Anasayfa</a>
+        <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+        <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+        <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+        <a href="iletisim.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="iletisim.html" class="nav-cta">Danışma Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Anasayfa</a>
+    <a href="hizmetler.html" class="nav-link">Hizmetler</a>
+    <a href="avukatlar.html" class="nav-link">Avukatlarımız</a>
+    <a href="basarilar.html" class="nav-link">Başarılarımız</a>
+    <a href="iletisim.html" class="nav-link">İletişim</a>
+    <a href="iletisim.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Danışma Al</a>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content container">
+        <p class="hero-eyebrow">İSTANBUL HUKUK BÜROSU</p>
+        <h1>HAKLARINIZI<br><em>KORUYORUZ</em></h1>
+        <p>25 yıllık deneyim, 500+ başarılı dava, 6 uzmanlık alanı. Hukuk önünde eşit ve güvenilir koruma.</p>
+        <div class="hero-actions">
+          <a href="iletisim.html" class="btn-primary">Ücretsiz Danışma</a>
+          <a href="basarilar.html" class="btn-outline">Başarılarımız</a>
+        </div>
+      </div>
+      <div class="hero-badge">
+        <div class="number">25+</div>
+        <div class="label">Yıl Deneyim</div>
+      </div>
+      <div class="hero-scroll">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M12 5v14m7-7l-7 7-7-7"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Stats Bar -->
+    <section class="stats-bar">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">25+</div>
+            <div class="stat-label">Yıl Deneyim</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div class="stat-label">Başarılı Dava</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">6</div>
+            <div class="stat-label">Uzmanlık Alanı</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">%94</div>
+            <div class="stat-label">Başarı Oranı</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practice Areas Section -->
+    <section class="practice-areas section" id="services">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Uzmanık Alanlarımız</p>
+          <h2>Geniş Kapsamlı<br><em>Hukuki Hizmetler</em></h2>
+        </div>
+        <div class="practice-grid">
+          <div class="practice-card reveal">
+            <span class="practice-icon">⚖️</span>
+            <h3>Ceza Hukuku</h3>
+            <p>Ceza davalarda savunma ve şikayetçi menfaatlerinin temsilinde uzman. Adli süreçte en iyi sonuçları elde etmek için yanınızda.</p>
+          </div>
+          <div class="practice-card reveal reveal-delay-1">
+            <span class="practice-icon">🏢</span>
+            <h3>Ticaret Hukuku</h3>
+            <p>Şirket kuruluşu, sözleşme hazırlığı, ticari uyuşmazlıklar. İşletmenizin hukuki altyapısını güçlü tutarız.</p>
+          </div>
+          <div class="practice-card reveal reveal-delay-2">
+            <span class="practice-icon">👨‍👩‍👧</span>
+            <h3>Aile Hukuku</h3>
+            <p>Boşanma, nafaka, velayet ve miras konularında hassas ve etkili rehberlik. Ailenizin haklarını koruyoruz.</p>
+          </div>
+          <div class="practice-card reveal reveal-delay-1">
+            <span class="practice-icon">📜</span>
+            <h3>Miras Hukuku</h3>
+            <p>Tereke paylaşımı, vasiyet hazırlığı, mirasçı hakları. Mühim varlığınızı koruyan yasal işlemler.</p>
+          </div>
+          <div class="practice-card reveal reveal-delay-2">
+            <span class="practice-icon">💼</span>
+            <h3>İş Hukuku</h3>
+            <p>Sözleşme müzakereleri, işçi-işveren uyuşmazlıkları, işletme hukuku. İş hayatında güvenli adımlar atın.</p>
+          </div>
+          <div class="practice-card reveal reveal-delay-3">
+            <span class="practice-icon">🏛️</span>
+            <h3>Gayrimenkul Hukuku</h3>
+            <p>Satın alma, satış, kiralama ve tapulama işlemleri. Gayrimenkul yatırımlarında kanuni koruma.</p>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:48px;">
+          <a href="hizmetler.html" class="btn-primary">Tüm Hizmetleri Gör</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Why Us Section -->
+    <section class="why-us section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Neden Biz?</p>
+          <h2>Güvenilirlik ve<br><em>Başarının Temeli</em></h2>
+        </div>
+        <div class="why-us-grid">
+          <div class="why-card reveal">
+            <div class="why-number">01</div>
+            <h3>Gizlilik</h3>
+            <p>Avukat-müvekkil gizliliği kutsal bir ilkedir. Tüm bilgileriniz tamamen korunur.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-1">
+            <div class="why-number">02</div>
+            <h3>Deneyim</h3>
+            <p>25 yılın birikimi ve 500+ başarılı dava, en zor davalarda çıkış yolu bulur.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-2">
+            <div class="why-number">03</div>
+            <h3>Şeffaflık</h3>
+            <p>Dava süreci, ücretler, beklenti ve olasılıklar açık ve dürüst şekilde anlatılır.</p>
+          </div>
+          <div class="why-card reveal reveal-delay-3">
+            <div class="why-number">04</div>
+            <h3>Sonuç Odaklı</h3>
+            <p>Her dava, her danışma sizin haklarınızı maksimum düzeyde korumak için tasarlanır.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Team Preview -->
+    <section class="team-preview section">
+      <div class="container">
+        <div class="section-header reveal">
+          <p class="section-eyebrow">Avukat Ekibimiz</p>
+          <h2>Deneyimli Ellerinde<br><em>Güvende Olun</em></h2>
+        </div>
+        <div class="team-cards">
+          <div class="team-card reveal">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&fm=webp" alt="Dr. Ahmet Veridis" loading="lazy" class="team-photo" width="400" height="400">
+            <div class="team-info">
+              <div class="team-name">Dr. Ahmet Veridis</div>
+              <div class="team-title">Kurucu Ortak, Hukuk Müşaviri</div>
+              <div class="team-tags">
+                <span class="team-tag">Ceza Hukuku</span>
+                <span class="team-tag">Ticaret Hukuku</span>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-1">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&q=80&fm=webp" alt="Av. Müge Türksoy" loading="lazy" class="team-photo" width="400" height="400">
+            <div class="team-info">
+              <div class="team-name">Av. Müge Türksoy</div>
+              <div class="team-title">Ortak Avukat</div>
+              <div class="team-tags">
+                <span class="team-tag">Aile Hukuku</span>
+                <span class="team-tag">Miras Hukuku</span>
+              </div>
+            </div>
+          </div>
+          <div class="team-card reveal reveal-delay-2">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&q=80&fm=webp" alt="Av. Kaan Demir" loading="lazy" class="team-photo" width="400" height="400">
+            <div class="team-info">
+              <div class="team-name">Av. Kaan Demir</div>
+              <div class="team-title">Avukat</div>
+              <div class="team-tags">
+                <span class="team-tag">İş Hukuku</span>
+                <span class="team-tag">Gayrimenkul</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; margin-top:48px;">
+          <a href="avukatlar.html" class="btn-primary">Ekibimizi Tanıyın</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials">
+      <div class="testimonials-container">
+        <div class="section-header reveal" style="margin-bottom: 48px;">
+          <p class="section-eyebrow">Müşteri Görüşleri</p>
+          <h2>Başarı Hikayeleri<br><em>Gerçek Müşterilerden</em></h2>
+        </div>
+        <div class="testimonials-track">
+          <div class="testimonials-wrapper" id="testimonialsWrapper">
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"Çok zor bir ceza davasında yanımda oldular. Avukatlarının deneyimi ve uzmanlığı sayesinde beraat çıktık. Çok memnun kaldık."</p>
+              <div class="testimonial-author">Emre Yılmaz</div>
+              <div class="testimonial-case">Ceza Davası — Beraat</div>
+            </div>
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"Boşanma davasında bana ve çocuklarıma karşı yapılacak haksızlıkları önlemelerine çok güvendim. Tüm haklarımı korudular."</p>
+              <div class="testimonial-author">Sezer Kaya</div>
+              <div class="testimonial-case">Aile Hukuku — Velayet Tescili</div>
+            </div>
+            <div class="testimonial-item">
+              <p class="testimonial-quote">"Ticari uyuşmazlığımız uzun sürdü ama ekibi çözüm odaklı yaklaştı. Şirketimin çıkarlarını en iyi şekilde korudu."</p>
+              <div class="testimonial-author">Mübariz Tarcan</div>
+              <div class="testimonial-case">Ticaret Hukuku — Uyuşmazlık Çözümü</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-dots" id="testimonialDots">
+          <span class="testimonial-dot active" data-index="0"></span>
+          <span class="testimonial-dot" data-index="1"></span>
+          <span class="testimonial-dot" data-index="2"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>ÜCRETSİZ DANIŞMA ALIN</h2>
+        <p>İlk görüşme tamamen ücretsiz. Hukuki sorunlarınızı dinleyelim, çözüm yollarını sunalyım.</p>
+        <div class="cta-actions">
+          <a href="tel:+902125550177" class="btn-primary">Hemen Ara</a>
+          <a href="iletisim.html" class="btn-outline">Online Randevu</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Veridis Hukuk</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px;">25 yıllık deneyim ve güvenli hukuki danışmanlık. İstanbul'da kurulu, geniş kapsamlı hizmetler.</p>
+          <div class="footer-socials">
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="Twitter">𝕏</a>
+            <a href="#" aria-label="Facebook">f</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Hizmetler</h4>
+          <a href="hizmetler.html">Ceza Hukuku</a>
+          <a href="hizmetler.html">Ticaret Hukuku</a>
+          <a href="hizmetler.html">Aile Hukuku</a>
+          <a href="hizmetler.html">Miras Hukuku</a>
+          <a href="hizmetler.html">İş Hukuku</a>
+          <a href="hizmetler.html">Gayrimenkul Hukuku</a>
+        </div>
+        <div class="footer-col">
+          <h4>Hızlı Bağlantılar</h4>
+          <a href="index.html">Anasayfa</a>
+          <a href="avukatlar.html">Avukatlarımız</a>
+          <a href="basarilar.html">Başarılarımız</a>
+          <a href="iletisim.html">İletişim</a>
+        </div>
+        <div class="footer-col">
+          <h4>İletişim</h4>
+          <a href="tel:+902125550177">+90 (212) 555 0177</a>
+          <a href="mailto:info@veridishukuk.com">info@veridishukuk.com</a>
+          <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 16px;">📍 Levent, İstanbul</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2024 Veridis Hukuk. Tüm hakları saklıdır. | Avukatlık Hizmetleri</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a id="whatsappFab" href="https://wa.me/905551234567" target="_blank" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.973 1.198l-.356.21-3.686-.964.984 3.9.235.364a9.847 9.847 0 001.156 4.897 9.867 9.867 0 008.561 4.573 9.862 9.862 0 006.998-2.707 9.879 9.879 0 002.841-6.991c0-5.45-4.436-9.884-9.888-9.884"/>
+    </svg>
+  </a>
+
+  <script src="main.js"></script>
+</body>
+</html>

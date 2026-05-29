@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Koru Kitchen — Farm-to-Table Türk Mutfağı, İstanbul</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <button class="announcement-close" id="announceClose">&times;</button>
+    <div id="announceText" class="announcement-item"></div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <a href="#" class="logo">Koru<span>·</span>Kitchen</a>
+
+      <nav class="nav-menu">
+        <a href="#" class="nav-link active" data-section="hero">Ana Sayfa</a>
+        <a href="#menu" class="nav-link" data-section="menu">Menü</a>
+        <a href="#ambiance" class="nav-link" data-section="ambiance">Galeri</a>
+        <a href="#chefs" class="nav-link" data-section="chefs">Şeflerimiz</a>
+        <a href="#reservations" class="nav-link" data-section="reservations">Rezervasyon</a>
+      </nav>
+
+      <a href="#reservations" class="nav-cta">Rezervasyon</a>
+
+      <button class="hamburger" id="hamburgerBtn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="menuClose">&times;</button>
+    <a href="#" class="nav-link" data-section="hero">Ana Sayfa</a>
+    <a href="#menu" class="nav-link" data-section="menu">Menü</a>
+    <a href="#ambiance" class="nav-link" data-section="ambiance">Galeri</a>
+    <a href="#chefs" class="nav-link" data-section="chefs">Şeflerimiz</a>
+    <a href="#reservations" class="nav-link" data-section="reservations">Rezervasyon</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">İstanbul · Türk Mutfağı</div>
+        <h1>Toprağın <em>Hikayesi</em><br>Sofranızda</h1>
+        <p>Yerel çiftçilerden gelen mevsimsel malzemelerle hazırlanan modern Türk mutfağı — her lokma bir deneyim.</p>
+        <div class="hero-actions">
+          <a href="#reservations" class="btn-primary">Rezervasyon Al</a>
+          <a href="#menu" class="btn-outline">Menüyü Gör</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-badge">
+      <div class="number">18</div>
+      <div class="label">Yıl Tecrübe</div>
+    </div>
+  </section>
+
+  <!-- Menu Preview -->
+  <section class="menu-preview section" id="menu">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Lezzetin Adresi</div>
+        <h2>Öne Çıkan <em>Lezzetler</em></h2>
+      </div>
+
+      <div class="menu-categories">
+        <button class="menu-tab active" data-category="all">Tümü</button>
+        <button class="menu-tab" data-category="baslangic">Başlangıç</button>
+        <button class="menu-tab" data-category="ana">Ana Yemek</button>
+        <button class="menu-tab" data-category="tatli">Tatlı</button>
+      </div>
+
+      <div class="menu-grid">
+        <!-- Featured Card -->
+        <div class="menu-card featured reveal" data-category="ana">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=600&q=80&fm=webp" alt="Kuzu Tandır">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Ana Yemek</div>
+            <h3 class="menu-card-name">Kuzu Tandır</h3>
+            <p class="menu-card-desc">12 saat pişirilmiş, yerel biberiye ve kekik ile harmanlanan. Yanında közlenmiş sebze.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺485</span>
+              <span class="menu-tag">Şef Önerisi</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="menu-card reveal reveal-delay-1" data-category="baslangic">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1609501676725-7186f017a4b5?w=400&q=80&fm=webp" alt="Zeytinyağlı Enginar">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Başlangıç</div>
+            <h3 class="menu-card-name">Zeytinyağlı Enginar</h3>
+            <p class="menu-card-desc">Ege'nin organik enginarları, limon kabuğu ve taze kekik ile.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺185</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="menu-card reveal reveal-delay-2" data-category="baslangic">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=400&q=80&fm=webp" alt="Acılı Közlenmiş Biber">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Başlangıç</div>
+            <h3 class="menu-card-name">Acılı Közlenmiş Biber</h3>
+            <p class="menu-card-desc">Tandırda közlenen biberler, narlı nar ekşisi ile.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺145</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="menu-card reveal reveal-delay-1" data-category="tatli">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1585080198000-3deae4b08e27?w=400&q=80&fm=webp" alt="Fıstıklı Künefe">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Tatlı</div>
+            <h3 class="menu-card-name">Fıstıklı Künefe</h3>
+            <p class="menu-card-desc">Geleneksel tarif, Antep fıstığı ve kaymak ile servis.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺220</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="menu-card reveal reveal-delay-2" data-category="ana">
+          <div class="menu-card-img">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80&fm=webp" alt="Çipura Izgara">
+          </div>
+          <div class="menu-card-body">
+            <div class="menu-card-cat">Ana Yemek</div>
+            <h3 class="menu-card-name">Çipura Izgara</h3>
+            <p class="menu-card-desc">Günlük taze balık, sarımsaklı zeytinyağı ve kapari ile.</p>
+            <div class="menu-card-footer">
+              <span class="menu-card-price">₺420</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 60px;">
+        <a href="menu.html" class="btn-primary">Tüm Menüyü Gör</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ambiance Strip -->
+  <section class="ambiance-strip" id="ambiance">
+    <div class="ambiance-strip-header container">
+      <h2>Atmosferimiz</h2>
+    </div>
+    <div class="ambiance-scroll">
+      <div class="ambiance-thumb">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=400&q=80&fm=webp" alt="Restoran Ortamı">
+        <div class="ambiance-thumb-overlay">Restoran Ortamı</div>
+      </div>
+      <div class="ambiance-thumb">
+        <img src="https://images.unsplash.com/photo-1559329007-40790c9c41b7?w=400&q=80&fm=webp" alt="Masa Düzeni">
+        <div class="ambiance-thumb-overlay">Masa Düzeni</div>
+      </div>
+      <div class="ambiance-thumb">
+        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80&fm=webp" alt="Mutfak">
+        <div class="ambiance-thumb-overlay">Mutfak</div>
+      </div>
+      <div class="ambiance-thumb">
+        <img src="https://images.unsplash.com/photo-1464207687429-7505649dae38?w=400&q=80&fm=webp" alt="Bahçe">
+        <div class="ambiance-thumb-overlay">Bahçe</div>
+      </div>
+      <div class="ambiance-thumb">
+        <img src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&q=80&fm=webp" alt="Detay Çekim">
+        <div class="ambiance-thumb-overlay">Detay Çekim</div>
+      </div>
+      <div class="ambiance-thumb">
+        <img src="https://images.unsplash.com/photo-1495467537745-a9cc43e63272?w=400&q=80&fm=webp" alt="Şef Pişirme">
+        <div class="ambiance-thumb-overlay">Şef Pişirme</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Chef Preview -->
+  <section class="chef-preview section" id="chefs">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Yaratıcı Üstadlar</div>
+        <h2>Şeflerimiz</h2>
+      </div>
+
+      <div class="chef-cards">
+        <div class="chef-card reveal">
+          <div class="chef-card-img">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80&fm=webp" alt="Murat Koç">
+          </div>
+          <h3 class="chef-name">Murat Koç</h3>
+          <div class="chef-role">Baş Şef</div>
+          <p class="chef-desc">18 yıl boyunca Türk ve Akdeniz mutfağında ustalaştı. Organik malzemelerin seçiminde titiz, her yemeğe sanat ruhu katar.</p>
+        </div>
+
+        <div class="chef-card reveal reveal-delay-1">
+          <div class="chef-card-img">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=80&fm=webp" alt="Seda Yılmaz">
+          </div>
+          <h3 class="chef-name">Seda Yılmaz</h3>
+          <div class="chef-role">Pastane Şefi</div>
+          <p class="chef-desc">10 yıllık deneyimle geleneksel Türk tatlılarını modern tekniklerle hayata geçirir. Fıstıkh künefe ve baklava ustaçlığı tanınmıştır.</p>
+        </div>
+
+        <div class="chef-card reveal reveal-delay-2">
+          <div class="chef-card-img">
+            <img src="https://images.unsplash.com/photo-1500595046891-ef788e65dceb?w=200&q=80&fm=webp" alt="Kemal Arslan">
+          </div>
+          <h3 class="chef-name">Kemal Arslan</h3>
+          <div class="chef-role">Sous Şef</div>
+          <p class="chef-desc">12 yıllık tecrübesi ile mutfak operasyonlarını mükemmel şekilde yönetir. Kalite kontrol ve inovasyonda öncü rol oynar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Misafirlerimiz Söylüyor</div>
+        <h2>Yorumlar <em>& Deneyimler</em></h2>
+      </div>
+
+      <div class="testimonial-carousel">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"İstanbul'un en iyi farm-to-table restoranı. Her yemeğin arkasındaki özen hissediliyor."</p>
+            <div class="testimonial-author">Aylin K.</div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Kuzu tandırları sadece mükemmel kelimesiyle açıklanabilir. Kesinlikle tekrar geleceğiz."</p>
+            <div class="testimonial-author">Mehmet B.</div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Bahçede yemek yemek başlı başına bir deneyim. Harika servis, harika yemek."</p>
+            <div class="testimonial-author">Dilara Ç.</div>
+          </div>
+
+          <div class="testimonial-item">
+            <div class="testimonial-stars">★★★★★</div>
+            <p class="testimonial-text">"Künefe hayatımda yediğim en iyisiydi. Tüm arkadaşlarıma tavsiye ettim."</p>
+            <div class="testimonial-author">Kaan Y.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-dots" id="testimonialDots"></div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner" id="reservations">
+    <div class="cta-banner-content">
+      <h2>Özel Anlarınızı<br><em>Bizimle Kutlayın</em></h2>
+      <p>Doğum günü, nişan veya iş yemekleriniz için özel masalarımız ve menülerimizle yanınızdayız.</p>
+      <a href="https://wa.me/905551234567" class="btn-cream">Rezervasyon Al</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Column 1: Branding -->
+        <div>
+          <h3 class="footer-logo">Koru<span>·</span>Kitchen</h3>
+          <p class="footer-desc">Yerel çiftçilerle çalışarak modern Türk mutfağını İstanbul'da en iyi şekilde sunuyoruz. Her lokma, bir deneyim.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">I</a>
+            <a href="#" class="social-link">T</a>
+          </div>
+        </div>
+
+        <!-- Column 2: Pages -->
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="#hero">Ana Sayfa</a></li>
+            <li><a href="#menu">Menü</a></li>
+            <li><a href="#ambiance">Galeri</a></li>
+            <li><a href="#chefs">Şeflerimiz</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Menu -->
+        <div>
+          <h4 class="footer-heading">Menü</h4>
+          <ul class="footer-links">
+            <li><a href="#">Başlangıçlar</a></li>
+            <li><a href="#">Ana Yemekler</a></li>
+            <li><a href="#">Tatlılar</a></li>
+            <li><a href="#">İçecekler</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Kuruçeşme Cad. No:12<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Telefon:</strong><br>
+            0212 XXX XX XX (Demo)<br><br>
+            <strong>Saatler:</strong><br>
+            Sal-Per: 12:00-22:00<br>
+            Cum-Paz: 12:00-24:00<br>
+            Pzt: Kapalı
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Koru Kitchen. Tüm hakları saklıdır.</p>
+      <p>Designed & Built for Excellence</p>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab">💬</a>
+
+  <script src="main.js"></script>
+</body>
+</html>

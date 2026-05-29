@@ -1,0 +1,698 @@
+<!-- IronForge Gym — programs.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programlar — IronForge Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Page Hero --- */
+    .page-hero {
+      background: var(--black-mid);
+      padding: 80px 24px;
+      text-align: center;
+      border-bottom: 2px solid rgba(232, 255, 0, 0.15);
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .breadcrumb {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 600;
+    }
+    .breadcrumb a {
+      color: var(--neon);
+      transition: opacity 0.3s;
+    }
+    .breadcrumb a:hover {
+      opacity: 0.7;
+    }
+
+    /* --- Programs Detailed Grid --- */
+    .programs-detailed {
+      background: var(--black);
+      padding: 96px 0;
+    }
+    .programs-detailed-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 32px;
+    }
+    .program-detail-card {
+      background: var(--black-light);
+      border: 1px solid rgba(232, 255, 0, 0.12);
+      border-radius: 16px;
+      padding: 40px;
+      transition: all 0.3s ease;
+    }
+    .program-detail-card:hover {
+      border-color: rgba(232, 255, 0, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px rgba(232, 255, 0, 0.1);
+    }
+    .program-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .program-detail-name {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .level-badge {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .level-beginner {
+      background: rgba(76, 175, 80, 0.2);
+      color: #4CAF50;
+      border: 1px solid rgba(76, 175, 80, 0.4);
+    }
+    .level-intermediate {
+      background: rgba(255, 193, 7, 0.2);
+      color: #FFC107;
+      border: 1px solid rgba(255, 193, 7, 0.4);
+    }
+    .level-advanced {
+      background: rgba(244, 67, 54, 0.2);
+      color: #F44336;
+      border: 1px solid rgba(244, 67, 54, 0.4);
+    }
+    .program-duration {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neon);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .program-detail-desc {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+    .program-detail-btn {
+      padding: 12px 28px;
+      background: var(--neon);
+      color: var(--black);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .program-detail-btn:hover {
+      background: var(--neon-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(232, 255, 0, 0.3);
+    }
+
+    /* --- Pricing Section --- */
+    .pricing {
+      background: var(--black-mid);
+      padding: 96px 0;
+      border-top: 1px solid rgba(232, 255, 0, 0.1);
+    }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 60px;
+    }
+    .pricing-card {
+      background: var(--black-light);
+      border: 2px solid rgba(232, 255, 0, 0.12);
+      border-radius: 16px;
+      padding: 40px 32px;
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .pricing-card.featured {
+      border-color: var(--neon);
+      transform: scale(1.02);
+    }
+    .pricing-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(232, 255, 0, 0.15);
+    }
+    .pricing-badge {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--neon);
+      color: var(--black);
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+    }
+    .pricing-name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .pricing-amount {
+      font-family: var(--font-heading);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--neon);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pricing-period {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 28px;
+      font-weight: 600;
+    }
+    .pricing-features {
+      text-align: left;
+      margin-bottom: 32px;
+    }
+    .pricing-feature {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.65);
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(232, 255, 0, 0.08);
+      line-height: 1.6;
+    }
+    .pricing-feature:last-child {
+      border-bottom: none;
+    }
+    .pricing-feature::before {
+      content: '✓ ';
+      color: var(--neon);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+    .pricing-btn {
+      width: 100%;
+      padding: 14px;
+      background: var(--neon);
+      color: var(--black);
+      border: none;
+      border-radius: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .pricing-btn:hover {
+      background: var(--neon-dim);
+      transform: translateY(-2px);
+    }
+    .pricing-card.featured .pricing-btn {
+      background: var(--neon);
+    }
+
+    /* --- FAQ Section --- */
+    .faq {
+      background: var(--black);
+      padding: 96px 0;
+    }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      max-width: 800px;
+      margin: 60px auto 0;
+    }
+    .faq-item {
+      background: var(--black-light);
+      border: 1px solid rgba(232, 255, 0, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: border-color 0.3s;
+    }
+    .faq-item.open {
+      border-color: var(--neon);
+    }
+    .faq-question {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--black-light);
+      transition: background 0.3s;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--white);
+    }
+    .faq-item:hover .faq-question {
+      background: rgba(232, 255, 0, 0.05);
+    }
+    .faq-toggle {
+      font-size: 1.2rem;
+      color: var(--neon);
+      transition: transform 0.3s;
+      font-weight: 900;
+    }
+    .faq-item.open .faq-toggle {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: rgba(232, 255, 0, 0.03);
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+    }
+    .faq-answer-content {
+      padding: 24px;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.65);
+      line-height: 1.7;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .programs-detailed-grid {
+        grid-template-columns: 1fr;
+      }
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+      .pricing-card.featured {
+        transform: scale(1);
+      }
+    }
+    @media (max-width: 640px) {
+      .page-hero {
+        padding: 60px 20px;
+      }
+      .page-hero h1 {
+        font-size: 2rem;
+      }
+      .program-detail-card {
+        padding: 28px 20px;
+      }
+      .program-icon {
+        font-size: 2.5rem;
+      }
+      .program-detail-name {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-item active">🔥 YAZ KAMPANYASI — İlk Ay %50 İndirim</span>
+    <span class="announcement-item">💪 ÜCRETSIZ Deneme Antrenmanı — Bugün Kayıt Ol</span>
+    <span class="announcement-item">🏆 150+ Aktif Üye — Sen de Katıl</span>
+    <button class="announcement-close">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">IRON<span>FORGE</span></div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="programs.html" class="nav-link active">Programlar</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link">Ekip</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+        <button class="nav-cta">Üye Ol</button>
+      </nav>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close">&times;</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="programs.html" class="nav-link active">Programlar</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Ekip</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <button class="btn-primary">Üye Ol</button>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>PROGRAMLAR</h1>
+    <div class="breadcrumb">
+      <a href="index.html">Ana Sayfa</a> > <span>Programlar</span>
+    </div>
+  </section>
+
+  <!-- Programs Detailed Section -->
+  <section class="programs-detailed">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Tüm Programlar</div>
+        <h2>GÜÇLENME<span>YOLLARI</span></h2>
+      </div>
+      <div class="programs-detailed-grid">
+        <!-- Program 1 -->
+        <div class="program-detail-card reveal">
+          <span class="program-icon">⚡</span>
+          <div class="program-detail-name">Powerlifting Pro</div>
+          <span class="level-badge level-advanced">İleri</span>
+          <div class="program-duration">45 dk / seans</div>
+          <p class="program-detail-desc">
+            Maksimum kuvvet kazanmak için tasarlanmış program. Squat, bench press ve deadlift teknikleri ile PR kırmanın sırrını öğren. Elit sporcuların tercih ettiği antrenman sistemi.
+          </p>
+          <button class="program-detail-btn">Detaylar</button>
+        </div>
+
+        <!-- Program 2 -->
+        <div class="program-detail-card reveal reveal-delay-1">
+          <span class="program-icon">🥊</span>
+          <div class="program-detail-name">BoxFit</div>
+          <span class="level-badge level-intermediate">Orta</span>
+          <div class="program-duration">60 dk / seans</div>
+          <p class="program-detail-desc">
+            Boksing teknikleri ile cardio antrenmanının kombinasyonu. Hız, dayanıklılık ve koordinasyon geliştir. Tüm vücut antrenmanı ile yağ eriyen sonuçlar.
+          </p>
+          <button class="program-detail-btn">Detaylar</button>
+        </div>
+
+        <!-- Program 3 -->
+        <div class="program-detail-card reveal reveal-delay-2">
+          <span class="program-icon">💪</span>
+          <div class="program-detail-name">CrossFit WOD</div>
+          <span class="level-badge level-intermediate">Orta</span>
+          <div class="program-duration">55 dk / seans</div>
+          <p class="program-detail-desc">
+            Fonksiyonel hareketler ve yüksek yoğunluk. Her gün farklı Workout of the Day (WOD) ile zorlandığını hisset. Topluluk ruhu ve yoğun antrenmanın mükemmel birleşimi.
+          </p>
+          <button class="program-detail-btn">Detaylar</button>
+        </div>
+
+        <!-- Program 4 -->
+        <div class="program-detail-card reveal">
+          <span class="program-icon">🏃</span>
+          <div class="program-detail-name">Cardio HIIT</div>
+          <span class="level-badge level-beginner">Başlangıç</span>
+          <div class="program-duration">45 dk / seans</div>
+          <p class="program-detail-desc">
+            Yüksek yoğunluklu interval antrenmanı ile metabolizmanı hızlandır. Kısa sürede maksimum kalori yak. Başlayanlar için ideal, bütün seviyelere uygun antrenman.
+          </p>
+          <button class="program-detail-btn">Detaylar</button>
+        </div>
+
+        <!-- Program 5 -->
+        <div class="program-detail-card reveal reveal-delay-1">
+          <span class="program-icon">🧘</span>
+          <div class="program-detail-name">Mobilite & Esneklik</div>
+          <span class="level-badge level-beginner">Başlangıç</span>
+          <div class="program-duration">50 dk / seans</div>
+          <p class="program-detail-desc">
+            Hareket kalitesini ve esnekliği geliştir. Yaralanma riskini azalt ve vücut bilincini artır. Yoga ve dinamik germe kombinasyonuyla dengeli gelişim.
+          </p>
+          <button class="program-detail-btn">Detaylar</button>
+        </div>
+
+        <!-- Program 6 -->
+        <div class="program-detail-card reveal reveal-delay-2">
+          <span class="program-icon">🥗</span>
+          <div class="program-detail-name">Spor Beslenmesi</div>
+          <span class="level-badge level-intermediate">Orta</span>
+          <div class="program-duration">30 dk / danışma</div>
+          <p class="program-detail-desc">
+            Kişisel beslenme planı ve koç desteği. Hedeflerine ulaşmak için doğru beslenme alışkanlıklarını öğren. Antrenman planınızla uyumlu, bilimsel yaklaşım.
+          </p>
+          <button class="program-detail-btn">Detaylar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="pricing">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Üyelik Planları</div>
+        <h2>SANA UYGUN<span>PLAN</span></h2>
+      </div>
+      <div class="pricing-grid">
+        <!-- Temel Plan -->
+        <div class="pricing-card reveal">
+          <div class="pricing-name">Temel</div>
+          <div class="pricing-amount">₺599</div>
+          <div class="pricing-period">/ay</div>
+          <div class="pricing-features">
+            <div class="pricing-feature">1 antrenman / hafta</div>
+            <div class="pricing-feature">Soyunma odası erişimi</div>
+            <div class="pricing-feature">Temel ekipman kullanımı</div>
+            <div class="pricing-feature">Mobil uygulama</div>
+          </div>
+          <button class="pricing-btn">Başla</button>
+        </div>
+
+        <!-- Standart Plan (Featured) -->
+        <div class="pricing-card featured reveal reveal-delay-1">
+          <div class="pricing-badge">ÖNERILEN</div>
+          <div class="pricing-name">Standart</div>
+          <div class="pricing-amount">₺899</div>
+          <div class="pricing-period">/ay</div>
+          <div class="pricing-features">
+            <div class="pricing-feature">Sınırsız antrenman</div>
+            <div class="pricing-feature">1 PT seans / ay</div>
+            <div class="pricing-feature">Havlu servisi</div>
+            <div class="pricing-feature">Tüm alanlar erişim</div>
+            <div class="pricing-feature">Grup dersleri</div>
+          </div>
+          <button class="pricing-btn">Başla</button>
+        </div>
+
+        <!-- Elite Plan -->
+        <div class="pricing-card reveal reveal-delay-2">
+          <div class="pricing-name">Elite</div>
+          <div class="pricing-amount">₺1.499</div>
+          <div class="pricing-period">/ay</div>
+          <div class="pricing-features">
+            <div class="pricing-feature">Sınırsız antrenman</div>
+            <div class="pricing-feature">4 PT seans / ay</div>
+            <div class="pricing-feature">Beslenme danışmanlığı</div>
+            <div class="pricing-feature">Özel locker</div>
+            <div class="pricing-feature">Öncelikli destek</div>
+          </div>
+          <button class="pricing-btn">Başla</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Sıkça Sorulan Sorular</div>
+        <h2>SORULAR<span>YANITLAR</span></h2>
+      </div>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Üyelik sözleşmesi var mı?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Hayır, hiçbir sözleşme yok. Her ay iptal edebilirsiniz. Sadece 30 gün önceden haber verin. Uyum sağlı, özgür antrenman.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Misafir getirebilir miyim?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Evet, ücretsiz misafir hakkı her ay 2 defa. Misafirler danışma oturumu alabilir ve tüm alanları kullanabilir. Müthiş deneyim yaşatın!
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Soyunma odası hizmetleri neler?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Şampuan, odyun ve tüm kişisel bakım malzemeleri sağlanır. Standart ve Elite planlarında havlu servisi de dahil. Sıcak duş ve saç kurutma makinesi mevcuttur.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>PT (Personal Trainer) ne işe yarar?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              Kişisel eğitmen seni bire bir antrenman eder, formu kontrol eder ve motivasyon sağlar. Hedefine hızla ulaşmanın en hızlı yoludur. İlk danışma ücretsiz.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Deneme antrenmanı nasıl yapılır?</span>
+            <span class="faq-toggle">+</span>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-content">
+              WhatsApp üzerinden bize yazın veya direkt gelin. Ücretsiz bir tam seans yaparsınız. Ekibi tanırsınız, hissettiğiniz enerjiyi görsünüz. Hiçbir yükümlülük yok.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">IRON<span>FORGE</span></div>
+          <p class="footer-desc">İstanbul'un en zorlu antrenman merkezi. Sınırlarını zorla, kendini aş. 150+ üyemiz güçlenmeye başladı.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Sayfalar</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="programs.html">Programlar</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="team.html">Ekip</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Programlar</div>
+          <ul class="footer-links">
+            <li><a href="#">Powerlifting</a></li>
+            <li><a href="#">BoxFit</a></li>
+            <li><a href="#">CrossFit</a></li>
+            <li><a href="#">Cardio HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">İletişim</div>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Levent Mah. No:44<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Telefon:</strong><br>
+            0212 XXX XX XX (Demo)<br><br>
+            <strong>Saatler:</strong><br>
+            Pzt-Cum: 06:00-23:00<br>
+            Haf.Sonu: 08:00-21:00
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 IronForge Gym. Tüm hakları saklıdır.</span>
+        <div>
+          <a href="#" style="color: var(--gray); margin-right: 20px;">Gizlilik Politikası</a>
+          <a href="#" style="color: var(--gray);">Kullanım Şartları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/90212xxxxxxxx" class="whatsapp-fab" id="whatsappFab">💬</a>
+
+  <script src="main.js"></script>
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', function() {
+        const faqItem = this.parentElement;
+        faqItem.classList.toggle('open');
+      });
+    });
+
+    // Reveal Animation on Scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

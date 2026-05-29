@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina Beauty uzman ekibi — deneyimli cilt uzmanları, saç stilistleri ve SPA terapistleri.">
+  <title>Ekibimiz — Lumina Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .team-hero {
+      background: var(--dark);
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .team-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1400&q=60&fm=webp') center/cover;
+      opacity: 0.12;
+    }
+
+    .team-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .team-hero h1 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .team-hero p {
+      color: rgba(245, 240, 232, 0.7);
+      font-size: 1.05rem;
+      margin-top: 0;
+    }
+
+    /* Team Grid */
+    .team-full-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    /* Flip Card */
+    .flip-card {
+      perspective: 1000px;
+      height: 520px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s ease;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card:hover .flip-card-inner,
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-front,
+    .flip-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      border-radius: 20px;
+      overflow: hidden;
+    }
+
+    .flip-front {
+      background: var(--white);
+    }
+
+    .flip-back {
+      background: var(--dark);
+      transform: rotateY(180deg);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    /* Front face */
+    .flip-front-img {
+      height: 340px;
+      overflow: hidden;
+    }
+
+    .flip-front-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .flip-card:hover .flip-front-img img {
+      transform: scale(1.04);
+    }
+
+    .flip-front-info {
+      padding: 20px 24px;
+    }
+
+    .flip-name {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+
+    .flip-role {
+      font-size: 0.75rem;
+      color: var(--rose);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .flip-exp {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .flip-hint {
+      font-size: 0.7rem;
+      color: var(--sage);
+      margin-top: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    /* Back face */
+    .flip-back-name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 8px;
+    }
+
+    .flip-back-role {
+      font-size: 0.7rem;
+      color: var(--gold);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .flip-back-bio {
+      font-size: 0.85rem;
+      color: rgba(245, 240, 232, 0.75);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .flip-skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 24px;
+    }
+
+    .flip-skill {
+      background: rgba(196, 149, 138, 0.2);
+      border: 1px solid rgba(196, 149, 138, 0.4);
+      color: var(--rose-light);
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .flip-back-cta {
+      display: inline-block;
+      padding: 10px 20px;
+      background: var(--rose);
+      color: var(--white);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      text-align: center;
+      transition: background 0.3s;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .flip-back-cta:hover {
+      background: var(--rose-dark);
+    }
+
+    /* Stats bar */
+    .team-stats {
+      background: var(--rose-light);
+      padding: 64px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      color: var(--rose-dark);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 1024px) {
+      .team-full-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .team-full-grid {
+        grid-template-columns: 1fr;
+      }
+      .flip-card {
+        height: 480px;
+      }
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .team-hero {
+        padding: 80px 0 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">✨ Yaz Kampanyası: İlk Randevuda %15 İndirim</span>
+      <span class="announcement-item">🌿 Yeni: Organik Cilt Bakımı Serisi Geldi</span>
+      <span class="announcement-item">📱 WhatsApp'tan randevu almak artık çok kolay</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Lumina<span>·</span>Beauty</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="services.html" class="nav-link">Hizmetler</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link active">Ekibimiz</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Randevu Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Ekibimiz</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <a href="contact.html" class="btn-primary" style="width:fit-content; margin-top:16px;">Randevu Al</a>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="team-hero">
+    <div class="team-hero-content container">
+      <h1>Uzman Ekibimiz</h1>
+      <p>Deneyimli ellerde güvende hissettirin — her biri kendi alanında uzman</p>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="team-stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-number">6</div>
+          <div class="stat-label">Uzman Kadro</div>
+        </div>
+        <div>
+          <div class="stat-number">850+</div>
+          <div class="stat-label">Mutlu Müşteri</div>
+        </div>
+        <div>
+          <div class="stat-number">12+</div>
+          <div class="stat-label">Yıl Deneyim</div>
+        </div>
+        <div>
+          <div class="stat-number">98%</div>
+          <div class="stat-label">Memnuniyet</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Grid Section -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="section-eyebrow">Tanışın</p>
+        <h2>Güzelliği Yeniden<br>Tanımlayan Profesyoneller</h2>
+      </div>
+
+      <div class="team-full-grid">
+        <!-- Card 1 -->
+        <div class="flip-card reveal">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-img">
+                <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80&fm=webp" alt="Ayşe Kaya">
+              </div>
+              <div class="flip-front-info">
+                <div class="flip-name">Ayşe Kaya</div>
+                <div class="flip-role">Cilt Uzmanı</div>
+                <div class="flip-exp">12 Yıl Deneyim</div>
+                <div class="flip-hint">👆 Tıkla / Hover Yap</div>
+              </div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-name">Ayşe Kaya</div>
+              <div class="flip-back-role">Cilt Uzmanı & Kozmetolog</div>
+              <div class="flip-back-bio">İstanbul Üniversitesi Kozmetoloji mezunu Ayşe Hanım, 12 yıldır premium güzellik merkezlerinde çalışmaktadır. Anti-aging tedaviler ve cilt yenileme protokollerinde uzmanlaşmıştır.</div>
+              <div class="flip-skills">
+                <span class="flip-skill">Cilt Analizi</span>
+                <span class="flip-skill">Hydrafacial</span>
+                <span class="flip-skill">Kimyasal Peeling</span>
+                <span class="flip-skill">Hyaluronik Asit</span>
+              </div>
+              <a href="contact.html" class="flip-back-cta">Randevu Al</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="flip-card reveal reveal-delay-1">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-img">
+                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&q=80&fm=webp" alt="Selin Arslan">
+              </div>
+              <div class="flip-front-info">
+                <div class="flip-name">Selin Arslan</div>
+                <div class="flip-role">Baş Saç Stilisti</div>
+                <div class="flip-exp">9 Yıl Deneyim</div>
+                <div class="flip-hint">👆 Tıkla / Hover Yap</div>
+              </div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-name">Selin Arslan</div>
+              <div class="flip-back-role">Baş Saç Stilisti</div>
+              <div class="flip-back-bio">Londra'da L'Oréal Professionnel sertifikası alan Selin, balayage ve renk tekniklerinde Türkiye'nin önde gelen isimlerinden biridir.</div>
+              <div class="flip-skills">
+                <span class="flip-skill">Balayage</span>
+                <span class="flip-skill">Ombre</span>
+                <span class="flip-skill">Keratin</span>
+                <span class="flip-skill">Saç Boyama</span>
+              </div>
+              <a href="contact.html" class="flip-back-cta">Randevu Al</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="flip-card reveal reveal-delay-2">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-img">
+                <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=80&fm=webp" alt="Dr. Merve Demir">
+              </div>
+              <div class="flip-front-info">
+                <div class="flip-name">Dr. Merve Demir</div>
+                <div class="flip-role">SPA Uzmanı</div>
+                <div class="flip-exp">15 Yıl Deneyim</div>
+                <div class="flip-hint">👆 Tıkla / Hover Yap</div>
+              </div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-name">Dr. Merve Demir</div>
+              <div class="flip-back-role">SPA & Estetik Uzmanı</div>
+              <div class="flip-back-bio">Ege Üniversitesi Fizik Tedavi bölümü mezunu Dr. Merve, aromaterapi ve medikal SPA protokollerinde uluslararası sertifikalara sahiptir.</div>
+              <div class="flip-skills">
+                <span class="flip-skill">Aromaterapi</span>
+                <span class="flip-skill">Taş Masajı</span>
+                <span class="flip-skill">Lymph Drenaj</span>
+              </div>
+              <a href="contact.html" class="flip-back-cta">Randevu Al</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="flip-card reveal reveal-delay-1">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-img">
+                <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&fm=webp" alt="Neslihan Öz">
+              </div>
+              <div class="flip-front-info">
+                <div class="flip-name">Neslihan Öz</div>
+                <div class="flip-role">Tırnak Sanatçısı</div>
+                <div class="flip-exp">7 Yıl Deneyim</div>
+                <div class="flip-hint">👆 Tıkla / Hover Yap</div>
+              </div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-name">Neslihan Öz</div>
+              <div class="flip-back-role">Tırnak Sanatçısı</div>
+              <div class="flip-back-bio">Nail Art dünyasında kendi tarzını yaratan Neslihan, jel manikür ve yaratıcı tasarımlarıyla sosyal medyada binlerce takipçiye sahiptir.</div>
+              <div class="flip-skills">
+                <span class="flip-skill">Gel Manikür</span>
+                <span class="flip-skill">Nail Art</span>
+                <span class="flip-skill">Kalıcı Oje</span>
+              </div>
+              <a href="contact.html" class="flip-back-cta">Randevu Al</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="flip-card reveal reveal-delay-2">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-img">
+                <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=600&q=80&fm=webp" alt="Zeynep Çelik">
+              </div>
+              <div class="flip-front-info">
+                <div class="flip-name">Zeynep Çelik</div>
+                <div class="flip-role">Kaş & Kirpik Uzmanı</div>
+                <div class="flip-exp">5 Yıl Deneyim</div>
+                <div class="flip-hint">👆 Tıkla / Hover Yap</div>
+              </div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-name">Zeynep Çelik</div>
+              <div class="flip-back-role">Kaş & Kirpik Uzmanı</div>
+              <div class="flip-back-bio">Microblading ve kaş laminasyonunda Türkiye sertifikalı Zeynep, doğal ve uzun kalıcı kaş tasarımlarıyla öne çıkmaktadır.</div>
+              <div class="flip-skills">
+                <span class="flip-skill">Laminasyon</span>
+                <span class="flip-skill">Microblading</span>
+                <span class="flip-skill">Kirpik Lifting</span>
+              </div>
+              <a href="contact.html" class="flip-back-cta">Randevu Al</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="flip-card reveal reveal-delay-3">
+          <div class="flip-card-inner">
+            <div class="flip-front">
+              <div class="flip-front-img">
+                <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=600&q=80&fm=webp" alt="Gülsüm Ak">
+              </div>
+              <div class="flip-front-info">
+                <div class="flip-name">Gülsüm Ak</div>
+                <div class="flip-role">Epilasyon Uzmanı</div>
+                <div class="flip-exp">8 Yıl Deneyim</div>
+                <div class="flip-hint">👆 Tıkla / Hover Yap</div>
+              </div>
+            </div>
+            <div class="flip-back">
+              <div class="flip-back-name">Gülsüm Ak</div>
+              <div class="flip-back-role">Epilasyon & Bakım Uzmanı</div>
+              <div class="flip-back-bio">Sertifikalı lazer epilasyon uzmanı Gülsüm, cilt tipine özel protokollerle güvenli ve kalıcı sonuçlar sunmaktadır.</div>
+              <div class="flip-skills">
+                <span class="flip-skill">Lazer Epilasyon</span>
+                <span class="flip-skill">Brezilya Ağda</span>
+                <span class="flip-skill">IPL</span>
+              </div>
+              <a href="contact.html" class="flip-back-cta">Randevu Al</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner">
+    <div class="cta-banner-content container">
+      <h2>Ekibi Keşfet,<br><em>Kendini Yenile</em></h2>
+      <p>Her biri kendi alanında uzman olan profesyonellerimiz, size özel bakım deneyimi sunmaya hazır.</p>
+      <a href="contact.html" class="btn-primary">Şimdi Randevu Al</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">Lumina<span>·</span>Beauty</div>
+          <p class="footer-desc">Profesyonel güzellik ve bakım merkezi. İstanbul'un en güvenilir güzellik sarayı.</p>
+          <div class="footer-social">
+            <a href="https://instagram.com" class="social-link" aria-label="Instagram">f</a>
+            <a href="https://instagram.com" class="social-link" aria-label="Instagram">📷</a>
+            <a href="https://wa.me/905551234567" class="social-link" aria-label="WhatsApp">💬</a>
+          </div>
+        </div>
+        <div>
+          <h4 class="footer-heading">Sayfalar</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="services.html">Hizmetler</a></li>
+            <li><a href="team.html">Ekibimiz</a></li>
+            <li><a href="contact.html">İletişim</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">Hizmetler</h4>
+          <ul class="footer-links">
+            <li><a href="services.html">Cilt Bakımı</a></li>
+            <li><a href="services.html">Saç Tasarımı</a></li>
+            <li><a href="services.html">Masaj & SPA</a></li>
+            <li><a href="services.html">Tırnak Bakımı</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-heading">İletişim</h4>
+          <div class="footer-hours">
+            <strong>Telefon:</strong><br>
+            <a href="tel:+905551234567" style="color:rgba(245,240,232,0.6)">0555 123 45 67</a><br>
+            <small style="color:rgba(245,240,232,0.4)">(Dummy numara)</small><br><br>
+            <strong>Konum:</strong><br>
+            Teşvikiye Cad. No:24<br>
+            Nişantaşı, Şişli/İstanbul
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2024 Lumina Beauty. Tüm hakları saklıdır.</span>
+        <span>Tasarım & Geliştirme: <a href="https://claude.ai" style="color:rgba(245,240,232,0.6)">Claude Code</a></span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab" aria-label="WhatsApp">
+    💬
+  </a>
+
+  <script src="main.js"></script>
+  <script>
+    // Flip card functionality for touch & click
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('flipped');
+      });
+    });
+  </script>
+</body>
+</html>

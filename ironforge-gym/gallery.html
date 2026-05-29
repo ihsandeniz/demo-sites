@@ -1,0 +1,668 @@
+<!-- IronForge Gym — gallery.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Galeri — IronForge Gym</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Page Hero --- */
+    .page-hero {
+      background: var(--black-mid);
+      padding: 80px 24px;
+      text-align: center;
+      border-bottom: 2px solid rgba(232, 255, 0, 0.15);
+    }
+    .page-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .breadcrumb {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-weight: 600;
+    }
+    .breadcrumb a {
+      color: var(--neon);
+      transition: opacity 0.3s;
+    }
+    .breadcrumb a:hover {
+      opacity: 0.7;
+    }
+
+    /* --- Gallery Section --- */
+    .gallery-section {
+      background: var(--black);
+      padding: 96px 0;
+    }
+
+    /* --- Filter Tabs --- */
+    .gallery-filters {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin: 60px 0 60px;
+      flex-wrap: wrap;
+    }
+    .gallery-tab {
+      padding: 10px 24px;
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      border-radius: 24px;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .gallery-tab:hover {
+      border-color: var(--neon);
+      color: var(--neon);
+    }
+    .gallery-tab.active {
+      background: var(--neon);
+      border-color: var(--neon);
+      color: var(--black);
+    }
+
+    /* --- Gallery Grid (Masonry) --- */
+    .gallery-grid {
+      display: columns;
+      columns: 3;
+      gap: 24px;
+      margin-bottom: 80px;
+    }
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 24px;
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      group: 1;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery-item:hover {
+      transform: scale(1.01);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: filter 0.3s;
+    }
+    .gallery-item:hover img {
+      filter: brightness(0.7);
+    }
+    .gallery-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-overlay {
+      opacity: 1;
+    }
+    .gallery-zoom-icon {
+      font-size: 2.5rem;
+      color: var(--neon);
+      filter: drop-shadow(0 0 8px rgba(232, 255, 0, 0.6));
+    }
+    .gallery-item[data-cat="all"] {
+      display: block;
+    }
+    .gallery-item[data-cat]:not([data-cat*="all"]) {
+      display: none;
+    }
+
+    /* --- Transformation Section --- */
+    .transformation {
+      background: var(--black-mid);
+      padding: 96px 0;
+      border-top: 1px solid rgba(232, 255, 0, 0.1);
+    }
+    .transformation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      margin-top: 60px;
+    }
+    .transformation-card {
+      text-align: center;
+    }
+    .transformation-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .transformation-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 12px;
+      height: 300px;
+    }
+    .transformation-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .transformation-label {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      background: rgba(0, 0, 0, 0.8);
+      color: var(--neon);
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+    .transformation-name {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+    .transformation-duration {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--neon);
+      font-weight: 700;
+    }
+
+    /* --- Lightbox --- */
+    #lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s;
+    }
+    #lightbox.active {
+      display: flex;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .lightbox-content {
+      position: relative;
+      width: 90%;
+      max-width: 900px;
+      max-height: 90vh;
+      animation: slideUp 0.3s;
+    }
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    #lightboxImg {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      display: block;
+    }
+    #lightboxClose {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 2rem;
+      cursor: pointer;
+      transition: color 0.3s;
+      z-index: 1001;
+    }
+    #lightboxClose:hover {
+      color: var(--neon);
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .gallery-grid {
+        columns: 2;
+      }
+      .transformation-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 640px) {
+      .page-hero {
+        padding: 60px 20px;
+      }
+      .page-hero h1 {
+        font-size: 2rem;
+      }
+      .gallery-grid {
+        columns: 1;
+      }
+      .gallery-filters {
+        gap: 8px;
+      }
+      .gallery-tab {
+        padding: 8px 16px;
+        font-size: 0.7rem;
+      }
+      .transformation-grid {
+        grid-template-columns: 1fr;
+      }
+      .transformation-image {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-item active">🔥 YAZ KAMPANYASI — İlk Ay %50 İndirim</span>
+    <span class="announcement-item">💪 ÜCRETSIZ Deneme Antrenmanı — Bugün Kayıt Ol</span>
+    <span class="announcement-item">🏆 150+ Aktif Üye — Sen de Katıl</span>
+    <button class="announcement-close">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">IRON<span>FORGE</span></div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="programs.html" class="nav-link">Programlar</a>
+        <a href="gallery.html" class="nav-link active">Galeri</a>
+        <a href="team.html" class="nav-link">Ekip</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+        <button class="nav-cta">Üye Ol</button>
+      </nav>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close">&times;</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="programs.html" class="nav-link">Programlar</a>
+    <a href="gallery.html" class="nav-link active">Galeri</a>
+    <a href="team.html" class="nav-link">Ekip</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <button class="btn-primary">Üye Ol</button>
+  </div>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>GALERİ</h1>
+    <div class="breadcrumb">
+      <a href="index.html">Ana Sayfa</a> > <span>Galeri</span>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="gallery-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Fotoğraf Koleksiyonu</div>
+        <h2>ANTRENMAN<span>ANLARı</span></h2>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="gallery-filters">
+        <button class="gallery-tab active" data-cat="all">Tümü</button>
+        <button class="gallery-tab" data-cat="equipment">Ekipman</button>
+        <button class="gallery-tab" data-cat="training">Antrenman</button>
+        <button class="gallery-tab" data-cat="transformation">Dönüşüm</button>
+        <button class="gallery-tab" data-cat="events">Etkinlikler</button>
+      </div>
+
+      <!-- Gallery Grid -->
+      <div class="gallery-grid">
+        <!-- Equipment -->
+        <div class="gallery-item reveal" data-cat="all equipment">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80&fm=webp" alt="Weights" loading="lazy" width="600" height="400">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Training -->
+        <div class="gallery-item reveal reveal-delay-1" data-cat="all training">
+          <img src="https://images.unsplash.com/photo-1549720217-7e46aecc266d?w=600&q=80&fm=webp" alt="Boxing Training" loading="lazy" width="600" height="500">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Transformation -->
+        <div class="gallery-item reveal reveal-delay-2" data-cat="all transformation">
+          <img src="https://images.unsplash.com/photo-1581092161562-40038f341ecd?w=600&q=80&fm=webp" alt="Before After" loading="lazy" width="600" height="400">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Equipment -->
+        <div class="gallery-item reveal" data-cat="all equipment">
+          <img src="https://images.unsplash.com/photo-1520612408246-481bdf11d389?w=600&q=80&fm=webp" alt="Dumbbells" loading="lazy" width="600" height="450">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Training -->
+        <div class="gallery-item reveal reveal-delay-1" data-cat="all training">
+          <img src="https://images.unsplash.com/photo-1476480862245-00003ec89e13?w=600&q=80&fm=webp" alt="Gym Floor" loading="lazy" width="600" height="550">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div class="gallery-item reveal reveal-delay-2" data-cat="all events">
+          <img src="https://images.unsplash.com/photo-1566422814519-5f3fa2c3d262?w=600&q=80&fm=webp" alt="Group Training" loading="lazy" width="600" height="400">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Training -->
+        <div class="gallery-item reveal" data-cat="all training">
+          <img src="https://images.unsplash.com/photo-1538805060514-97d3b894f046?w=600&q=80&fm=webp" alt="Cardio" loading="lazy" width="600" height="480">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Equipment -->
+        <div class="gallery-item reveal reveal-delay-1" data-cat="all equipment">
+          <img src="https://images.unsplash.com/photo-1578289944f20d2d0755e7f1e1e5f1f8?w=600&q=80&fm=webp" alt="Barbell" loading="lazy" width="600" height="450">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Transformation -->
+        <div class="gallery-item reveal reveal-delay-2" data-cat="all transformation">
+          <img src="https://images.unsplash.com/photo-1532619675605-1ede6c2e7b94?w=600&q=80&fm=webp" alt="Athlete" loading="lazy" width="600" height="500">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Events -->
+        <div class="gallery-item reveal" data-cat="all events">
+          <img src="https://images.unsplash.com/photo-1552258614-8c45f1885e92?w=600&q=80&fm=webp" alt="Community Event" loading="lazy" width="600" height="400">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Training -->
+        <div class="gallery-item reveal reveal-delay-1" data-cat="all training">
+          <img src="https://images.unsplash.com/photo-1552258614-8c45f1885e92?w=600&q=80&fm=webp" alt="Strength Training" loading="lazy" width="600" height="480">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Equipment -->
+        <div class="gallery-item reveal reveal-delay-2" data-cat="all equipment">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&q=80&fm=webp" alt="Squat Rack" loading="lazy" width="600" height="420">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+
+        <!-- Transformation -->
+        <div class="gallery-item reveal" data-cat="all transformation">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80&fm=webp" alt="Success Story" loading="lazy" width="600" height="450">
+          <div class="gallery-overlay">
+            <span class="gallery-zoom-icon">🔍</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Transformation Section -->
+  <section class="transformation">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Başarı Hikayeleri</div>
+        <h2>DÖNÜŞÜM<span>HIKAYELER</span></h2>
+      </div>
+      <div class="transformation-grid">
+        <!-- Transformation 1 -->
+        <div class="transformation-card reveal">
+          <div class="transformation-images">
+            <div class="transformation-image">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&q=80&fm=webp" alt="Before" loading="lazy" width="300" height="300">
+              <span class="transformation-label">ÖNCE</span>
+            </div>
+            <div class="transformation-image">
+              <img src="https://images.unsplash.com/photo-1513722715098-8e640e66b3b0?w=600&q=80&fm=webp" alt="After" loading="lazy" width="300" height="300">
+              <span class="transformation-label">SONRA</span>
+            </div>
+          </div>
+          <div class="transformation-name">Ali Demir</div>
+          <div class="transformation-duration">3 AY</div>
+        </div>
+
+        <!-- Transformation 2 -->
+        <div class="transformation-card reveal reveal-delay-1">
+          <div class="transformation-images">
+            <div class="transformation-image">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80&fm=webp" alt="Before" loading="lazy" width="300" height="300">
+              <span class="transformation-label">ÖNCE</span>
+            </div>
+            <div class="transformation-image">
+              <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&q=80&fm=webp" alt="After" loading="lazy" width="300" height="300">
+              <span class="transformation-label">SONRA</span>
+            </div>
+          </div>
+          <div class="transformation-name">Zeynep Yılmaz</div>
+          <div class="transformation-duration">6 AY</div>
+        </div>
+
+        <!-- Transformation 3 -->
+        <div class="transformation-card reveal reveal-delay-2">
+          <div class="transformation-images">
+            <div class="transformation-image">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&q=80&fm=webp" alt="Before" loading="lazy" width="300" height="300">
+              <span class="transformation-label">ÖNCE</span>
+            </div>
+            <div class="transformation-image">
+              <img src="https://images.unsplash.com/photo-1583454110453-3bc9fde398e2?w=600&q=80&fm=webp" alt="After" loading="lazy" width="300" height="300">
+              <span class="transformation-label">SONRA</span>
+            </div>
+          </div>
+          <div class="transformation-name">Mert Kaya</div>
+          <div class="transformation-duration">12 AY</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <div class="lightbox-content">
+      <button id="lightboxClose">&times;</button>
+      <img id="lightboxImg" src="" alt="Full Size Image">
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">IRON<span>FORGE</span></div>
+          <p class="footer-desc">İstanbul'un en zorlu antrenman merkezi. Sınırlarını zorla, kendini aş. 150+ üyemiz güçlenmeye başladı.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Sayfalar</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="programs.html">Programlar</a></li>
+            <li><a href="gallery.html">Galeri</a></li>
+            <li><a href="team.html">Ekip</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Programlar</div>
+          <ul class="footer-links">
+            <li><a href="#">Powerlifting</a></li>
+            <li><a href="#">BoxFit</a></li>
+            <li><a href="#">CrossFit</a></li>
+            <li><a href="#">Cardio HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">İletişim</div>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Levent Mah. No:44<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Telefon:</strong><br>
+            0212 XXX XX XX (Demo)<br><br>
+            <strong>Saatler:</strong><br>
+            Pzt-Cum: 06:00-23:00<br>
+            Haf.Sonu: 08:00-21:00
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 IronForge Gym. Tüm hakları saklıdır.</span>
+        <div>
+          <a href="#" style="color: var(--gray); margin-right: 20px;">Gizlilik Politikası</a>
+          <a href="#" style="color: var(--gray);">Kullanım Şartları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/90212xxxxxxxx" class="whatsapp-fab" id="whatsappFab">💬</a>
+
+  <script src="main.js"></script>
+  <script>
+    // Gallery Filter
+    const filterTabs = document.querySelectorAll('.gallery-tab');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    filterTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Update active tab
+        filterTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+
+        const category = tab.getAttribute('data-cat');
+
+        // Filter items
+        galleryItems.forEach(item => {
+          const itemCategories = item.getAttribute('data-cat').split(' ');
+          if (itemCategories.includes(category)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxClose = document.getElementById('lightboxClose');
+
+    galleryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lightboxImg.src = img.src;
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    lightboxClose.addEventListener('click', () => {
+      lightbox.classList.remove('active');
+      document.body.style.overflow = 'auto';
+    });
+
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+        lightbox.classList.remove('active');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    // Reveal Animation on Scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.reveal').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>

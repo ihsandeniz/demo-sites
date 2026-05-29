@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumina Beauty hizmetleri: Cilt bakımı, saç tasarımı, tırnak bakımı, masaj ve SPA. Fiyatlar ve detaylar.">
+  <title>Hizmetler — Lumina Beauty</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Services Page Styles */
+    .services-hero {
+      background: var(--dark);
+      padding: 120px 0 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?w=1400&q=60&fm=webp') center/cover;
+      opacity: 0.12;
+    }
+
+    .services-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-hero h1 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .services-hero p {
+      color: rgba(245, 240, 232, 0.7);
+      font-size: 1.1rem;
+    }
+
+    /* Category Filter Tabs */
+    .category-tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 48px 0 32px;
+    }
+
+    .tab-btn {
+      padding: 10px 24px;
+      border-radius: 50px;
+      border: 1.5px solid var(--rose-light);
+      background: transparent;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      font-family: var(--font-body);
+    }
+
+    .tab-btn:hover {
+      border-color: var(--rose);
+      color: var(--rose);
+    }
+
+    .tab-btn.active {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: var(--white);
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .service-item {
+      background: var(--white);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 40px rgba(26, 20, 16, 0.12);
+      border-color: var(--rose-light);
+    }
+
+    .service-item[data-cat].hidden {
+      display: none;
+    }
+
+    .service-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .service-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .service-item:hover .service-img img {
+      transform: scale(1.05);
+    }
+
+    .service-body {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .service-cat-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      margin-bottom: 12px;
+      background: var(--rose-light);
+      color: var(--rose-dark);
+      width: fit-content;
+    }
+
+    .service-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .service-body p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+
+    .service-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .service-price {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .service-price span {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+    }
+
+    .service-duration {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      background: var(--cream);
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .service-cta {
+      display: block;
+      text-align: center;
+      padding: 10px;
+      border-radius: 8px;
+      background: var(--cream);
+      color: var(--rose);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      border: 1px solid transparent;
+    }
+
+    .service-cta:hover {
+      background: var(--rose);
+      color: var(--white);
+      border-color: var(--rose);
+    }
+
+    /* Info Box */
+    .info-box {
+      text-align: center;
+      margin-top: 64px;
+      padding: 32px;
+      background: var(--rose-light);
+      border-radius: 16px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .info-box p {
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    /* CTA Section */
+    .services-cta {
+      background: var(--dark);
+      padding: 80px 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .services-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1559599101-f09722fb4948?w=1400&q=60&fm=webp') center/cover;
+      opacity: 0.08;
+    }
+
+    .services-cta-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .services-cta h2 {
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    .services-cta p {
+      color: rgba(245, 240, 232, 0.7);
+      font-size: 1.1rem;
+      margin-bottom: 32px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 640px) {
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-hero {
+        padding: 80px 0 60px;
+      }
+
+      .category-tabs {
+        padding: 32px 0 24px;
+      }
+
+      .services-cta {
+        padding: 60px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span class="announcement-item active">✨ Yaz Kampanyası: İlk Randevuda %15 İndirim</span>
+      <span class="announcement-item">🌿 Yeni: Organik Cilt Bakımı Serisi Geldi</span>
+      <span class="announcement-item">📱 WhatsApp'tan randevu almak artık çok kolay</span>
+    </div>
+    <button class="announcement-close" onclick="dismissAnnouncement()" aria-label="Kapat">×</button>
+  </div>
+
+  <!-- Header -->
+  <header id="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">Lumina<span>·</span>Beauty</a>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="services.html" class="nav-link active">Hizmetler</a>
+        <a href="gallery.html" class="nav-link">Galeri</a>
+        <a href="team.html" class="nav-link">Ekibimiz</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+      </nav>
+      <a href="contact.html" class="nav-cta">Randevu Al</a>
+      <button class="hamburger" id="hamburger" aria-label="Menü">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">×</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="services.html" class="nav-link">Hizmetler</a>
+    <a href="gallery.html" class="nav-link">Galeri</a>
+    <a href="team.html" class="nav-link">Ekibimiz</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <a href="contact.html" class="btn-primary" style="width: fit-content; margin-top: 16px;">Randevu Al</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="services-hero">
+    <div class="services-hero-content container">
+      <p class="section-eyebrow" style="color: var(--gold)">Ne Yapıyoruz</p>
+      <h1>Hizmetlerimiz</h1>
+      <p>Her biri uzman eller tarafından uygulanan, size özel tasarlanmış bakım protokolleri.</p>
+    </div>
+  </section>
+
+  <!-- Category Filter -->
+  <section class="section" style="background: var(--cream); padding: 0 0 32px;">
+    <div class="container">
+      <div class="category-tabs">
+        <button class="tab-btn active" data-filter="all">Tümü</button>
+        <button class="tab-btn" data-filter="cilt">Cilt Bakımı</button>
+        <button class="tab-btn" data-filter="sac">Saç Tasarımı</button>
+        <button class="tab-btn" data-filter="tirnak">Tırnak Bakımı</button>
+        <button class="tab-btn" data-filter="masaj">Masaj & SPA</button>
+        <button class="tab-btn" data-filter="kas">Kaş & Kirpik</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section" style="background: var(--cream);">
+    <div class="container">
+      <div class="services-grid" id="servicesGrid">
+        <!-- Cilt Bakımı -->
+        <div class="service-item" data-cat="cilt">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&fm=webp" alt="Hydrafacial Tedavisi" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Cilt Bakımı</span>
+            <h3>Hydrafacial Tedavisi</h3>
+            <p>Derin temizleme, soyma ve nemlendirmeyi tek seansta birleştiren ileri teknoloji cilt bakımı.</p>
+            <div class="service-meta">
+              <div class="service-price">₺850 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 60 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="cilt">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1556228578-8c89e6adf883?w=600&q=80&fm=webp" alt="Vitamin C Aydınlatma Serumu" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Cilt Bakımı</span>
+            <h3>Vitamin C Aydınlatma Serumu</h3>
+            <p>Cildin parlaklığını artıran, leke giderici ve anti-oksidan özel serum uygulaması.</p>
+            <div class="service-meta">
+              <div class="service-price">₺650 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 45 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="cilt">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?w=600&q=80&fm=webp" alt="Anti-Aging Kollajen Maske" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Cilt Bakımı</span>
+            <h3>Anti-Aging Kollajen Maske</h3>
+            <p>Kollajen serisinin yoğun uygulaması ile çizgileri azaltan ve cilt elastikiyetini artıran maske.</p>
+            <div class="service-meta">
+              <div class="service-price">₺750 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 50 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="cilt">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?w=600&q=80&fm=webp" alt="Kimyasal Peeling" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Cilt Bakımı</span>
+            <h3>Kimyasal Peeling (AHA/BHA)</h3>
+            <p>Ölü deri tabakasını temizleyen, derin gözenekleri açan ve cildi yenileyen profesyonel peeling.</p>
+            <div class="service-meta">
+              <div class="service-price">₺900 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 45 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <!-- Saç Tasarımı -->
+        <div class="service-item" data-cat="sac">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fm=webp" alt="Balayage & Ombre" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Saç Tasarımı</span>
+            <h3>Balayage & Ombre Boyama</h3>
+            <p>El boyama tekniğiyle saçınıza doğal ve üç boyutlu bir görünüm kazandıran trend renk uygulaması.</p>
+            <div class="service-meta">
+              <div class="service-price">₺1.200 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 180 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="sac">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80&fm=webp" alt="Keratin Düzleştirme" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Saç Tasarımı</span>
+            <h3>Keratin Düzleştirme</h3>
+            <p>İşlenmiş veya dalgalı saçlarınızı permanent olarak düzleştiren ve parlatmayan keratin tedavisi.</p>
+            <div class="service-meta">
+              <div class="service-price">₺950 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 120 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="sac">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?w=600&q=80&fm=webp" alt="Saç Kesim ve Şekillendirme" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Saç Tasarımı</span>
+            <h3>Saç Kesim & Şekillendirme</h3>
+            <p>Yüz şeklinize uygun modern kesim teknikleriyle stiliniziizi yenileyin ve şekillendirin.</p>
+            <div class="service-meta">
+              <div class="service-price">₺450 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 60 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <!-- Tırnak Bakımı -->
+        <div class="service-item" data-cat="tirnak">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80&fm=webp" alt="Kalıcı Oje & Nail Art" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Tırnak Bakımı</span>
+            <h3>Kalıcı Oje & Nail Art</h3>
+            <p>Özgün tasarımlar ve renkler ile kişiye özel tırnak sanatı ve kalıcı oje uygulaması.</p>
+            <div class="service-meta">
+              <div class="service-price">₺350 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 90 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="tirnak">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?w=600&q=80&fm=webp" alt="Jel Manikür ve Pedikür Set" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Tırnak Bakımı</span>
+            <h3>Jel Manikür & Pedikür Set</h3>
+            <p>Elleri ve ayakları birlikte özen ve stil ile tasarlayan eksiksiz jel manikür-pedikür paketi.</p>
+            <div class="service-meta">
+              <div class="service-price">₺550 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 120 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <!-- Masaj & SPA -->
+        <div class="service-item" data-cat="masaj">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?w=600&q=80&fm=webp" alt="Aromaterapi Masajı" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Masaj & SPA</span>
+            <h3>Aromaterapi Masajı</h3>
+            <p>Doğal uçucu yağlar ve rahatlatıcı masaj tekniğiyle bedeni ve ruhu rahatlatan terapi seansı.</p>
+            <div class="service-meta">
+              <div class="service-price">₺700 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 75 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <div class="service-item" data-cat="masaj">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=600&q=80&fm=webp" alt="Sıcak Taş Masajı" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Masaj & SPA</span>
+            <h3>Sıcak Taş Masajı</h3>
+            <p>Sıcak vulkanik taşlarla kas gerginliğini çözen, kan dolaşımını artıran derin rahatlatma masajı.</p>
+            <div class="service-meta">
+              <div class="service-price">₺850 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 90 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+
+        <!-- Kaş & Kirpik -->
+        <div class="service-item" data-cat="kas">
+          <div class="service-img"><img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=600&q=80&fm=webp" alt="Kaş Laminasyonu & Boyama" loading="lazy"></div>
+          <div class="service-body">
+            <span class="service-cat-badge">Kaş & Kirpik</span>
+            <h3>Kaş Laminasyonu & Boyama</h3>
+            <p>Modern laminasyon tekniğiyle kaşlarınızı şekillendir ve profesyonel boyama ile vurgula.</p>
+            <div class="service-meta">
+              <div class="service-price">₺450 <span>/ seans</span></div>
+              <div class="service-duration">⏱ 60 dk</div>
+            </div>
+            <a href="contact.html" class="service-cta">Randevu Al →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Info Box -->
+      <div class="info-box">
+        <p>
+          💡 Tüm fiyatlara KDV dahildir. Paket fiyatları için lütfen bizi arayın.<br>
+          İlk randevunuzda <strong>%15 indirim</strong> geçerlidir.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="services-cta">
+    <div class="services-cta-content container">
+      <h2>Sizin İçin En Uygun Hizmet Hangisi?</h2>
+      <p>Uzman danışmanlarımız size kişiye özel hizmet planı oluşturmaktan mutlu olacaklar.</p>
+      <a href="contact.html" class="btn-primary">Ücretsiz Danışma Al</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: var(--dark); color: var(--cream); padding: 80px 0 24px; position: relative;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-bottom: 48px;">
+        <div>
+          <h4 style="font-family: var(--font-heading); font-size: 1.2rem; margin-bottom: 16px;">Lumina Beauty</h4>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7);">İstanbul'un en seçkin güzellik merkezi. Uzman hands, premium ürünler, kişiye özel hizmetler.</p>
+        </div>
+        <div>
+          <h5 style="font-family: var(--font-heading); margin-bottom: 16px;">Hızlı Linkler</h5>
+          <ul style="list-style: none; padding: 0; margin: 0;">
+            <li style="margin-bottom: 8px;"><a href="index.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">Ana Sayfa</a></li>
+            <li style="margin-bottom: 8px;"><a href="services.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">Hizmetler</a></li>
+            <li style="margin-bottom: 8px;"><a href="gallery.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">Galeri</a></li>
+            <li><a href="contact.html" style="color: rgba(245, 240, 232, 0.8); transition: color 0.3s;">İletişim</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 style="font-family: var(--font-heading); margin-bottom: 16px;">İletişim</h5>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7); margin-bottom: 8px;">📱 +90 555 123 4567</p>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7); margin-bottom: 8px;">📧 info@luminabeauty.com</p>
+          <p style="font-size: 0.9rem; color: rgba(245, 240, 232, 0.7);">📍 Nişantaşı, İstanbul</p>
+        </div>
+      </div>
+      <div style="border-top: 1px solid rgba(245, 240, 232, 0.1); padding-top: 24px; text-align: center; font-size: 0.8rem; color: rgba(245, 240, 232, 0.5);">
+        <p>&copy; 2024 Lumina Beauty. Tüm Hakları Saklıdır.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="fab" id="whatsappFab" style="position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 24px; box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); z-index: 100; opacity: 0; visibility: hidden; transition: all 0.3s ease;">
+    📱
+  </a>
+
+  <style>
+    #whatsappFab.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+  </style>
+
+  <script src="main.js"></script>
+  <script>
+    // Tab Filter Functionality
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+        document.querySelectorAll('.service-item').forEach(item => {
+          if (filter === 'all' || item.dataset.cat === filter) {
+            item.style.display = '';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

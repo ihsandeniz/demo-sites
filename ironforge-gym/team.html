@@ -1,0 +1,817 @@
+<!-- IronForge Gym — team.html -->
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IronForge Gym — Eğitmen Ekibi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* --- Team Page Specific Styles --- */
+    .team-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 500px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background: var(--black);
+    }
+
+    .team-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(232,255,0,0.08) 100%);
+      z-index: 1;
+    }
+
+    .team-hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .team-hero h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .team-hero h1 span {
+      color: var(--neon);
+    }
+
+    .team-hero-desc {
+      font-size: 1.1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    /* --- Stats Bar (Team Page Version) --- */
+    .team-stats-bar {
+      background: var(--neon);
+      padding: 36px 0;
+      margin-bottom: 80px;
+    }
+
+    .team-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0;
+      text-align: center;
+    }
+
+    .team-stat-item {
+      padding: 0 24px;
+      border-right: 1px solid rgba(10,10,10,0.2);
+    }
+
+    .team-stat-item:last-child {
+      border-right: none;
+    }
+
+    .team-stat-number {
+      font-family: var(--font-heading);
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--black);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .team-stat-label {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(10,10,10,0.6);
+      margin-top: 8px;
+      font-weight: 700;
+    }
+
+    /* --- Flip Card Styles --- */
+    .trainers-full-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .flip-card {
+      background-color: transparent;
+      width: 100%;
+      height: 480px;
+      perspective: 1000px;
+      cursor: pointer;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      transition: transform 0.5s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-card-front,
+    .flip-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+      border-radius: var(--radius-lg);
+    }
+
+    .flip-card-front {
+      background-color: var(--black-light);
+      color: var(--white);
+      overflow: hidden;
+      border: 1px solid rgba(232,255,0,0.1);
+    }
+
+    .flip-card-front img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(0.6);
+      transition: transform 0.3s;
+    }
+
+    .flip-card:hover .flip-card-front img {
+      transform: scale(1.05);
+      filter: brightness(0.5);
+    }
+
+    .flip-card-front-content {
+      position: relative;
+      z-index: 2;
+      background: linear-gradient(to top, rgba(10,10,10,0.95) 0%, transparent 100%);
+      padding: 24px 0 0 0;
+      margin: -24px -24px -24px -24px;
+      padding: 48px 24px 24px 24px;
+    }
+
+    .trainer-front-name {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .trainer-front-role {
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neon);
+      font-weight: 700;
+    }
+
+    .flip-card-back {
+      background: var(--neon);
+      color: var(--black);
+      transform: rotateY(180deg);
+      border: 1px solid var(--neon);
+    }
+
+    .flip-card-back-content {
+      width: 100%;
+      text-align: left;
+    }
+
+    .trainer-back-title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--black);
+      margin-bottom: 12px;
+      line-height: 1;
+    }
+
+    .trainer-back-section {
+      margin-bottom: 14px;
+    }
+
+    .trainer-back-label {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(10,10,10,0.7);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .trainer-back-list {
+      font-size: 0.9rem;
+      color: rgba(10,10,10,0.8);
+      line-height: 1.5;
+    }
+
+    .trainer-back-list li {
+      margin-bottom: 2px;
+    }
+
+    .trainer-back-cta {
+      margin-top: 16px;
+      padding: 10px 16px;
+      background: var(--black);
+      color: var(--neon);
+      border: 2px solid var(--black);
+      border-radius: var(--radius);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all var(--transition);
+      width: 100%;
+    }
+
+    .trainer-back-cta:hover {
+      background: var(--neon);
+      color: var(--black);
+    }
+
+    /* --- Certifications Section --- */
+    .certifications-section {
+      background: var(--black-mid);
+      padding: 60px 0;
+      margin-bottom: 80px;
+    }
+
+    .certifications-section .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .certifications-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .cert-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto;
+      border: 3px solid var(--neon);
+      border-radius: 50%;
+      background: var(--black-light);
+    }
+
+    .cert-badge-text {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--neon);
+      font-weight: 700;
+      line-height: 1.2;
+      text-align: center;
+      padding: 12px;
+    }
+
+    /* --- Join Team Section --- */
+    .join-team-section {
+      background: var(--black);
+      padding: 80px 0;
+      text-align: center;
+      border-top: 3px solid var(--neon);
+      border-bottom: 3px solid var(--neon);
+    }
+
+    .join-team-content h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--white);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .join-team-content h2 span {
+      color: var(--neon);
+    }
+
+    .join-team-desc {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      max-width: 700px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 1024px) {
+      .trainers-full-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .team-stats-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .flip-card {
+        height: 420px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .trainers-full-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .team-stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-stat-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(10,10,10,0.2);
+        padding: 16px 24px;
+      }
+
+      .team-stat-item:last-child {
+        border-bottom: none;
+      }
+
+      .flip-card {
+        height: 380px;
+      }
+
+      .team-hero h1 {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span class="announcement-item active">🔥 YAZ KAMPANYASI — İlk Ay %50 İndirim</span>
+    <span class="announcement-item">💪 ÜCRETSIZ Deneme Antrenmanı — Bugün Kayıt Ol</span>
+    <span class="announcement-item">🏆 150+ Aktif Üye — Sen de Katıl</span>
+    <button class="announcement-close">&times;</button>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">IRON<span>FORGE</span></div>
+      <nav class="nav-menu">
+        <a href="index.html" class="nav-link">Ana Sayfa</a>
+        <a href="index.html#programs" class="nav-link">Programlar</a>
+        <a href="team.html" class="nav-link active">Ekip</a>
+        <a href="contact.html" class="nav-link">Üyelik</a>
+        <a href="contact.html" class="nav-link">İletişim</a>
+        <button class="nav-cta">Üye Ol</button>
+      </nav>
+      <button class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <button class="mobile-menu-close">&times;</button>
+    <a href="index.html" class="nav-link">Ana Sayfa</a>
+    <a href="index.html#programs" class="nav-link">Programlar</a>
+    <a href="team.html" class="nav-link">Ekip</a>
+    <a href="contact.html" class="nav-link">Üyelik</a>
+    <a href="contact.html" class="nav-link">İletişim</a>
+    <button class="btn-primary">Üye Ol</button>
+  </div>
+
+  <!-- Team Hero Section -->
+  <section class="team-hero">
+    <div class="container">
+      <div class="team-hero-content">
+        <h1>EKİBİ<span>MİZ</span></h1>
+        <p class="team-hero-desc">IronForge'un başarısının arkasında, sertifikalı ve deneyimli 8+ eğitmen bulunuyor. Her biri kendi alanında uzman, seni limitini aşmaya yardımcı olmak için hazır.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Stats Bar -->
+  <div class="team-stats-bar">
+    <div class="container">
+      <div class="team-stats-grid">
+        <div class="team-stat-item">
+          <div class="team-stat-number">8+</div>
+          <div class="team-stat-label">Uzman Eğitmen</div>
+        </div>
+        <div class="team-stat-item">
+          <div class="team-stat-number">120+</div>
+          <div class="team-stat-label">Sertifika</div>
+        </div>
+        <div class="team-stat-item">
+          <div class="team-stat-number">2.000+</div>
+          <div class="team-stat-label">Mutlu Üye</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trainers Full Grid -->
+  <section class="section">
+    <div class="container">
+      <div class="trainers-full-grid">
+        <!-- Trainer 1 -->
+        <div class="flip-card reveal" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=500&fit=crop&q=80&fm=webp" alt="Mert Doğan" width="400" height="500">
+              <div class="flip-card-front-content">
+                <div class="trainer-front-name">Mert Doğan</div>
+                <div class="trainer-front-role">Head Coach</div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-card-back-content">
+                <div class="trainer-back-title">Mert Doğan</div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Uzmanlık</div>
+                  <ul class="trainer-back-list">
+                    <li>Powerlifting</li>
+                    <li>Kuvvet Antrenmanı</li>
+                    <li>Teknik Coaching</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Sertifikalar</div>
+                  <ul class="trainer-back-list">
+                    <li>NSCA-CPT</li>
+                    <li>IPF Hakem</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Deneyim</div>
+                  <div style="font-size: 0.9rem; color: rgba(10,10,10,0.8);">10+ Yıl</div>
+                </div>
+                <button class="trainer-back-cta">Randevu Al</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trainer 2 -->
+        <div class="flip-card reveal reveal-delay-1" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=500&fit=crop&q=80&fm=webp" alt="Selin Kaya" width="400" height="500">
+              <div class="flip-card-front-content">
+                <div class="trainer-front-name">Selin Kaya</div>
+                <div class="trainer-front-role">BoxFit Antrenörü</div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-card-back-content">
+                <div class="trainer-back-title">Selin Kaya</div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Uzmanlık</div>
+                  <ul class="trainer-back-list">
+                    <li>Boksing Tekniği</li>
+                    <li>Kardiyovasküler Fitness</li>
+                    <li>CrossFit L2</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Sertifikalar</div>
+                  <ul class="trainer-back-list">
+                    <li>AIBA</li>
+                    <li>CrossFit L2</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Deneyim</div>
+                  <div style="font-size: 0.9rem; color: rgba(10,10,10,0.8);">7+ Yıl</div>
+                </div>
+                <button class="trainer-back-cta">Randevu Al</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trainer 3 -->
+        <div class="flip-card reveal reveal-delay-2" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.unsplash.com/photo-1507299922480-3fca07b964d2?w=400&h=500&fit=crop&q=80&fm=webp" alt="Burak Arslan" width="400" height="500">
+              <div class="flip-card-front-content">
+                <div class="trainer-front-name">Burak Arslan</div>
+                <div class="trainer-front-role">Beslenme Koçu</div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-card-back-content">
+                <div class="trainer-back-title">Burak Arslan</div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Uzmanlık</div>
+                  <ul class="trainer-back-list">
+                    <li>Beslenme Planlaması</li>
+                    <li>Beden Kompozisyonu</li>
+                    <li>Supplementation</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Sertifikalar</div>
+                  <ul class="trainer-back-list">
+                    <li>Diyetisyen</li>
+                    <li>ISSN Certified</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Deneyim</div>
+                  <div style="font-size: 0.9rem; color: rgba(10,10,10,0.8);">8+ Yıl</div>
+                </div>
+                <button class="trainer-back-cta">Randevu Al</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trainer 4 -->
+        <div class="flip-card reveal" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.unsplash.com/photo-1519235907812-a7ae29903d71?w=400&h=500&fit=crop&q=80&fm=webp" alt="Derya Çelik" width="400" height="500">
+              <div class="flip-card-front-content">
+                <div class="trainer-front-name">Derya Çelik</div>
+                <div class="trainer-front-role">Mobilite & Yoga</div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-card-back-content">
+                <div class="trainer-back-title">Derya Çelik</div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Uzmanlık</div>
+                  <ul class="trainer-back-list">
+                    <li>Yoga & Mindfulness</li>
+                    <li>Mobilite Koçluğu</li>
+                    <li>Yaralanma Önleyim</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Sertifikalar</div>
+                  <ul class="trainer-back-list">
+                    <li>RYT-500</li>
+                    <li>FMS Specialist</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Deneyim</div>
+                  <div style="font-size: 0.9rem; color: rgba(10,10,10,0.8);">6+ Yıl</div>
+                </div>
+                <button class="trainer-back-cta">Randevu Al</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trainer 5 -->
+        <div class="flip-card reveal reveal-delay-1" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=400&h=500&fit=crop&q=80&fm=webp" alt="Kemal Yıldız" width="400" height="500">
+              <div class="flip-card-front-content">
+                <div class="trainer-front-name">Kemal Yıldız</div>
+                <div class="trainer-front-role">CrossFit Antrenörü</div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-card-back-content">
+                <div class="trainer-back-title">Kemal Yıldız</div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Uzmanlık</div>
+                  <ul class="trainer-back-list">
+                    <li>CrossFit Programming</li>
+                    <li>Weightlifting</li>
+                    <li>Grup Sınıfları</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Sertifikalar</div>
+                  <ul class="trainer-back-list">
+                    <li>CrossFit L3</li>
+                    <li>USAW</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Deneyim</div>
+                  <div style="font-size: 0.9rem; color: rgba(10,10,10,0.8);">9+ Yıl</div>
+                </div>
+                <button class="trainer-back-cta">Randevu Al</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Trainer 6 -->
+        <div class="flip-card reveal reveal-delay-2" onclick="this.classList.toggle('flipped')">
+          <div class="flip-card-inner">
+            <div class="flip-card-front">
+              <img src="https://images.unsplash.com/photo-1509332179298-c674f45c8be6?w=400&h=500&fit=crop&q=80&fm=webp" alt="Ayşe Öztürk" width="400" height="500">
+              <div class="flip-card-front-content">
+                <div class="trainer-front-name">Ayşe Öztürk</div>
+                <div class="trainer-front-role">Cardio & HIIT</div>
+              </div>
+            </div>
+            <div class="flip-card-back">
+              <div class="flip-card-back-content">
+                <div class="trainer-back-title">Ayşe Öztürk</div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Uzmanlık</div>
+                  <ul class="trainer-back-list">
+                    <li>HIIT Programlama</li>
+                    <li>Kardio Antrenmanı</li>
+                    <li>TRX Training</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Sertifikalar</div>
+                  <ul class="trainer-back-list">
+                    <li>ACE-CPT</li>
+                    <li>TRX Trainer</li>
+                  </ul>
+                </div>
+                <div class="trainer-back-section">
+                  <div class="trainer-back-label">Deneyim</div>
+                  <div style="font-size: 0.9rem; color: rgba(10,10,10,0.8);">5+ Yıl</div>
+                </div>
+                <button class="trainer-back-cta">Randevu Al</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications-section">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-eyebrow">Sektör Standartları</div>
+        <h2>ULUSLARARASI<span>SERTİFİKALAR</span></h2>
+      </div>
+      <div class="certifications-grid">
+        <div class="reveal">
+          <div class="cert-badge">
+            <div class="cert-badge-text">NSCA<br>CPT</div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-1">
+          <div class="cert-badge">
+            <div class="cert-badge-text">ACE<br>Certified</div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-2">
+          <div class="cert-badge">
+            <div class="cert-badge-text">CrossFit<br>Certified</div>
+          </div>
+        </div>
+        <div class="reveal reveal-delay-3">
+          <div class="cert-badge">
+            <div class="cert-badge-text">AIBA<br>Boxing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Join Team Section -->
+  <section class="join-team-section">
+    <div class="container">
+      <div class="join-team-content">
+        <h2>EKİBİMİZE<span>KATILIN</span></h2>
+        <p class="join-team-desc">Sertifikalı eğitmen olarak IronForge'da çalışmaya ilgileniyorsanız, CV'nizi gönder. Tutkulu, deneyimli ve üyeleri motive etmeyi seven profesyonelleri arıyoruz.</p>
+        <button class="btn-primary" onclick="document.location.href='mailto:careers@ironforge.com'">CV Gönder</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-logo">IRON<span>FORGE</span></div>
+          <p class="footer-desc">İstanbul'un en zorlu antrenman merkezi. Sınırlarını zorla, kendini aş. 150+ üyemiz güçlenmeye başladı.</p>
+          <div class="footer-social">
+            <a href="#" class="social-link">f</a>
+            <a href="#" class="social-link">𝕏</a>
+            <a href="#" class="social-link">📷</a>
+            <a href="#" class="social-link">▶</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Sayfalar</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Ana Sayfa</a></li>
+            <li><a href="team.html">Ekip</a></li>
+            <li><a href="index.html#programs">Programlar</a></li>
+            <li><a href="contact.html">Üyelik</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">Programlar</div>
+          <ul class="footer-links">
+            <li><a href="#">Powerlifting</a></li>
+            <li><a href="#">CrossFit</a></li>
+            <li><a href="#">Boksing</a></li>
+            <li><a href="#">HIIT</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-heading">İletişim</div>
+          <div class="footer-hours">
+            <strong>Adres:</strong><br>
+            Levent Mah. No:44<br>
+            Beşiktaş/İstanbul<br><br>
+            <strong>Telefon:</strong><br>
+            +90 (212) 555 0199<br><br>
+            <strong>Saatler:</strong><br>
+            Pzt-Cum: 06:00-23:00<br>
+            Haf.Sonu: 08:00-21:00
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2025 IronForge Gym. Tüm hakları saklıdır.</span>
+        <div>
+          <a href="#" style="color: var(--gray); margin-right: 20px;">Gizlilik Politikası</a>
+          <a href="#" style="color: var(--gray);">Kullanım Şartları</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp FAB -->
+  <a href="https://wa.me/905551234567" class="whatsapp-fab" id="whatsappFab">💬</a>
+
+  <script src="main.js"></script>
+  <script>
+    // Team Page Specific Scripts
+    document.querySelectorAll('.flip-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (!e.target.closest('.trainer-back-cta')) {
+          this.classList.toggle('flipped');
+        }
+      });
+
+      const backCta = card.querySelector('.trainer-back-cta');
+      if (backCta) {
+        backCta.addEventListener('click', function(e) {
+          e.preventDefault();
+          alert('Randevu sistemi yakında aktif olacak. Şu anlarında WhatsApp ile iletişime geçin.');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
